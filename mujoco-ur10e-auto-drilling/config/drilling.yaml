@@ -1,0 +1,41 @@
+simulation:
+  dt: 0.002
+  render: true
+  max_steps: 50000
+
+scene:
+  base_xml: assets/drilling_scene.xml
+  workpiece_body_name: workpiece
+
+controller:
+  kp_xy: 220.0
+  kd_xy: 35.0
+  kp_ori: 6.0
+  kd_ori: 0.8
+  kz_force: 0.02
+  force_damping: 0.08
+  kp_null: 4.0
+  max_tau: 120.0
+  damping_lambda: 0.02
+  max_z_velocity: 0.0025
+  desired_force_z: 0.0
+
+robot:
+  home_q: [0.0, -1.57, 1.57, -1.57, -1.57, 0.0]
+
+drilling:
+  approach_offset: 0.08
+  predrill_offset: 0.02
+  contact_force_threshold: 10.0
+  thrust_force_contact: -3.0
+  thrust_force_drill: -12.0
+  lateral_force_limit: 20.0
+  axial_force_limit: 40.0
+  retract_distance: 0.06
+  spindle_speed_rpm: 5000.0
+  dwell_time_s: 1.2
+  feed_depth_tolerance: 0.001
+  max_retries: 2
+
+paths:
+  targets_file: assets/targets.json

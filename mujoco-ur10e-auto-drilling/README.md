@@ -1,50 +1,26 @@
-# MuJoCo UR10e Automatic Drilling Unit
+# Stable MuJoCo UR10e-Style Drilling Setup
 
-A starter simulation for a UR10e carrying an automatic drilling unit in MuJoCo.
+This package is a **stable debug-first drilling setup** for MuJoCo.
 
-## Features
-- UR10e-like 6-DOF arm
-- drilling spindle/tool TCP
-- workpiece surface with drill targets
-- hybrid controller:
-  - XY position control
-  - Z thrust-force regulation
-  - orientation alignment to target normal
-- drilling state machine:
-  - move to approach
-  - move to pre-drill
-  - contact detect
-  - thrust control
-  - spindle on
-  - dwell / drilling
-  - retract
-- benchmark mode across multiple holes
-- KPI logging and plots
+Important:
+- It uses a **UR10e-style simplified arm**, not an OEM-exact UR10e model.
+- The main purpose is to give you a **stable scene, reachable target marker, position-servo control, and approach-only debug flow**.
+- Once this works, you can replace the arm with a real UR10e MJCF/URDF model while keeping the same scene/control structure.
 
-## Install
+## What is improved
+- vertical panel facing the robot
+- visible red target marker on the robot-facing face
+- position actuators instead of raw motor torques
+- softer controller with joint-target updates
+- approach-only mode first, then optional drilling mode
+- panel placed closer and slightly forward for elbow clearance
 
+## Run
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+python3 -m src.main --config config/drilling.yaml
 ```
 
-## Run single simulation
-
+## Benchmark
 ```bash
-python -m src.main --config config/drilling.yaml
+python3 -m src.benchmark --config config/benchmark.yaml
 ```
-
-## Run benchmark
-
-```bash
-python -m src.benchmark --config config/benchmark.yaml
-```
-
-## Notes
-This repository is a starter baseline. The drilling process is simulated with a simplified contact / dwell / material-removal abstraction.
-For production-grade research, extend the spindle dynamics, feed-rate logic, process forces, and exact robot geometry.
-
-
-## Stability patch
-This package was updated to use MuJoCo position actuators with joint-target commands instead of sending kinematic velocity-like outputs into motor actuators.

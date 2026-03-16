@@ -1,13 +1,6 @@
 .venv/
 __pycache__/
 *.pyc
-*.pyo
-*.log
-*.csv
-*.png
-*.jpg
-.idea/
-.vscode/
-results/*.json
 results/*.csv
+results/*.json
 results/plots/

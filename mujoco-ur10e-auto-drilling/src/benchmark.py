@@ -32,13 +32,24 @@ def build_drilling_context(cfg: dict) -> DrillingContext:
     )
 
 
-def noisy_target(target: DrillTarget, pos_noise_mm: float, normal_noise_deg: float, rng: np.random.Generator) -> DrillTarget:
+def noisy_target(
+    target: DrillTarget,
+    pos_noise_mm: float,
+    normal_noise_deg: float,
+    rng: np.random.Generator,
+) -> DrillTarget:
     pos_noise = rng.uniform(-pos_noise_mm, pos_noise_mm, size=3) * 1e-3
     n = target.normal.copy()
     tilt = rng.uniform(-normal_noise_deg, normal_noise_deg, size=2) * np.pi / 180.0
-    rx = np.array([[1, 0, 0], [0, np.cos(tilt[0]), -np.sin(tilt[0])], [0, np.sin(tilt[0]), np.cos(tilt[0])]], dtype=float)
-    ry = np.array([[np.cos(tilt[1]), 0, np.sin(tilt[1])], [0, 1, 0], [-np.sin(tilt[1]), 0, np.cos(tilt[1])]], dtype=float)
-    n2 = unit(ry @ rx @ n)
+    Rx = np.array(
+        [[1, 0, 0], [0, np.cos(tilt[0]), -np.sin(tilt[0])], [0, np.sin(tilt[0]), np.cos(tilt[0])]],
+        dtype=float,
+    )
+    Ry = np.array(
+        [[np.cos(tilt[1]), 0, np.sin(tilt[1])], [0, 1, 0], [-np.sin(tilt[1]), 0, np.cos(tilt[1])]],
+        dtype=float,
+    )
+    n2 = unit(Ry @ Rx @ n)
     return DrillTarget(
         target_id=target.target_id,
         position=target.position + pos_noise,
@@ -64,6 +75,7 @@ def run_target(cfg: dict, target: DrillTarget) -> DrillMetrics:
 
     home_q = np.array(cfg["robot"]["home_q"], dtype=float)
     data.qpos[:6] = home_q
+    data.ctrl[:6] = home_q
     mujoco.mj_forward(model, data)
 
     dt = float(cfg["simulation"]["dt"])
@@ -89,16 +101,22 @@ def run_target(cfg: dict, target: DrillTarget) -> DrillMetrics:
         drill_unit.update(dt=dt, in_cut=(state == DrillState.DRILL))
 
         controller.desired_force_z = desired_force_z
-        tau = controller.compute(
-            model=model,
-            data=data,
+
+        q = data.qpos[:6].copy()
+        qd = data.qvel[:6].copy()
+
+        q_des = controller.compute_q_des(
             task=task,
+            q=q,
+            qd=qd,
             x_des=x_des,
             desired_axis=desired_axis,
             measured_force=force,
             home_q=home_q,
+            dt=dt,
         )
-        data.ctrl[:] = np.clip(tau / float(cfg["controller"]["max_tau"]), -1.0, 1.0)
+
+        data.ctrl[:6] = q_des
         mujoco.mj_step(model, data)
 
         if state in {DrillState.DONE, DrillState.FAIL}:

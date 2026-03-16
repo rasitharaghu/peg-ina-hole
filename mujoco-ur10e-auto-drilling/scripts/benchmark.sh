@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 set -e
-python -m src.benchmark --config config/benchmark.yaml
+cd "$(dirname "$0")/.."
+python3 -m src.benchmark --config config/benchmark.yaml

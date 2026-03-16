@@ -44,3 +44,7 @@ python -m src.benchmark --config config/benchmark.yaml
 ## Notes
 This repository is a starter baseline. The drilling process is simulated with a simplified contact / dwell / material-removal abstraction.
 For production-grade research, extend the spindle dynamics, feed-rate logic, process forces, and exact robot geometry.
+
+
+## Stability patch
+This package was updated to use MuJoCo position actuators with joint-target commands instead of sending kinematic velocity-like outputs into motor actuators.

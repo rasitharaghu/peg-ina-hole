@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 set -e
-python -m src.main --config config/drilling.yaml
+cd "$(dirname "$0")/.."
+python3 -m src.main --config config/drilling.yaml

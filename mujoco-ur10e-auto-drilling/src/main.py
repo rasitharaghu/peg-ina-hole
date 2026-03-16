@@ -57,6 +57,7 @@ def main() -> None:
 
     home_q = np.array(cfg["robot"]["home_q"], dtype=float)
     data.qpos[:6] = home_q
+    data.ctrl[:6] = home_q
     mujoco.mj_forward(model, data)
 
     viewer = None
@@ -87,17 +88,22 @@ def main() -> None:
         drill_unit.update(dt=dt, in_cut=in_cut)
 
         controller.desired_force_z = desired_force_z
-        tau = controller.compute(
-            model=model,
-            data=data,
+
+        q = data.qpos[:6].copy()
+        qd = data.qvel[:6].copy()
+
+        q_des = controller.compute_q_des(
             task=task,
+            q=q,
+            qd=qd,
             x_des=x_des,
             desired_axis=desired_axis,
             measured_force=force,
             home_q=home_q,
+            dt=dt,
         )
 
-        data.ctrl[:] = np.clip(tau / float(cfg["controller"]["max_tau"]), -1.0, 1.0)
+        data.ctrl[:6] = q_des
         mujoco.mj_step(model, data)
 
         if viewer is not None:

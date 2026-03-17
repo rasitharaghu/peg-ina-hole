@@ -1,26 +1,51 @@
-# Stable MuJoCo UR10e-Style Drilling Setup
+# UR10e Peg-in-Hole Insertion via Admittance Control
 
-This package is a **stable debug-first drilling setup** for MuJoCo.
+A collection of Python scripts simulating the peg-in-hole insertion problem using **Kinematic Admittance Control**. This repository demonstrates how to handle robotic misalignments and compliant interactions using the MuJoCo physics engine without the need for external vision systems.
 
-Important:
-- It uses a **UR10e-style simplified arm**, not an OEM-exact UR10e model.
-- The main purpose is to give you a **stable scene, reachable target marker, position-servo control, and approach-only debug flow**.
-- Once this works, you can replace the arm with a real UR10e MJCF/URDF model while keeping the same scene/control structure.
+## 📌 Project Description
+This repository simulates a **Universal Robots UR10e** mounted on a table, equipped with a custom parallel-jaw gripper holding a cylindrical peg. The objective is to insert the peg into a hole in a rigid wall. 
 
-## What is improved
-- vertical panel facing the robot
-- visible red target marker on the robot-facing face
-- position actuators instead of raw motor torques
-- softer controller with joint-target updates
-- approach-only mode first, then optional drilling mode
-- panel placed closer and slightly forward for elbow clearance
+The project focuses on **Admittance Control**, where virtual forces are calculated to guide the robot. By setting different gains ($K$) for different axes, the robot remains stiff in the insertion direction (X) but compliant in the alignment directions (Y and Z), allowing it to "self-correct" during the insertion process.
 
-## Run
+### Key Technical Specs:
+* **Robot:** UR10e
+* **Gripper:** Custom parallel jaw (no camera/external force sensor).
+* **Control:** Kinematic Admittance (Task-space mapping to Joint-space via DLS).
+* **Environment:** MuJoCo Physics Engine.
+
+---
+
+## 📂 File Descriptions
+
+| File | Description |
+| :--- | :--- |
+| `universal_robots/` | Contains all assets, meshes, and textures for the UR10e robot. |
+| `scene.xml` | The main simulation setup: UR10e, table, gripper, peg, and the wall with the hole. |
+| `scene.py` | Simple utility script to launch the MuJoCo viewer to inspect the visual scene. |
+| `move_to_hole.py` | Solves Inverse Kinematics (IK) to reach the "pre-insertion" goal position using Damped Least Squares (DLS). |
+| `insert_peg.py` | The main execution script using kinematic admittance control to perform the insertion. |
+| `analyse_ctrl.py` | Helper script that injects noise into initial positions and plots trajectory tracking (X, Y, Z) and virtual forces ($F_x, F_y, F_z$). |
+| `gravity_comp.py` | Verification script to ensure gravity compensation is working correctly within the MuJoCo model. |
+| `Peg-in-Hole.mp4` | Demo Video of peg insertion. |
+| `kinematic_admittance_analysis` | Sample Performance analysis plot of insertion task for a given mis-aligned start position. |
+
+---
+
+## ⚙️ How to Run
+
+### Prerequisites
+1. **MuJoCo:** `pip install mujoco`
+2. **Python Dependencies:** `pip install numpy matplotlib`
+
+### Execution
+You can run any script directly from your terminal. For example:
+
 ```bash
-python3 -m src.main --config config/drilling.yaml
-```
+# To view the static scene
+python scene.py
 
-## Benchmark
-```bash
-python3 -m src.benchmark --config config/benchmark.yaml
-```
+# To run the insertion with admittance control
+python insert_peg.py
+
+# To generate performance analysis plots
+python analyse_ctrl.py

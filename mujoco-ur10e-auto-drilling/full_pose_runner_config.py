@@ -4,8 +4,6 @@ XML_PATH = "scene.xml"
 
 EE_SITE_NAME = "peg_tip"
 PEG_TIP_SITE_NAME = "peg_tip"
-FORCE_SENSOR_NAME = "wrist_force"
-TORQUE_SENSOR_NAME = "wrist_torque"
 
 HOME_KEY = "home"
 HOLE_KEY = "hole"
@@ -21,6 +19,8 @@ CUSTOM_HOME_QPOS = np.array([
 
 HOLE_TARGET_POS = np.array([-0.75, 0.024, 0.908], dtype=float)
 PREAPPROACH_OFFSET = np.array([0.18, 0.06, 0.00], dtype=float)
+
+INSERTION_DEPTH = 0.03
 
 DLS_DAMPING_6D = 0.01
 POSE_GAIN = 0.12

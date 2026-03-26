@@ -7,12 +7,17 @@ from full_pose_runner_mujoco_adapter import MujocoRobot
 
 def ori_err(Rd, Rc):
     Re = Rd @ Rc.T
-    return 0.5*np.array([Re[2,1]-Re[1,2], Re[0,2]-Re[2,0], Re[1,0]-Re[0,1]])
+    return 0.5*np.array([
+        Re[2,1]-Re[1,2],
+        Re[0,2]-Re[2,0],
+        Re[1,0]-Re[0,1]
+    ])
 
-def move(robot, pos_t, rot_t, label, viewer, sleep):
+def move(robot, pos_t, rot_t, label, viewer):
     for i in range(MAX_STEPS_PER_PHASE):
         p = robot.get_ee_pos()
         R = robot.get_ee_rot()
+
         pe = pos_t - p
         oe = ori_err(rot_t, R)
 
@@ -22,6 +27,7 @@ def move(robot, pos_t, rot_t, label, viewer, sleep):
 
         J = robot.jacobian()
         task = np.concatenate([pe, ORI_GAIN*oe])
+
         dq = J.T @ np.linalg.inv(J@J.T + 0.01*np.eye(6)) @ task
 
         q = robot.get_qpos()
@@ -29,24 +35,30 @@ def move(robot, pos_t, rot_t, label, viewer, sleep):
 
         mujoco.mj_forward(robot.model, robot.data)
         viewer.sync()
-        time.sleep(sleep)
+        time.sleep(0.03)
 
 model = mujoco.MjModel.from_xml_path(XML_PATH)
 data = mujoco.MjData(model)
 robot = MujocoRobot(model, data)
 
-hole_p, hole_R = robot.get_hole_pose()
+hole_p, hole_R, attach_p, tip_p = robot.get_hole_pose()
+
 pre_p = HOLE_TARGET_POS + PREAPPROACH_OFFSET
 
-insert_axis = hole_R[:,0]
+insert_axis = tip_p - attach_p
+insert_axis = insert_axis / np.linalg.norm(insert_axis)
+
 insert_p = HOLE_TARGET_POS + INSERTION_DEPTH * insert_axis
+
+print("INSERT AXIS:", insert_axis)
+print("INSERT TARGET:", insert_p)
 
 with mujoco.viewer.launch_passive(model, data) as viewer:
     robot.set_qpos(CUSTOM_HOME_QPOS)
     time.sleep(1)
 
-    move(robot, pre_p, hole_R, "PRE", viewer, 0.03)
-    move(robot, HOLE_TARGET_POS, hole_R, "HOLE", viewer, 0.03)
-    move(robot, insert_p, hole_R, "INSERT", viewer, 0.03)
+    move(robot, pre_p, hole_R, "PRE", viewer)
+    move(robot, HOLE_TARGET_POS, hole_R, "HOLE", viewer)
+    move(robot, insert_p, hole_R, "INSERT", viewer)
 
     time.sleep(5)

@@ -23,12 +23,12 @@ def move(robot, pos_t, rot_t, label, viewer):
 
         if np.linalg.norm(pe) < POS_TOL and np.linalg.norm(oe) < ORI_TOL:
             print(label, "reached")
-            return
+            return True
 
         J = robot.jacobian()
         task = np.concatenate([pe, ORI_GAIN*oe])
 
-        dq = J.T @ np.linalg.inv(J@J.T + 0.01*np.eye(6)) @ task
+        dq = J.T @ np.linalg.inv(J@J.T + DLS_DAMPING_6D*np.eye(6)) @ task
 
         q = robot.get_qpos()
         robot.set_qpos(q + POSE_GAIN*dq)
@@ -37,28 +37,28 @@ def move(robot, pos_t, rot_t, label, viewer):
         viewer.sync()
         time.sleep(0.03)
 
+    print(label, "failed")
+    return False
+
 model = mujoco.MjModel.from_xml_path(XML_PATH)
 data = mujoco.MjData(model)
 robot = MujocoRobot(model, data)
 
-hole_p, hole_R, attach_p, tip_p = robot.get_hole_pose()
+hole_p, hole_R = robot.get_hole_pose()
 
 pre_p = HOLE_TARGET_POS + PREAPPROACH_OFFSET
-
-insert_axis = tip_p - attach_p
-insert_axis = insert_axis / np.linalg.norm(insert_axis)
-
+insert_axis = INSERTION_AXIS_WORLD / np.linalg.norm(INSERTION_AXIS_WORLD)
 insert_p = HOLE_TARGET_POS + INSERTION_DEPTH * insert_axis
 
-print("INSERT AXIS:", insert_axis)
+print("PRE TARGET:", pre_p)
 print("INSERT TARGET:", insert_p)
 
 with mujoco.viewer.launch_passive(model, data) as viewer:
     robot.set_qpos(CUSTOM_HOME_QPOS)
     time.sleep(1)
 
-    move(robot, pre_p, hole_R, "PRE", viewer)
-    move(robot, HOLE_TARGET_POS, hole_R, "HOLE", viewer)
-    move(robot, insert_p, hole_R, "INSERT", viewer)
+    if move(robot, pre_p, hole_R, "PRE", viewer):
+        if move(robot, HOLE_TARGET_POS, hole_R, "HOLE", viewer):
+            move(robot, insert_p, hole_R, "INSERT", viewer)
 
     time.sleep(5)

@@ -17,9 +17,6 @@ class MujocoRobot:
         self.data = data
 
         self.ee_site_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, EE_SITE_NAME)
-        self.peg_tip_site_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, PEG_TIP_SITE_NAME)
-        self.attachment_site_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, ATTACHMENT_SITE_NAME)
-
         self.hole_key_id = model.key(HOLE_KEY).id
 
         self.qpos_ids = []
@@ -47,25 +44,17 @@ class MujocoRobot:
     def get_ee_rot(self):
         return self.data.site_xmat[self.ee_site_id].reshape(3,3).copy()
 
-    def get_attachment_pos(self):
-        return self.data.site_xpos[self.attachment_site_id].copy()
-
-    def get_peg_tip_pos(self):
-        return self.data.site_xpos[self.peg_tip_site_id].copy()
-
     def get_hole_pose(self):
         backup = self.data.qpos.copy()
         mujoco.mj_resetDataKeyframe(self.model, self.data, self.hole_key_id)
 
         ee_pos = self.get_ee_pos()
         ee_rot = self.get_ee_rot()
-        attachment_pos = self.get_attachment_pos()
-        peg_tip_pos = self.get_peg_tip_pos()
 
         self.data.qpos[:] = backup
         mujoco.mj_forward(self.model, self.data)
 
-        return ee_pos, ee_rot, attachment_pos, peg_tip_pos
+        return ee_pos, ee_rot
 
     def jacobian(self):
         jacp = np.zeros((3, self.model.nv))

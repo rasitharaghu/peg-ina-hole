@@ -17,7 +17,6 @@ CUSTOM_HOME_QPOS = np.array([
 HOLE_TARGET_POS = np.array([-0.75, 0.024, 0.908], dtype=float)
 PREAPPROACH_OFFSET = np.array([0.20, 0.00, 0.00], dtype=float)
 
-# Desired tool/drill direction in world frame (flip sign if needed)
 INSERTION_AXIS_WORLD = np.array([-1.0, 0.0, 0.0], dtype=float)
 WORLD_UP = np.array([0.0, 0.0, 1.0], dtype=float)
 
@@ -26,6 +25,7 @@ DLS_DAMPING_6D = 0.01
 POSE_GAIN = 0.10
 POS_TOL = 0.003
 ORI_TOL = 0.03
+TIP_TOL = 0.003
 ORI_GAIN = 0.35
 
 # Admittance-like insertion
@@ -44,4 +44,3 @@ DRILL_GAIN = 0.06
 
 MAX_STEPS_PER_PHASE = 6000
 DEFAULT_SLEEP = 0.08
-HOLD_SECONDS_AFTER_DONE = 5.0

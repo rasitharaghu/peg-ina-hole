@@ -15,6 +15,7 @@ from hybrid_runner_config import (
     POSE_GAIN,
     POS_TOL,
     ORI_TOL,
+    TIP_TOL,
     ORI_GAIN,
     MAX_INSERTION_TRAVEL,
     INSERTION_STEP_NOMINAL,
@@ -86,10 +87,16 @@ def move_control_site_to_pose(robot, target_control_pos, target_control_rot, tar
                 f"[{label}] step={i} "
                 f"control_pos_err={np.linalg.norm(pos_err):.6f} "
                 f"ori_err={np.linalg.norm(ori_err):.6f} "
-                f"tip_err={np.linalg.norm(tip_err):.6f}"
+                f"tip_err={np.linalg.norm(tip_err):.6f} "
+                f"control_pos={np.round(control_pos,4)} "
+                f"tip_pos={np.round(tip_pos,4)}"
             )
 
-        if np.linalg.norm(pos_err) < POS_TOL and np.linalg.norm(ori_err) < ORI_TOL:
+        if (
+            np.linalg.norm(pos_err) < POS_TOL
+            and np.linalg.norm(ori_err) < ORI_TOL
+            and np.linalg.norm(tip_err) < TIP_TOL
+        ):
             print(f"[{label}] reached")
             return True
 
@@ -135,6 +142,8 @@ def main(sleep_s=DEFAULT_SLEEP):
         print("[RUN] desired insertion axis world:", np.round(desired_axis_world, 4))
         print("[RUN] hole tip target:", np.round(hole_tip_target, 4))
         print("[RUN] pre tip target:", np.round(pre_tip_target, 4))
+        print("[RUN] pre control target:", np.round(pre_control_target, 4))
+        print("[RUN] hole control target:", np.round(hole_control_target, 4))
         print("[RUN] sleep:", sleep_s)
 
         ok1 = move_control_site_to_pose(
@@ -142,6 +151,7 @@ def main(sleep_s=DEFAULT_SLEEP):
             "PREAPPROACH", viewer, sleep_s
         )
         if not ok1:
+            print("[DONE] Failed in PREAPPROACH. Close viewer to exit.")
             while viewer.is_running():
                 mujoco.mj_forward(model, data); viewer.sync(); time.sleep(sleep_s)
             return
@@ -151,14 +161,18 @@ def main(sleep_s=DEFAULT_SLEEP):
             "HOLE_POSE", viewer, sleep_s
         )
         if not ok2:
+            print("[DONE] Failed in HOLE_POSE. Close viewer to exit.")
             while viewer.is_running():
                 mujoco.mj_forward(model, data); viewer.sync(); time.sleep(sleep_s)
             return
 
         print("\n[PHASE] ADMITTANCE INSERTION")
+        actual_tip_start = robot.get_tip_pos().copy()
+        print("[ADMITTANCE] actual start tip:", np.round(actual_tip_start, 4))
+
         inserter = AdmittanceInsertionController(
             robot=robot,
-            start_tip_pos=hole_tip_target,
+            start_tip_pos=actual_tip_start,
             axis_world=np.array(INSERTION_AXIS_WORLD, dtype=float),
             max_travel=MAX_INSERTION_TRAVEL,
             nominal_step=INSERTION_STEP_NOMINAL,
@@ -170,11 +184,11 @@ def main(sleep_s=DEFAULT_SLEEP):
             tip_offset_local=tip_offset_local,
         )
 
-        inserted_tip = hole_tip_target.copy()
+        inserted_tip = actual_tip_start.copy()
         for i in range(MAX_STEPS_PER_PHASE):
             done, traveled, lateral_err, inserted_tip = inserter.step()
             if i % 50 == 0:
-                print(f"[ADMITTANCE] step={i} traveled={traveled:.6f} lateral_err={lateral_err:.6f}")
+                print(f"[ADMITTANCE] step={i} traveled={traveled:.6f} lateral_err={lateral_err:.6f} current_tip={np.round(robot.get_tip_pos(),4)} target_tip={np.round(inserted_tip,4)}")
             mujoco.mj_forward(model, data)
             viewer.sync()
             time.sleep(sleep_s)
@@ -183,9 +197,12 @@ def main(sleep_s=DEFAULT_SLEEP):
                 break
 
         print("\n[PHASE] SIMPLE DRILL FEED")
+        actual_inserted_tip = robot.get_tip_pos().copy()
+        print("[DRILL] actual inserted tip start:", np.round(actual_inserted_tip, 4))
+
         driller = SimpleDrillController(
             robot=robot,
-            start_tip_pos=inserted_tip,
+            start_tip_pos=actual_inserted_tip,
             axis_world=np.array(INSERTION_AXIS_WORLD, dtype=float),
             extra_depth=DRILL_EXTRA_DEPTH,
             nominal_step=DRILL_STEP_NOMINAL,
@@ -198,7 +215,7 @@ def main(sleep_s=DEFAULT_SLEEP):
         for i in range(MAX_STEPS_PER_PHASE):
             done, traveled, drill_tip_target = driller.step()
             if i % 50 == 0:
-                print(f"[DRILL] step={i} depth={traveled:.6f}")
+                print(f"[DRILL] step={i} depth={traveled:.6f} current_tip={np.round(robot.get_tip_pos(),4)} target_tip={np.round(drill_tip_target,4)}")
             mujoco.mj_forward(model, data)
             viewer.sync()
             time.sleep(sleep_s)

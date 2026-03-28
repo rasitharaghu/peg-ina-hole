@@ -1,6 +1,6 @@
 import mujoco
 import numpy as np
-from hybrid_runner_config import EE_SITE_NAME, HOLE_KEY
+from hybrid_runner_config import CONTROL_SITE_NAME, TIP_SITE_NAME
 
 ROBOT_JOINT_NAMES = [
     "shoulder_pan_joint",
@@ -16,8 +16,8 @@ class MujocoRobot:
         self.model = model
         self.data = data
 
-        self.ee_site_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, EE_SITE_NAME)
-        self.hole_key_id = model.key(HOLE_KEY).id
+        self.control_site_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, CONTROL_SITE_NAME)
+        self.tip_site_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, TIP_SITE_NAME)
 
         self.qpos_ids = []
         self.dof_ids = []
@@ -57,52 +57,32 @@ class MujocoRobot:
     def get_qpos(self):
         return self.data.qpos[self.qpos_ids].copy()
 
-    def get_ee_pos(self):
-        return self.data.site_xpos[self.ee_site_id].copy()
+    def get_control_pos(self):
+        return self.data.site_xpos[self.control_site_id].copy()
 
-    def get_ee_rot(self):
-        return self.data.site_xmat[self.ee_site_id].reshape(3, 3).copy()
+    def get_control_rot(self):
+        return self.data.site_xmat[self.control_site_id].reshape(3, 3).copy()
 
-    def get_hole_pose(self):
-        q_backup = self.data.qpos.copy()
-        qvel_backup = self.data.qvel.copy()
-        ctrl_backup = self.data.ctrl.copy()
+    def get_tip_pos(self):
+        return self.data.site_xpos[self.tip_site_id].copy()
 
-        mujoco.mj_resetDataKeyframe(self.model, self.data, self.hole_key_id)
-        ee_pos = self.get_ee_pos()
-        ee_rot = self.get_ee_rot()
-
-        self.data.qpos[:] = q_backup
-        self.data.qvel[:] = qvel_backup
-        self.data.ctrl[:] = ctrl_backup
-        mujoco.mj_forward(self.model, self.data)
-        return ee_pos.copy(), ee_rot.copy()
+    def get_tip_offset_local(self):
+        control_pos = self.get_control_pos()
+        tip_pos = self.get_tip_pos()
+        control_rot = self.get_control_rot()
+        return control_rot.T @ (tip_pos - control_pos)
 
     def jacobian_pose(self):
         jacp = np.zeros((3, self.model.nv))
         jacr = np.zeros((3, self.model.nv))
-        mujoco.mj_jacSite(self.model, self.data, jacp, jacr, self.ee_site_id)
+        mujoco.mj_jacSite(self.model, self.data, jacp, jacr, self.control_site_id)
         return np.vstack([jacp[:, self.dof_ids], jacr[:, self.dof_ids]])
-
-    def jacobian_pos(self):
-        jacp = np.zeros((3, self.model.nv))
-        jacr = np.zeros((3, self.model.nv))
-        mujoco.mj_jacSite(self.model, self.data, jacp, jacr, self.ee_site_id)
-        return jacp[:, self.dof_ids]
 
     def dls_pose(self, task_vec, damping=0.01):
         J = self.jacobian_pose()
         eye = np.eye(J.shape[0])
         return J.T @ np.linalg.solve(J @ J.T + damping * eye, task_vec)
 
-    def dls_pos(self, pos_err, damping=0.2):
-        J = self.jacobian_pos()
-        eye = np.eye(J.shape[0])
-        return J.T @ np.linalg.solve(J @ J.T + damping * eye, pos_err)
-
     def integrate_dq(self, dq, gain):
         q = self.get_qpos()
         self.set_qpos(q + gain * dq)
-
-    def step_sim(self):
-        mujoco.mj_step(self.model, self.data)

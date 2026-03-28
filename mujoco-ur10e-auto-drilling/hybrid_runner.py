@@ -11,19 +11,24 @@ from hybrid_runner_config import (
     PREAPPROACH_OFFSET,
     INSERTION_AXIS_WORLD,
     MAX_INSERTION_TRAVEL,
-    INSERTION_GAIN,
-    INSERTION_DAMPING,
-    INSERTION_POS_TOL,
+    WORLD_UP,
     DLS_DAMPING_6D,
     POSE_GAIN,
     POS_TOL,
     ORI_TOL,
     ORI_GAIN,
     MAX_STEPS_PER_PHASE,
+    DEFAULT_SLEEP,
     HOLD_SECONDS_AFTER_DONE,
 )
 from hybrid_runner_mujoco_adapter import MujocoRobot
 from hybrid_insert_limited import LimitedInsertionController
+
+def normalize(v):
+    n = np.linalg.norm(v)
+    if n < 1e-12:
+        raise ValueError("Cannot normalize near-zero vector")
+    return v / n
 
 def orientation_error_vec(r_des, r_cur):
     r_err = r_des @ r_cur.T
@@ -33,19 +38,50 @@ def orientation_error_vec(r_des, r_cur):
         r_err[1, 0] - r_err[0, 1],
     ])
 
-def move_to_pose(robot, target_pos, target_rot, label, viewer, sleep_s):
+def build_rotation_from_local_axis(local_tip_axis, desired_world_axis, world_up):
+    # Build a local orthonormal basis whose z-axis is the actual tool axis in the control frame
+    z_l = normalize(local_tip_axis)
+
+    ref_l = np.array([1.0, 0.0, 0.0], dtype=float)
+    if abs(np.dot(ref_l, z_l)) > 0.95:
+        ref_l = np.array([0.0, 1.0, 0.0], dtype=float)
+    x_l = normalize(np.cross(ref_l, z_l))
+    y_l = np.cross(z_l, x_l)
+    L = np.column_stack((x_l, y_l, z_l))
+
+    # Build world basis whose z-axis is the desired insertion axis
+    z_w = normalize(desired_world_axis)
+    up = normalize(world_up)
+    if abs(np.dot(up, z_w)) > 0.95:
+        up = np.array([0.0, 1.0, 0.0], dtype=float)
+    x_w = normalize(np.cross(up, z_w))
+    y_w = np.cross(z_w, x_w)
+    W = np.column_stack((x_w, y_w, z_w))
+
+    # Maps local basis to world basis
+    return W @ L.T
+
+def move_control_site_to_pose(robot, target_control_pos, target_control_rot, target_tip_pos, label, viewer, sleep_s):
     print(f"\n[PHASE] {label}")
-    print("[TARGET POS]", np.round(target_pos, 4))
+    print("[TARGET CONTROL POS]", np.round(target_control_pos, 4))
+    print("[TARGET TIP POS]", np.round(target_tip_pos, 4))
 
     for i in range(MAX_STEPS_PER_PHASE):
-        pos = robot.get_ee_pos()
-        rot = robot.get_ee_rot()
+        control_pos = robot.get_control_pos()
+        control_rot = robot.get_control_rot()
+        tip_pos = robot.get_tip_pos()
 
-        pos_err = target_pos - pos
-        ori_err = orientation_error_vec(target_rot, rot)
+        pos_err = target_control_pos - control_pos
+        ori_err = orientation_error_vec(target_control_rot, control_rot)
+        tip_err = target_tip_pos - tip_pos
 
         if i % 50 == 0:
-            print(f"[{label}] step={i} pos_err={np.linalg.norm(pos_err):.6f} ori_err={np.linalg.norm(ori_err):.6f}")
+            print(
+                f"[{label}] step={i} "
+                f"control_pos_err={np.linalg.norm(pos_err):.6f} "
+                f"ori_err={np.linalg.norm(ori_err):.6f} "
+                f"tip_err={np.linalg.norm(tip_err):.6f}"
+            )
 
         if np.linalg.norm(pos_err) < POS_TOL and np.linalg.norm(ori_err) < ORI_TOL:
             print(f"[{label}] reached")
@@ -62,73 +98,90 @@ def move_to_pose(robot, target_pos, target_rot, label, viewer, sleep_s):
     print(f"[{label}] failed")
     return False
 
-def main(sleep_s=0.08):
+def main(sleep_s=DEFAULT_SLEEP):
     model = mujoco.MjModel.from_xml_path(XML_PATH)
     data = mujoco.MjData(model)
     robot = MujocoRobot(model, data)
 
-    hole_pos_key, hole_rot_key = robot.get_hole_pose()
-    pre_pos = HOLE_TARGET_POS + PREAPPROACH_OFFSET
-
-    print("[RUN] Using hole keyframe rotation for orientation")
-    print("[RUN] hole key pos:", np.round(hole_pos_key, 4))
-    print("[RUN] approach hole pos:", np.round(HOLE_TARGET_POS, 4))
-    print("[RUN] pre target:", np.round(pre_pos, 4))
-    print("[RUN] insertion axis:", INSERTION_AXIS_WORLD)
-    print("[RUN] max insertion travel:", MAX_INSERTION_TRAVEL)
-    print("[RUN] sleep:", sleep_s)
-
     with mujoco.viewer.launch_passive(model, data) as viewer:
+        # Start from far visible home
         robot.set_qpos(CUSTOM_HOME_QPOS)
+        mujoco.mj_forward(model, data)
         viewer.sync()
         time.sleep(1.0)
 
-        ok1 = move_to_pose(robot, pre_pos, hole_rot_key, "PREAPPROACH", viewer, sleep_s)
+        # Compute actual tool-axis in control-frame coordinates
+        tip_offset_local = robot.get_tip_offset_local()
+        print("[RUN] control frame:", "attachment_site")
+        print("[RUN] tip frame:", "peg_tip")
+        print("[RUN] tip_offset_local:", np.round(tip_offset_local, 6))
+
+        desired_axis_world = normalize(np.array(INSERTION_AXIS_WORLD, dtype=float))
+        target_control_rot = build_rotation_from_local_axis(
+            local_tip_axis=tip_offset_local,
+            desired_world_axis=desired_axis_world,
+            world_up=np.array(WORLD_UP, dtype=float),
+        )
+
+        # Convert desired tip positions into control-site positions
+        pre_tip_target = HOLE_TARGET_POS + PREAPPROACH_OFFSET
+        hole_tip_target = HOLE_TARGET_POS.copy()
+
+        pre_control_target = pre_tip_target - target_control_rot @ tip_offset_local
+        hole_control_target = hole_tip_target - target_control_rot @ tip_offset_local
+
+        print("[RUN] desired insertion axis world:", np.round(desired_axis_world, 4))
+        print("[RUN] hole tip target:", np.round(hole_tip_target, 4))
+        print("[RUN] pre tip target:", np.round(pre_tip_target, 4))
+        print("[RUN] pre control target:", np.round(pre_control_target, 4))
+        print("[RUN] hole control target:", np.round(hole_control_target, 4))
+        print("[RUN] sleep:", sleep_s)
+
+        ok1 = move_control_site_to_pose(
+            robot, pre_control_target, target_control_rot, pre_tip_target,
+            "PREAPPROACH", viewer, sleep_s
+        )
         if not ok1:
+            print("[DONE] Failed in PREAPPROACH. Close viewer to exit.")
             while viewer.is_running():
-                mujoco.mj_forward(model, data)
-                viewer.sync()
-                time.sleep(sleep_s)
+                mujoco.mj_forward(model, data); viewer.sync(); time.sleep(sleep_s)
             return
 
-        ok2 = move_to_pose(robot, HOLE_TARGET_POS, hole_rot_key, "HOLE_POSE", viewer, sleep_s)
+        ok2 = move_control_site_to_pose(
+            robot, hole_control_target, target_control_rot, hole_tip_target,
+            "HOLE_POSE", viewer, sleep_s
+        )
         if not ok2:
+            print("[DONE] Failed in HOLE_POSE. Close viewer to exit.")
             while viewer.is_running():
-                mujoco.mj_forward(model, data)
-                viewer.sync()
-                time.sleep(sleep_s)
+                mujoco.mj_forward(model, data); viewer.sync(); time.sleep(sleep_s)
             return
 
         print("\n[PHASE] LIMITED INSERTION")
         inserter = LimitedInsertionController(
-            robot=robot,
+            start_tip_pos=hole_tip_target,
             axis_world=np.array(INSERTION_AXIS_WORLD, dtype=float),
             max_travel=MAX_INSERTION_TRAVEL,
-            damping=INSERTION_DAMPING,
-            gain=INSERTION_GAIN,
-            pos_tol=INSERTION_POS_TOL,
         )
+        insert_tip_target = inserter.get_tip_target()
+        insert_control_target = insert_tip_target - target_control_rot @ tip_offset_local
 
-        for i in range(MAX_STEPS_PER_PHASE):
-            done = inserter.step()
-            mujoco.mj_forward(model, data)
-            viewer.sync()
-            time.sleep(sleep_s)
-            if done:
-                print("[LIMITED INSERTION] done")
-                break
+        ok3 = move_control_site_to_pose(
+            robot, insert_control_target, target_control_rot, insert_tip_target,
+            "INSERT", viewer, sleep_s
+        )
+        if ok3:
+            print("[DONE] Task complete. Close viewer window to exit.")
+        else:
+            print("[DONE] Insert phase failed. Close viewer window to exit.")
 
-        print("[DONE] Task complete. Close the viewer window to exit.")
-        t0 = time.time()
         while viewer.is_running():
             mujoco.mj_forward(model, data)
             viewer.sync()
             time.sleep(sleep_s)
-            if time.time() - t0 > HOLD_SECONDS_AFTER_DONE:
-                pass
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--sleep", type=float, default=0.08, help="Slow visualization, e.g. 0.08 or 0.15")
+    parser.add_argument("--sleep", type=float, default=DEFAULT_SLEEP, help="Slow visualization. Example: 0.08 or 0.15")
     args = parser.parse_args()
     main(sleep_s=args.sleep)

@@ -22,7 +22,6 @@ class SimpleDrillController:
         self.gain = float(gain)
         self.control_rot_target = control_rot_target.copy()
         self.tip_offset_local = tip_offset_local.copy()
-
         self.feed_cmd = 0.0
 
     def step(self):

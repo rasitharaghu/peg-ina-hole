@@ -26,7 +26,6 @@ class AdmittanceInsertionController:
         self.axial_scale = float(axial_scale)
         self.control_rot_target = control_rot_target.copy()
         self.tip_offset_local = tip_offset_local.copy()
-
         self.travel_cmd = 0.0
 
     def step(self):

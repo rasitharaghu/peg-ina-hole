@@ -1,6 +1,6 @@
 import mujoco
 import numpy as np
-from hybrid_runner_config import CONTROL_SITE_NAME, TIP_SITE_NAME
+from hybrid_runner_config import CONTROL_SITE_NAME, TIP_SITE_NAME, HOLE_SITE_NAME, HOLE_AXIS_SITE_NAME
 
 ROBOT_JOINT_NAMES = [
     "shoulder_pan_joint",
@@ -18,6 +18,8 @@ class MujocoRobot:
 
         self.control_site_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, CONTROL_SITE_NAME)
         self.tip_site_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, TIP_SITE_NAME)
+        self.hole_site_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, HOLE_SITE_NAME)
+        self.hole_axis_site_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, HOLE_AXIS_SITE_NAME)
 
         self.qpos_ids = []
         self.dof_ids = []
@@ -68,6 +70,12 @@ class MujocoRobot:
 
     def get_tip_offset_local(self):
         return self.get_control_rot().T @ (self.get_tip_pos() - self.get_control_pos())
+
+    def get_hole_pos(self):
+        return self.data.site_xpos[self.hole_site_id].copy()
+
+    def get_hole_axis_pos(self):
+        return self.data.site_xpos[self.hole_axis_site_id].copy()
 
     def jacobian_pose(self):
         jacp = np.zeros((3, self.model.nv))

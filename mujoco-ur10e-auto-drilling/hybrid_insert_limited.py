@@ -1,15 +1,6 @@
 import numpy as np
 
 class LimitedInsertionController:
-    '''
-    Local insertion controller that reuses the original insertion idea:
-    - local Cartesian target
-    - Jacobian-based DLS update
-    - direct incremental joint updates
-
-    New addition:
-    - hard travel limit so the tool cannot go too deep
-    '''
     def __init__(self, robot, axis_world, max_travel, damping, gain, pos_tol):
         self.robot = robot
         self.axis_world = axis_world / np.linalg.norm(axis_world)
@@ -25,7 +16,6 @@ class LimitedInsertionController:
         current = self.robot.get_ee_pos()
         traveled = np.dot(current - self.start_pos, self.axis_world)
 
-        # hard stop on insertion travel
         if traveled >= self.max_travel:
             print(f"[INSERT] hard travel limit reached: {traveled:.6f} m")
             return True

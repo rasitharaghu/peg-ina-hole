@@ -20,6 +20,7 @@ from hybrid_runner_config import (
     ORI_TOL,
     ORI_GAIN,
     MAX_STEPS_PER_PHASE,
+    HOLD_SECONDS_AFTER_DONE,
 )
 from hybrid_runner_mujoco_adapter import MujocoRobot
 from hybrid_insert_limited import LimitedInsertionController
@@ -61,32 +62,41 @@ def move_to_pose(robot, target_pos, target_rot, label, viewer, sleep_s):
     print(f"[{label}] failed")
     return False
 
-def main(sleep_s=0.03):
+def main(sleep_s=0.08):
     model = mujoco.MjModel.from_xml_path(XML_PATH)
     data = mujoco.MjData(model)
     robot = MujocoRobot(model, data)
 
-    hole_pos, hole_rot = robot.get_hole_pose()
+    hole_pos_key, hole_rot_key = robot.get_hole_pose()
     pre_pos = HOLE_TARGET_POS + PREAPPROACH_OFFSET
 
-    print("[RUN] pre target:", pre_pos)
-    print("[RUN] hole target:", HOLE_TARGET_POS)
+    print("[RUN] Using hole keyframe rotation for orientation")
+    print("[RUN] hole key pos:", np.round(hole_pos_key, 4))
+    print("[RUN] approach hole pos:", np.round(HOLE_TARGET_POS, 4))
+    print("[RUN] pre target:", np.round(pre_pos, 4))
     print("[RUN] insertion axis:", INSERTION_AXIS_WORLD)
     print("[RUN] max insertion travel:", MAX_INSERTION_TRAVEL)
+    print("[RUN] sleep:", sleep_s)
 
     with mujoco.viewer.launch_passive(model, data) as viewer:
         robot.set_qpos(CUSTOM_HOME_QPOS)
         viewer.sync()
         time.sleep(1.0)
 
-        ok1 = move_to_pose(robot, pre_pos, hole_rot, "PREAPPROACH", viewer, sleep_s)
+        ok1 = move_to_pose(robot, pre_pos, hole_rot_key, "PREAPPROACH", viewer, sleep_s)
         if not ok1:
-            time.sleep(5)
+            while viewer.is_running():
+                mujoco.mj_forward(model, data)
+                viewer.sync()
+                time.sleep(sleep_s)
             return
 
-        ok2 = move_to_pose(robot, HOLE_TARGET_POS, hole_rot, "HOLE_POSE", viewer, sleep_s)
+        ok2 = move_to_pose(robot, HOLE_TARGET_POS, hole_rot_key, "HOLE_POSE", viewer, sleep_s)
         if not ok2:
-            time.sleep(5)
+            while viewer.is_running():
+                mujoco.mj_forward(model, data)
+                viewer.sync()
+                time.sleep(sleep_s)
             return
 
         print("\n[PHASE] LIMITED INSERTION")
@@ -108,10 +118,17 @@ def main(sleep_s=0.03):
                 print("[LIMITED INSERTION] done")
                 break
 
-        time.sleep(5.0)
+        print("[DONE] Task complete. Close the viewer window to exit.")
+        t0 = time.time()
+        while viewer.is_running():
+            mujoco.mj_forward(model, data)
+            viewer.sync()
+            time.sleep(sleep_s)
+            if time.time() - t0 > HOLD_SECONDS_AFTER_DONE:
+                pass
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--sleep", type=float, default=0.03, help="Slow visualization, default 0.03")
+    parser.add_argument("--sleep", type=float, default=0.08, help="Slow visualization, e.g. 0.08 or 0.15")
     args = parser.parse_args()
     main(sleep_s=args.sleep)

@@ -67,10 +67,7 @@ class MujocoRobot:
         return self.data.site_xpos[self.tip_site_id].copy()
 
     def get_tip_offset_local(self):
-        control_pos = self.get_control_pos()
-        tip_pos = self.get_tip_pos()
-        control_rot = self.get_control_rot()
-        return control_rot.T @ (tip_pos - control_pos)
+        return self.get_control_rot().T @ (self.get_tip_pos() - self.get_control_pos())
 
     def jacobian_pose(self):
         jacp = np.zeros((3, self.model.nv))
@@ -78,10 +75,21 @@ class MujocoRobot:
         mujoco.mj_jacSite(self.model, self.data, jacp, jacr, self.control_site_id)
         return np.vstack([jacp[:, self.dof_ids], jacr[:, self.dof_ids]])
 
+    def jacobian_pos_control(self):
+        jacp = np.zeros((3, self.model.nv))
+        jacr = np.zeros((3, self.model.nv))
+        mujoco.mj_jacSite(self.model, self.data, jacp, jacr, self.control_site_id)
+        return jacp[:, self.dof_ids]
+
     def dls_pose(self, task_vec, damping=0.01):
         J = self.jacobian_pose()
         eye = np.eye(J.shape[0])
         return J.T @ np.linalg.solve(J @ J.T + damping * eye, task_vec)
+
+    def dls_pos_control(self, pos_err, damping=0.2):
+        J = self.jacobian_pos_control()
+        eye = np.eye(J.shape[0])
+        return J.T @ np.linalg.solve(J @ J.T + damping * eye, pos_err)
 
     def integrate_dq(self, dq, gain):
         q = self.get_qpos()

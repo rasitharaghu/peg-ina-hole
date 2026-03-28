@@ -10,19 +10,28 @@ from hybrid_runner_config import (
     HOLE_TARGET_POS,
     PREAPPROACH_OFFSET,
     INSERTION_AXIS_WORLD,
-    MAX_INSERTION_TRAVEL,
     WORLD_UP,
     DLS_DAMPING_6D,
     POSE_GAIN,
     POS_TOL,
     ORI_TOL,
     ORI_GAIN,
+    MAX_INSERTION_TRAVEL,
+    INSERTION_STEP_NOMINAL,
+    INSERTION_DAMPING,
+    INSERTION_GAIN,
+    INSERTION_LATERAL_COMPLIANCE,
+    INSERTION_AXIAL_SCALE,
+    DRILL_EXTRA_DEPTH,
+    DRILL_STEP_NOMINAL,
+    DRILL_DAMPING,
+    DRILL_GAIN,
     MAX_STEPS_PER_PHASE,
     DEFAULT_SLEEP,
-    HOLD_SECONDS_AFTER_DONE,
 )
 from hybrid_runner_mujoco_adapter import MujocoRobot
-from hybrid_insert_limited import LimitedInsertionController
+from admittance_insert_controller import AdmittanceInsertionController
+from simple_drill_controller import SimpleDrillController
 
 def normalize(v):
     n = np.linalg.norm(v)
@@ -39,7 +48,6 @@ def orientation_error_vec(r_des, r_cur):
     ])
 
 def build_rotation_from_local_axis(local_tip_axis, desired_world_axis, world_up):
-    # Build a local orthonormal basis whose z-axis is the actual tool axis in the control frame
     z_l = normalize(local_tip_axis)
 
     ref_l = np.array([1.0, 0.0, 0.0], dtype=float)
@@ -49,7 +57,6 @@ def build_rotation_from_local_axis(local_tip_axis, desired_world_axis, world_up)
     y_l = np.cross(z_l, x_l)
     L = np.column_stack((x_l, y_l, z_l))
 
-    # Build world basis whose z-axis is the desired insertion axis
     z_w = normalize(desired_world_axis)
     up = normalize(world_up)
     if abs(np.dot(up, z_w)) > 0.95:
@@ -58,7 +65,6 @@ def build_rotation_from_local_axis(local_tip_axis, desired_world_axis, world_up)
     y_w = np.cross(z_w, x_w)
     W = np.column_stack((x_w, y_w, z_w))
 
-    # Maps local basis to world basis
     return W @ L.T
 
 def move_control_site_to_pose(robot, target_control_pos, target_control_rot, target_tip_pos, label, viewer, sleep_s):
@@ -104,18 +110,12 @@ def main(sleep_s=DEFAULT_SLEEP):
     robot = MujocoRobot(model, data)
 
     with mujoco.viewer.launch_passive(model, data) as viewer:
-        # Start from far visible home
         robot.set_qpos(CUSTOM_HOME_QPOS)
         mujoco.mj_forward(model, data)
         viewer.sync()
         time.sleep(1.0)
 
-        # Compute actual tool-axis in control-frame coordinates
         tip_offset_local = robot.get_tip_offset_local()
-        print("[RUN] control frame:", "attachment_site")
-        print("[RUN] tip frame:", "peg_tip")
-        print("[RUN] tip_offset_local:", np.round(tip_offset_local, 6))
-
         desired_axis_world = normalize(np.array(INSERTION_AXIS_WORLD, dtype=float))
         target_control_rot = build_rotation_from_local_axis(
             local_tip_axis=tip_offset_local,
@@ -123,18 +123,18 @@ def main(sleep_s=DEFAULT_SLEEP):
             world_up=np.array(WORLD_UP, dtype=float),
         )
 
-        # Convert desired tip positions into control-site positions
         pre_tip_target = HOLE_TARGET_POS + PREAPPROACH_OFFSET
         hole_tip_target = HOLE_TARGET_POS.copy()
 
         pre_control_target = pre_tip_target - target_control_rot @ tip_offset_local
         hole_control_target = hole_tip_target - target_control_rot @ tip_offset_local
 
+        print("[RUN] control frame: attachment_site")
+        print("[RUN] tip frame: peg_tip")
+        print("[RUN] tip_offset_local:", np.round(tip_offset_local, 6))
         print("[RUN] desired insertion axis world:", np.round(desired_axis_world, 4))
         print("[RUN] hole tip target:", np.round(hole_tip_target, 4))
         print("[RUN] pre tip target:", np.round(pre_tip_target, 4))
-        print("[RUN] pre control target:", np.round(pre_control_target, 4))
-        print("[RUN] hole control target:", np.round(hole_control_target, 4))
         print("[RUN] sleep:", sleep_s)
 
         ok1 = move_control_site_to_pose(
@@ -142,7 +142,6 @@ def main(sleep_s=DEFAULT_SLEEP):
             "PREAPPROACH", viewer, sleep_s
         )
         if not ok1:
-            print("[DONE] Failed in PREAPPROACH. Close viewer to exit.")
             while viewer.is_running():
                 mujoco.mj_forward(model, data); viewer.sync(); time.sleep(sleep_s)
             return
@@ -152,29 +151,62 @@ def main(sleep_s=DEFAULT_SLEEP):
             "HOLE_POSE", viewer, sleep_s
         )
         if not ok2:
-            print("[DONE] Failed in HOLE_POSE. Close viewer to exit.")
             while viewer.is_running():
                 mujoco.mj_forward(model, data); viewer.sync(); time.sleep(sleep_s)
             return
 
-        print("\n[PHASE] LIMITED INSERTION")
-        inserter = LimitedInsertionController(
+        print("\n[PHASE] ADMITTANCE INSERTION")
+        inserter = AdmittanceInsertionController(
+            robot=robot,
             start_tip_pos=hole_tip_target,
             axis_world=np.array(INSERTION_AXIS_WORLD, dtype=float),
             max_travel=MAX_INSERTION_TRAVEL,
+            nominal_step=INSERTION_STEP_NOMINAL,
+            damping=INSERTION_DAMPING,
+            gain=INSERTION_GAIN,
+            lateral_compliance=INSERTION_LATERAL_COMPLIANCE,
+            axial_scale=INSERTION_AXIAL_SCALE,
+            control_rot_target=target_control_rot,
+            tip_offset_local=tip_offset_local,
         )
-        insert_tip_target = inserter.get_tip_target()
-        insert_control_target = insert_tip_target - target_control_rot @ tip_offset_local
 
-        ok3 = move_control_site_to_pose(
-            robot, insert_control_target, target_control_rot, insert_tip_target,
-            "INSERT", viewer, sleep_s
+        inserted_tip = hole_tip_target.copy()
+        for i in range(MAX_STEPS_PER_PHASE):
+            done, traveled, lateral_err, inserted_tip = inserter.step()
+            if i % 50 == 0:
+                print(f"[ADMITTANCE] step={i} traveled={traveled:.6f} lateral_err={lateral_err:.6f}")
+            mujoco.mj_forward(model, data)
+            viewer.sync()
+            time.sleep(sleep_s)
+            if done:
+                print("[ADMITTANCE] done")
+                break
+
+        print("\n[PHASE] SIMPLE DRILL FEED")
+        driller = SimpleDrillController(
+            robot=robot,
+            start_tip_pos=inserted_tip,
+            axis_world=np.array(INSERTION_AXIS_WORLD, dtype=float),
+            extra_depth=DRILL_EXTRA_DEPTH,
+            nominal_step=DRILL_STEP_NOMINAL,
+            damping=DRILL_DAMPING,
+            gain=DRILL_GAIN,
+            control_rot_target=target_control_rot,
+            tip_offset_local=tip_offset_local,
         )
-        if ok3:
-            print("[DONE] Task complete. Close viewer window to exit.")
-        else:
-            print("[DONE] Insert phase failed. Close viewer window to exit.")
 
+        for i in range(MAX_STEPS_PER_PHASE):
+            done, traveled, drill_tip_target = driller.step()
+            if i % 50 == 0:
+                print(f"[DRILL] step={i} depth={traveled:.6f}")
+            mujoco.mj_forward(model, data)
+            viewer.sync()
+            time.sleep(sleep_s)
+            if done:
+                print("[DRILL] done")
+                break
+
+        print("[DONE] Task complete. Close viewer window to exit.")
         while viewer.is_running():
             mujoco.mj_forward(model, data)
             viewer.sync()

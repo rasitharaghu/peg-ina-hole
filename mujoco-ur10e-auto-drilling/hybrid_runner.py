@@ -82,7 +82,7 @@ def move_control_site_to_pose(robot, target_control_pos, target_control_rot, tar
         ori_err = orientation_error_vec(target_control_rot, control_rot)
         tip_err = target_tip_pos - tip_pos
 
-        if i % 50 == 0:
+        if i % 25 == 0:
             print(
                 f"[{label}] step={i} "
                 f"control_pos_err={np.linalg.norm(pos_err):.6f} "
@@ -187,7 +187,7 @@ def main(sleep_s=DEFAULT_SLEEP):
         inserted_tip = actual_tip_start.copy()
         for i in range(MAX_STEPS_PER_PHASE):
             done, traveled, lateral_err, inserted_tip = inserter.step()
-            if i % 50 == 0:
+            if i % 25 == 0:
                 print(f"[ADMITTANCE] step={i} traveled={traveled:.6f} lateral_err={lateral_err:.6f} current_tip={np.round(robot.get_tip_pos(),4)} target_tip={np.round(inserted_tip,4)}")
             mujoco.mj_forward(model, data)
             viewer.sync()
@@ -214,7 +214,7 @@ def main(sleep_s=DEFAULT_SLEEP):
 
         for i in range(MAX_STEPS_PER_PHASE):
             done, traveled, drill_tip_target = driller.step()
-            if i % 50 == 0:
+            if i % 25 == 0:
                 print(f"[DRILL] step={i} depth={traveled:.6f} current_tip={np.round(robot.get_tip_pos(),4)} target_tip={np.round(drill_tip_target,4)}")
             mujoco.mj_forward(model, data)
             viewer.sync()

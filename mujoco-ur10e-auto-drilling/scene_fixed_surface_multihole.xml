@@ -1,0 +1,77 @@
+<mujoco model="ur10e">
+  <compiler angle="degree" meshdir="universal_robots/assets" autolimits="true"/>
+  <!-- <option gravity="0 0 -9.81" timestep="0.002"/> -->
+  <option integrator="implicitfast" timestep="0.002">
+    <flag energy="enable"/>
+  </option>
+
+  <include file="universal_robots/ur10e.xml"/>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+    <mesh name="wall_mesh" file="wall_with_hole.obj" scale="0.001 0.001 0.001"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 3" dir="0 0 -1" directional="true"/>
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+    <body name="table" pos="0 0 0">
+      <geom name="table_top" type="box" size="0.4 0.4 0.02" pos="0 0 0.4" rgba="0.5 0.5 0.5 1"/>
+      <geom name="leg1" type="capsule" size="0.02 0.2" pos="0.35 0.35 0.2" rgba="0.4 0.4 0.4 1"/>
+      <geom name="leg2" type="capsule" size="0.02 0.2" pos="-0.35 0.35 0.2" rgba="0.4 0.4 0.4 1"/>
+      <geom name="leg3" type="capsule" size="0.02 0.2" pos="0.35 -0.35 0.2" rgba="0.4 0.4 0.4 1"/>
+      <geom name="leg4" type="capsule" size="0.02 0.2" pos="-0.35 -0.35 0.2" rgba="0.4 0.4 0.4 1"/>
+    </body>
+
+    
+    <body name="panel" pos="-0.78 0.024 0.908">
+      <!-- planar vertical surface, normal along +X -->
+      <geom name="panel_surface" type="box" size="0.006 0.22 0.16" pos="0 0 0" rgba="1 1 1 1" contype="1" conaffinity="1"/>
+
+      <!-- hole center markers -->
+      <site name="hole_1_center" pos="0.0  0.00  0.00" size="0.006 0.006 0.0008" type="ellipsoid" rgba="1 1 1 1" zaxis="1 0 0"/>
+      <site name="hole_2_center" pos="0.0  0.08  0.00" size="0.006 0.006 0.0008" type="ellipsoid" rgba="1 1 1 1" zaxis="1 0 0"/>
+      <site name="hole_3_center" pos="0.0 -0.08  0.00" size="0.006 0.006 0.0008" type="ellipsoid" rgba="1 1 1 1" zaxis="1 0 0"/>
+      <site name="hole_4_center" pos="0.0  0.00  0.08" size="0.006 0.006 0.0008" type="ellipsoid" rgba="1 1 1 1" zaxis="1 0 0"/>
+      <site name="hole_5_center" pos="0.0  0.00 -0.08" size="0.006 0.006 0.0008" type="ellipsoid" rgba="1 1 1 1" zaxis="1 0 0"/>
+
+      <!-- compact axis points -->
+      <site name="hole_1_axis" pos="0.012 0 0" size="0.0025" rgba="1 1 0 1"/>
+      <site name="hole_2_axis" pos="0.012 0.08 0" size="0.0025" rgba="1 1 0 1"/>
+      <site name="hole_3_axis" pos="0.012 -0.08 0" size="0.0025" rgba="1 1 0 1"/>
+      <site name="hole_4_axis" pos="0.012 0 0.08" size="0.0025" rgba="1 1 0 1"/>
+      <site name="hole_5_axis" pos="0.012 0 -0.08" size="0.0025" rgba="1 1 0 1"/>
+
+      <!-- small XYZ frame per hole -->
+      <body name="hole_1_frame" pos="0.0 0.00 0.00">
+        <geom type="capsule" fromto="0 0 0  0.010 0 0" size="0.0008" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0.010 0" size="0.0008" rgba="0 1 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0 0.010" size="0.0008" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      </body>
+      <body name="hole_2_frame" pos="0.0 0.08 0.00">
+        <geom type="capsule" fromto="0 0 0  0.010 0 0" size="0.0008" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0.010 0" size="0.0008" rgba="0 1 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0 0.010" size="0.0008" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      </body>
+      <body name="hole_3_frame" pos="0.0 -0.08 0.00">
+        <geom type="capsule" fromto="0 0 0  0.010 0 0" size="0.0008" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0.010 0" size="0.0008" rgba="0 1 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0 0.010" size="0.0008" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      </body>
+      <body name="hole_4_frame" pos="0.0 0.00 0.08">
+        <geom type="capsule" fromto="0 0 0  0.010 0 0" size="0.0008" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0.010 0" size="0.0008" rgba="0 1 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0 0.010" size="0.0008" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      </body>
+      <body name="hole_5_frame" pos="0.0 0.00 -0.08">
+        <geom type="capsule" fromto="0 0 0  0.010 0 0" size="0.0008" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0.010 0" size="0.0008" rgba="0 1 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0 0.010" size="0.0008" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      </body>
+    </body>
+
+  </worldbody>
+</mujoco>

@@ -5,15 +5,12 @@ import mujoco
 XML_PATH = "scene.xml"
 CONTROL_SITE = "attachment_site"
 TIP_SITE = "peg_tip"
-
-# Desired hole target is for PEG TIP
-HOLE_TIP_TARGET_POS = np.array([-0.75, 0.024, 0.908], dtype=float)
+HOLE_TARGET_POS = np.array([-0.75, 0.024, 0.908], dtype=float)
 
 MOVE_DURATION = 5.0
 MOVE_DAMPING = 0.01
 MOVE_GAIN = 0.10
 MOVE_POS_TOL = 0.002
-MOVE_TIP_TOL = 0.002
 
 INSERTION_DEPTH = -0.018
 INSERTION_DURATION = 4.0
@@ -43,12 +40,6 @@ def step_view(model, data, viewer=None, sleep_s=DEFAULT_SLEEP):
     if sleep_s > 0:
         time.sleep(sleep_s)
 
-def _tip_offset_local(data, site_id, tip_id):
-    control_pos = data.site_xpos[site_id].copy()
-    tip_pos = data.site_xpos[tip_id].copy()
-    control_rot = data.site_xmat[site_id].reshape(3, 3).copy()
-    return control_rot.T @ (tip_pos - control_pos)
-
 def move_to_hole_phase(model, data, viewer=None, sleep_s=DEFAULT_SLEEP):
     key_id = model.key('home').id
     mujoco.mj_resetDataKeyframe(model, data, key_id)
@@ -58,27 +49,19 @@ def move_to_hole_phase(model, data, viewer=None, sleep_s=DEFAULT_SLEEP):
     initial_start_pos = data.site_xpos[site_id].copy()
     home_rot = data.site_xmat[site_id].reshape(3, 3).copy()
 
-    # FIX: convert desired peg-tip target to corresponding attachment_site target
-    tip_offset_local = _tip_offset_local(data, site_id, tip_id)
-    hole_control_target = HOLE_TIP_TARGET_POS - home_rot @ tip_offset_local
-
     print("[MOVE TO HOLE NEW]")
     print("[MOVE] start attachment_site:", np.round(initial_start_pos, 4))
-    print("[MOVE] desired peg_tip target:", np.round(HOLE_TIP_TARGET_POS, 4))
-    print("[MOVE] computed attachment_site target:", np.round(hole_control_target, 4))
-    print("[MOVE] tip offset local:", np.round(tip_offset_local, 6))
+    print("[MOVE] target attachment_site:", np.round(HOLE_TARGET_POS, 4))
 
     start_time = time.time()
-    last_bucket = -1
     while True:
         elapsed = time.time() - start_time
         t = min(elapsed / MOVE_DURATION, 1.0)
         alpha = t * t * (3 - 2 * t)
-        current_target_pos = initial_start_pos + alpha * (hole_control_target - initial_start_pos)
+        current_target_pos = initial_start_pos + alpha * (HOLE_TARGET_POS - initial_start_pos)
 
         current_pos = data.site_xpos[site_id].copy()
         current_rot = data.site_xmat[site_id].reshape(3, 3).copy()
-        current_tip = data.site_xpos[tip_id].copy()
         pos_error = current_target_pos - current_pos
 
         rot_error_mat = home_rot @ current_rot.T
@@ -97,18 +80,7 @@ def move_to_hole_phase(model, data, viewer=None, sleep_s=DEFAULT_SLEEP):
         mujoco.mj_integratePos(model, data.qpos, dq, MOVE_GAIN)
         step_view(model, data, viewer, sleep_s)
 
-        bucket = int(elapsed / max(sleep_s, 1e-3))
-        if bucket % 25 == 0 and bucket != last_bucket:
-            last_bucket = bucket
-            print("[MOVE] site_err=", round(float(np.linalg.norm(hole_control_target - data.site_xpos[site_id])), 6),
-                  " tip_err=", round(float(np.linalg.norm(HOLE_TIP_TARGET_POS - data.site_xpos[tip_id])), 6),
-                  " tip_pos=", np.round(current_tip, 4))
-
-        if (
-            t >= 1.0
-            and np.linalg.norm(hole_control_target - data.site_xpos[site_id]) < MOVE_POS_TOL
-            and np.linalg.norm(HOLE_TIP_TARGET_POS - data.site_xpos[tip_id]) < MOVE_TIP_TOL
-        ):
+        if t >= 1.0 and np.linalg.norm(HOLE_TARGET_POS - data.site_xpos[site_id]) < MOVE_POS_TOL:
             break
 
     print("[MOVE] final attachment_site:", np.round(data.site_xpos[site_id], 4))

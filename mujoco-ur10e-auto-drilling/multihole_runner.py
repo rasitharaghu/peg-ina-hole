@@ -95,7 +95,7 @@ def retract_and_transition(model, data, viewer, control_sid, tip_sid, next_hole_
     next_control_target = next_hole_center - current_rot @ tip_offset_local
     smooth_move_site(model, data, viewer, control_sid, next_control_target, TRANSITION_DURATION, sleep_s)
 
-def main(sleep=DEFAULT_SLEEP, show_site_frames=True):
+def main(sleep=DEFAULT_SLEEP, show_site_frames=False):
     model = mujoco.MjModel.from_xml_path(XML_PATH)
     data = mujoco.MjData(model)
     control_sid = model.site(CONTROL_SITE).id
@@ -146,6 +146,6 @@ def main(sleep=DEFAULT_SLEEP, show_site_frames=True):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--sleep", type=float, default=DEFAULT_SLEEP)
-    parser.add_argument("--hide-site-frames", action="store_true")
+    parser.add_argument("--show-site-frames", action="store_true")
     args = parser.parse_args()
-    main(sleep=args.sleep, show_site_frames=not args.hide_site_frames)
+    main(sleep=args.sleep, show_site_frames=args.show_site_frames)

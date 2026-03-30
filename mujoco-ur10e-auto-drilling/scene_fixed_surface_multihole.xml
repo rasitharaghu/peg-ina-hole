@@ -27,46 +27,65 @@
     </body>
 
     
+    
     <body name="panel" pos="-0.78 0.024 0.908">
-      <!-- planar vertical surface, normal along +X -->
       <geom name="panel_surface" type="box" size="0.006 0.22 0.16" pos="0 0 0" rgba="1 1 1 1" contype="1" conaffinity="1"/>
 
-      <!-- hole center markers -->
       <site name="hole_1_center" pos="0.0  0.00  0.00" size="0.006 0.006 0.0008" type="ellipsoid" rgba="1 1 1 1" zaxis="1 0 0"/>
       <site name="hole_2_center" pos="0.0  0.08  0.00" size="0.006 0.006 0.0008" type="ellipsoid" rgba="1 1 1 1" zaxis="1 0 0"/>
       <site name="hole_3_center" pos="0.0 -0.08  0.00" size="0.006 0.006 0.0008" type="ellipsoid" rgba="1 1 1 1" zaxis="1 0 0"/>
       <site name="hole_4_center" pos="0.0  0.00  0.08" size="0.006 0.006 0.0008" type="ellipsoid" rgba="1 1 1 1" zaxis="1 0 0"/>
       <site name="hole_5_center" pos="0.0  0.00 -0.08" size="0.006 0.006 0.0008" type="ellipsoid" rgba="1 1 1 1" zaxis="1 0 0"/>
 
-      <!-- compact axis points -->
-      <site name="hole_1_axis" pos="0.012 0 0" size="0.0025" rgba="1 1 0 1"/>
-      <site name="hole_2_axis" pos="0.012 0.08 0" size="0.0025" rgba="1 1 0 1"/>
-      <site name="hole_3_axis" pos="0.012 -0.08 0" size="0.0025" rgba="1 1 0 1"/>
-      <site name="hole_4_axis" pos="0.012 0 0.08" size="0.0025" rgba="1 1 0 1"/>
-      <site name="hole_5_axis" pos="0.012 0 -0.08" size="0.0025" rgba="1 1 0 1"/>
+      <site name="hole_1_axis" pos="0.008 0 0" size="0.0015" rgba="1 1 0 1"/>
+      <site name="hole_2_axis" pos="0.008 0.08 0" size="0.0015" rgba="1 1 0 1"/>
+      <site name="hole_3_axis" pos="0.008 -0.08 0" size="0.0015" rgba="1 1 0 1"/>
+      <site name="hole_4_axis" pos="0.008 0 0.08" size="0.0015" rgba="1 1 0 1"/>
+      <site name="hole_5_axis" pos="0.008 0 -0.08" size="0.0015" rgba="1 1 0 1"/>
 
-      <!-- small XYZ frame per hole -->
-      <body name="hole_1_frame" pos="0.0 0.00 0.00">
+      <body name="hole_1_frame" pos="0.003 0.00 0.00">
+        <geom type="capsule" fromto="0 0 0  0.005 0 0" size="0.0006" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0.005 0" size="0.0006" rgba="0 1 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0 0.005" size="0.0006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      </body>
+      <body name="hole_2_frame" pos="0.003 0.08 0.00">
+        <geom type="capsule" fromto="0 0 0  0.005 0 0" size="0.0006" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0.005 0" size="0.0006" rgba="0 1 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0 0.005" size="0.0006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      </body>
+      <body name="hole_3_frame" pos="0.003 -0.08 0.00">
+        <geom type="capsule" fromto="0 0 0  0.005 0 0" size="0.0006" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0.005 0" size="0.0006" rgba="0 1 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0 0.005" size="0.0006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      </body>
+      <body name="hole_4_frame" pos="0.003 0.00 0.08">
+        <geom type="capsule" fromto="0 0 0  0.005 0 0" size="0.0006" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0.005 0" size="0.0006" rgba="0 1 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0 0.005" size="0.0006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      </body>
+      <body name="hole_5_frame" pos="0.003 0.00 -0.08">
+        <geom type="capsule" fromto="0 0 0  0.005 0 0" size="0.0006" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0.005 0" size="0.0006" rgba="0 1 0 1" contype="0" conaffinity="0"/>
+        <geom type="capsule" fromto="0 0 0  0 0 0.005" size="0.0006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      </body>
+    </body>
+
+      <body name="hole_2_frame" pos="0.0 0.04 0.00">
         <geom type="capsule" fromto="0 0 0  0.010 0 0" size="0.0008" rgba="1 0 0 1" contype="0" conaffinity="0"/>
         <geom type="capsule" fromto="0 0 0  0 0.010 0" size="0.0008" rgba="0 1 0 1" contype="0" conaffinity="0"/>
         <geom type="capsule" fromto="0 0 0  0 0 0.010" size="0.0008" rgba="0 0 1 1" contype="0" conaffinity="0"/>
       </body>
-      <body name="hole_2_frame" pos="0.0 0.08 0.00">
+      <body name="hole_3_frame" pos="0.0 -0.04 0.00">
         <geom type="capsule" fromto="0 0 0  0.010 0 0" size="0.0008" rgba="1 0 0 1" contype="0" conaffinity="0"/>
         <geom type="capsule" fromto="0 0 0  0 0.010 0" size="0.0008" rgba="0 1 0 1" contype="0" conaffinity="0"/>
         <geom type="capsule" fromto="0 0 0  0 0 0.010" size="0.0008" rgba="0 0 1 1" contype="0" conaffinity="0"/>
       </body>
-      <body name="hole_3_frame" pos="0.0 -0.08 0.00">
+      <body name="hole_4_frame" pos="0.0 0.00 0.04">
         <geom type="capsule" fromto="0 0 0  0.010 0 0" size="0.0008" rgba="1 0 0 1" contype="0" conaffinity="0"/>
         <geom type="capsule" fromto="0 0 0  0 0.010 0" size="0.0008" rgba="0 1 0 1" contype="0" conaffinity="0"/>
         <geom type="capsule" fromto="0 0 0  0 0 0.010" size="0.0008" rgba="0 0 1 1" contype="0" conaffinity="0"/>
       </body>
-      <body name="hole_4_frame" pos="0.0 0.00 0.08">
-        <geom type="capsule" fromto="0 0 0  0.010 0 0" size="0.0008" rgba="1 0 0 1" contype="0" conaffinity="0"/>
-        <geom type="capsule" fromto="0 0 0  0 0.010 0" size="0.0008" rgba="0 1 0 1" contype="0" conaffinity="0"/>
-        <geom type="capsule" fromto="0 0 0  0 0 0.010" size="0.0008" rgba="0 0 1 1" contype="0" conaffinity="0"/>
-      </body>
-      <body name="hole_5_frame" pos="0.0 0.00 -0.08">
+      <body name="hole_5_frame" pos="0.0 0.00 -0.04">
         <geom type="capsule" fromto="0 0 0  0.010 0 0" size="0.0008" rgba="1 0 0 1" contype="0" conaffinity="0"/>
         <geom type="capsule" fromto="0 0 0  0 0.010 0" size="0.0008" rgba="0 1 0 1" contype="0" conaffinity="0"/>
         <geom type="capsule" fromto="0 0 0  0 0 0.010" size="0.0008" rgba="0 0 1 1" contype="0" conaffinity="0"/>

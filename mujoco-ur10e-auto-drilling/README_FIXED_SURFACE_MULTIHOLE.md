@@ -17,6 +17,9 @@ Run:
 python multihole_runner.py --sleep 0.15
 
 
-Updated hole spacing:
-- hole_2 / hole_3 moved to ±0.08 m in Y
-- hole_4 / hole_5 moved to ±0.08 m in Z
+Updated again:
+- panel is perpendicular / planar
+- hole spacing is larger
+- hole frames are medium-small and slightly offset from panel
+- built-in MuJoCo site frames are OFF by default
+- use `--show-site-frames` only if you want the large viewer overlay

@@ -84,11 +84,9 @@ def run_axial_phase(model, data, viewer, control_sid, depth, duration, damping, 
     print(f"[{label}] end tip:", np.round(end_tip,4))
 
 def retract_and_transition(model, data, viewer, control_sid, tip_sid, next_hole_center, sleep_s):
-    # retract along -X a little, then smoothly go to next hole without resetting to home
     retract_target = get_site_vec(data, control_sid).copy()
     retract_target[0] -= 0.03
     smooth_move_site(model, data, viewer, control_sid, retract_target, TRANSITION_DURATION*0.6, sleep_s)
-
     current_control = get_site_vec(data, control_sid)
     current_rot = data.site_xmat[control_sid].reshape(3,3).copy()
     tip_offset_local = current_rot.T @ (get_site_vec(data, tip_sid) - current_control)

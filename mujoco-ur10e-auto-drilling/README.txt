@@ -1,11 +1,15 @@
+This add-on package does not overwrite your colleague's files.
 
-Hybrid version:
-- Uses your colleague's frame logic (attachment_site, peg_tip)
-- DOES NOT modify her files
-- Adds new runner + controllers
+New files only:
+- scene_active_frame_multihole.xml
+- hole_catalog.py
+- multihole_runner.py
+- README.txt
 
-Flow:
-home -> move_to_hole (same idea) -> admittance insert -> drill
-
-Run:
-python hybrid_runner.py
+What it does:
+- perpendicular planar panel
+- spaced holes
+- tiny hole frames
+- only active hole frame is visible
+- smooth hole-to-hole transition
+- no reset to home between holes

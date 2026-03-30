@@ -1,15 +1,10 @@
-This add-on package does not overwrite your colleague's files.
+This add-on does not overwrite your colleague's files.
 
-New files only:
-- scene_active_frame_multihole.xml
+Files included:
+- scene_from_original_active_multihole.xml
 - hole_catalog.py
-- multihole_runner.py
+- multihole_runner_from_original.py
 - README.txt
 
-What it does:
-- perpendicular planar panel
-- spaced holes
-- tiny hole frames
-- only active hole frame is visible
-- smooth hole-to-hole transition
-- no reset to home between holes
+Run:
+python multihole_runner_from_original.py --sleep 0.15

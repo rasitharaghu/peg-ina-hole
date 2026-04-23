@@ -1,0 +1,412 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.wrap{background:#fff;padding:20px 18px;overflow-x:auto;min-width:1400px;font-family:Arial,Helvetica,sans-serif;}
+svg.main{display:block;}
+</style>
+<div class="wrap">
+<svg class="main" width="1380" height="1020" viewBox="0 0 1380 1020">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,1 L9,5 L0,9 Z" fill="#444"/>
+  </marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,1 L9,5 L0,9 Z" fill="#7B68C8"/>
+  </marker>
+  <marker id="arr-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,1 L9,5 L0,9 Z" fill="#3ABAAA"/>
+  </marker>
+  <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,1 L9,5 L0,9 Z" fill="#5A9E40"/>
+  </marker>
+</defs>
+
+<!-- ============================================================ -->
+<!-- ORIGINAL DIAGRAM — unchanged                                  -->
+<!-- ============================================================ -->
+
+<!-- Left inputs: Inline Monitoring + Existing Data Streaming -->
+<rect x="10" y="148" width="88" height="40" rx="3" fill="#D8D0EF" stroke="#9B8EDE" stroke-width="1"/>
+<text x="54" y="162" text-anchor="middle" font-size="7.5" fill="#2C1870" font-weight="bold">Inline Monitoring</text>
+<text x="54" y="172" text-anchor="middle" font-size="6.5" fill="#2C1870">Based on Machine</text>
+<text x="54" y="181" text-anchor="middle" font-size="6.5" fill="#2C1870">Vision (IR or Sensors)</text>
+
+<rect x="10" y="196" width="88" height="34" rx="3" fill="#D8D0EF" stroke="#9B8EDE" stroke-width="1"/>
+<text x="54" y="208" text-anchor="middle" font-size="7.5" fill="#2C1870" font-weight="bold">Existing Data</text>
+<text x="54" y="218" text-anchor="middle" font-size="6.5" fill="#2C1870">Streaming API</text>
+<text x="54" y="227" text-anchor="middle" font-size="6.5" fill="#2C1870">(For Development)</text>
+
+<!-- Small toggle/switch box -->
+<rect x="102" y="185" width="16" height="24" rx="2" fill="#E8E8E8" stroke="#AAA" stroke-width="0.8"/>
+<text x="110" y="199" text-anchor="middle" font-size="6" fill="#555">O</text>
+
+<!-- Arrow from toggle to kPPs -->
+<line x1="118" y1="197" x2="136" y2="197" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- kPPs + KAP -->
+<rect x="136" y="172" width="82" height="50" rx="3" fill="#D8D0EF" stroke="#9B8EDE" stroke-width="1"/>
+<text x="177" y="188" text-anchor="middle" font-size="7.5" fill="#2C1870" font-weight="bold">kPPs + KAP</text>
+<text x="177" y="199" text-anchor="middle" font-size="6.5" fill="#2C1870">Sensors, Data,</text>
+<text x="177" y="209" text-anchor="middle" font-size="6.5" fill="#2C1870">Virtual System</text>
+
+<!-- Arrow kPPs → Input/Load Source -->
+<line x1="218" y1="197" x2="240" y2="197" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- ===== DATA ACQUISITION DEMONSTRATOR container ===== -->
+<rect x="238" y="108" width="720" height="390" rx="4" fill="none" stroke="#5BB8D4" stroke-width="1.2" stroke-dasharray="6,3"/>
+<text x="248" y="122" font-size="8" fill="#1A7090" font-weight="bold">Data Acquisition Demonstrator</text>
+
+<!-- Input / Load Source Interface -->
+<rect x="248" y="162" width="82" height="50" rx="3" fill="#BDE8F5" stroke="#5BB8D4" stroke-width="1"/>
+<text x="289" y="180" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Input / Load</text>
+<text x="289" y="191" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Source</text>
+<text x="289" y="202" text-anchor="middle" font-size="6.5" fill="#0D4A60">Interface</text>
+
+<!-- Arrow → Capture data -->
+<line x1="330" y1="187" x2="346" y2="187" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Capture data -->
+<rect x="346" y="168" width="60" height="38" rx="3" fill="#BDE8F5" stroke="#5BB8D4" stroke-width="1"/>
+<text x="376" y="184" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Capture</text>
+<text x="376" y="195" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">data</text>
+
+<!-- Arrow → Data Capturing sub-container -->
+<line x1="406" y1="187" x2="420" y2="187" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Data Capturing (Rate) sub-container -->
+<rect x="420" y="128" width="120" height="170" rx="3" fill="none" stroke="#5BB8D4" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="428" y="140" font-size="7" fill="#1A7090" font-weight="bold">Data Capturing (Rate)</text>
+
+<!-- Lv1 Quick Detection -->
+<rect x="428" y="146" width="104" height="40" rx="3" fill="#BDE8F5" stroke="#5BB8D4" stroke-width="1"/>
+<text x="480" y="161" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Lv 1 Quick Detection</text>
+<text x="480" y="172" text-anchor="middle" font-size="6.5" fill="#0D4A60">(up to 100mm</text>
+<text x="480" y="181" text-anchor="middle" font-size="6.5" fill="#0D4A60">material)</text>
+
+<!-- vertical arrow -->
+<line x1="480" y1="186" x2="480" y2="196" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Lv2 Full Analysis -->
+<rect x="428" y="196" width="104" height="40" rx="3" fill="#BDE8F5" stroke="#5BB8D4" stroke-width="1"/>
+<text x="480" y="211" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Lv2 - Full Analysis</text>
+<text x="480" y="222" text-anchor="middle" font-size="6.5" fill="#0D4A60">Detection (up to 4m</text>
+<text x="480" y="231" text-anchor="middle" font-size="6.5" fill="#0D4A60">material)</text>
+
+<!-- vertical arrow -->
+<line x1="480" y1="236" x2="480" y2="246" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Standard 100ms -->
+<rect x="436" y="246" width="88" height="26" rx="3" fill="#E8E8E8" stroke="#AAA" stroke-width="1"/>
+<text x="480" y="263" text-anchor="middle" font-size="7" fill="#333">Standard 100ms</text>
+
+<!-- Arrow from sub-container → Data Fusion -->
+<line x1="540" y1="210" x2="556" y2="210" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- 1st Step Analytics Tools (above Data Viz) -->
+<rect x="556" y="116" width="96" height="36" rx="3" fill="#E8F5A0" stroke="#B8CC40" stroke-width="1"/>
+<text x="604" y="130" text-anchor="middle" font-size="7.5" fill="#3A4A00" font-weight="bold">1st Step</text>
+<text x="604" y="141" text-anchor="middle" font-size="7.5" fill="#3A4A00" font-weight="bold">Analytics Tools</text>
+
+<!-- Arrow from Data Viz up to Analytics Tools -->
+<line x1="604" y1="175" x2="604" y2="152" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Data Visualization / Analytics @ Edge -->
+<rect x="556" y="175" width="96" height="46" rx="3" fill="#BDE8F5" stroke="#5BB8D4" stroke-width="1"/>
+<text x="604" y="191" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Data Visualization</text>
+<text x="604" y="202" text-anchor="middle" font-size="7" fill="#0D4A60">/ Analytics @ Edge</text>
+<text x="604" y="213" text-anchor="middle" font-size="6.5" fill="#0D4A60">Engine</text>
+
+<!-- vertical arrow Data Viz → Data Fusion -->
+<line x1="604" y1="221" x2="604" y2="233" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Data Fusion, Labeling, Filtering, Masking -->
+<rect x="556" y="233" width="96" height="46" rx="3" fill="#BDE8F5" stroke="#5BB8D4" stroke-width="1"/>
+<text x="604" y="249" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Data Fusion,</text>
+<text x="604" y="260" text-anchor="middle" font-size="7" fill="#0D4A60">Labeling, Filtering,</text>
+<text x="604" y="270" text-anchor="middle" font-size="6.5" fill="#0D4A60">Masking</text>
+
+<!-- vertical arrow Data Fusion → Data Mining -->
+<line x1="604" y1="279" x2="604" y2="291" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Data Mining -->
+<rect x="562" y="291" width="84" height="30" rx="3" fill="#BDE8F5" stroke="#5BB8D4" stroke-width="1"/>
+<text x="604" y="310" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Data Mining</text>
+
+<!-- Arrow Data Mining → Models/Agent -->
+<line x1="646" y1="306" x2="666" y2="306" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Models/Detection sub-container -->
+<rect x="666" y="128" width="252" height="250" rx="3" fill="none" stroke="#5BB8D4" stroke-width="1" stroke-dasharray="4,2"/>
+
+<!-- Lv1 Quick Detection Model (top right of sub-container) -->
+<rect x="762" y="138" width="110" height="36" rx="3" fill="#BDE8F5" stroke="#5BB8D4" stroke-width="1"/>
+<text x="817" y="153" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Lv 1 Quick Detection</text>
+<text x="817" y="164" text-anchor="middle" font-size="7" fill="#0D4A60">Model</text>
+
+<!-- Models / Agent for Defect Detection -->
+<rect x="674" y="182" width="110" height="42" rx="3" fill="#BDE8F5" stroke="#5BB8D4" stroke-width="1"/>
+<text x="729" y="198" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Models / Agent for</text>
+<text x="729" y="209" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Defect Detection</text>
+
+<!-- Arrow Models → Lv2 Full Analysis Detection -->
+<line x1="784" y1="203" x2="800" y2="203" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Lv2 Full Analysis Detection Model -->
+<rect x="800" y="182" width="110" height="42" rx="3" fill="#BDE8F5" stroke="#5BB8D4" stroke-width="1"/>
+<text x="855" y="198" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Lv2 - Full Analysis</text>
+<text x="855" y="209" text-anchor="middle" font-size="7" fill="#0D4A60">Detection Model</text>
+
+<!-- 2nd Step / Opportunity for Models -->
+<rect x="762" y="240" width="110" height="42" rx="3" fill="#FFD9A0" stroke="#F5A742" stroke-width="1"/>
+<text x="817" y="255" text-anchor="middle" font-size="7.5" fill="#6B3A00" font-weight="bold">2nd Step /</text>
+<text x="817" y="266" text-anchor="middle" font-size="7.5" fill="#6B3A00" font-weight="bold">Opportunity</text>
+<text x="817" y="277" text-anchor="middle" font-size="6.5" fill="#6B3A00">for Models Dev</text>
+
+<!-- Predictive Quality Models / Agent -->
+<rect x="674" y="305" width="110" height="40" rx="3" fill="#BDE8F5" stroke="#5BB8D4" stroke-width="1"/>
+<text x="729" y="320" text-anchor="middle" font-size="7.5" fill="#0D4A60" font-weight="bold">Predictive Quality</text>
+<text x="729" y="331" text-anchor="middle" font-size="7" fill="#0D4A60">Models / Agent</text>
+
+<!-- Predictive Maintenance Models / Agent -->
+<rect x="674" y="356" width="110" height="40" rx="3" fill="#FFD9A0" stroke="#F5A742" stroke-width="1"/>
+<text x="729" y="371" text-anchor="middle" font-size="7.5" fill="#6B3A00" font-weight="bold">Predictive</text>
+<text x="729" y="382" text-anchor="middle" font-size="7.5" fill="#6B3A00" font-weight="bold">Maintenance</text>
+<text x="729" y="393" text-anchor="middle" font-size="6.5" fill="#6B3A00">Models / Agent</text>
+
+<!-- Arrow from detection sub-container → Defect Detection -->
+<line x1="918" y1="200" x2="938" y2="200" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Defect Detection -->
+<rect x="938" y="178" width="82" height="40" rx="3" fill="#F9C6C6" stroke="#E87070" stroke-width="1"/>
+<text x="979" y="196" text-anchor="middle" font-size="7.5" fill="#6B0000" font-weight="bold">Defect Detection</text>
+
+<!-- "Detection Robot" label above -->
+<text x="979" y="162" text-anchor="middle" font-size="7" fill="#555" font-style="italic">Detection Robot</text>
+
+<!-- Arrow Defect Detection → Robot Demonstrator (going right and up) -->
+<line x1="1020" y1="198" x2="1040" y2="198" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- ===== ROBOT DEMONSTRATOR container ===== -->
+<rect x="1040" y="108" width="320" height="280" rx="4" fill="none" stroke="#6ABD55" stroke-width="1.2" stroke-dasharray="6,3"/>
+<text x="1052" y="122" font-size="8" fill="#1B5C10" font-weight="bold">Robot Demonstrator</text>
+
+<!-- Auto Correction Robot Debug (Proactive) -->
+<rect x="1054" y="136" width="120" height="40" rx="3" fill="#C6EDBB" stroke="#6ABD55" stroke-width="1"/>
+<text x="1114" y="152" text-anchor="middle" font-size="7.5" fill="#1B5C10" font-weight="bold">Auto Correction</text>
+<text x="1114" y="163" text-anchor="middle" font-size="7" fill="#1B5C10">Robot Debug</text>
+<text x="1114" y="173" text-anchor="middle" font-size="6.5" fill="#1B5C10">(Proactive)</text>
+
+<!-- Auto Corrective Action -->
+<rect x="1054" y="194" width="120" height="34" rx="3" fill="#C6EDBB" stroke="#6ABD55" stroke-width="1"/>
+<text x="1114" y="208" text-anchor="middle" font-size="7.5" fill="#1B5C10" font-weight="bold">Auto Corrective</text>
+<text x="1114" y="220" text-anchor="middle" font-size="7" fill="#1B5C10">Action</text>
+
+<!-- Inline Qualification Event Log -->
+<rect x="1054" y="246" width="120" height="34" rx="3" fill="#C6EDBB" stroke="#6ABD55" stroke-width="1"/>
+<text x="1114" y="260" text-anchor="middle" font-size="7.5" fill="#1B5C10" font-weight="bold">Inline Qualification</text>
+<text x="1114" y="272" text-anchor="middle" font-size="7" fill="#1B5C10">Event Log</text>
+
+<!-- Qualification Event Log on ABR -->
+<rect x="1054" y="300" width="120" height="34" rx="3" fill="#C6EDBB" stroke="#6ABD55" stroke-width="1"/>
+<text x="1114" y="314" text-anchor="middle" font-size="7.5" fill="#1B5C10" font-weight="bold">Qualification Event</text>
+<text x="1114" y="326" text-anchor="middle" font-size="7" fill="#1B5C10">Log on ABR</text>
+
+<!-- Auto Machine Control Action -->
+<rect x="1200" y="194" width="120" height="34" rx="3" fill="#C6EDBB" stroke="#6ABD55" stroke-width="1"/>
+<text x="1260" y="208" text-anchor="middle" font-size="7.5" fill="#1B5C10" font-weight="bold">Auto Machine</text>
+<text x="1260" y="220" text-anchor="middle" font-size="7" fill="#1B5C10">Control Action</text>
+
+<!-- Manual Operation Assist -->
+<rect x="1200" y="300" width="120" height="34" rx="3" fill="#C6EDBB" stroke="#6ABD55" stroke-width="1"/>
+<text x="1260" y="314" text-anchor="middle" font-size="7.5" fill="#1B5C10" font-weight="bold">Manual Operation</text>
+<text x="1260" y="326" text-anchor="middle" font-size="7" fill="#1B5C10">Assist</text>
+
+<!-- Qualification Robot (right edge) -->
+<rect x="1340" y="240" width="30" height="60" rx="3" fill="#F9C6C6" stroke="#E87070" stroke-width="1"/>
+<text x="1355" y="262" text-anchor="middle" font-size="6.5" fill="#6B0000" font-weight="bold">Qual.</text>
+<text x="1355" y="273" text-anchor="middle" font-size="6.5" fill="#6B0000">Robot</text>
+
+<!-- Robot arrows -->
+<line x1="1174" y1="156" x2="1200" y2="211" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="1174" y1="211" x2="1200" y2="211" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="1174" y1="263" x2="1200" y2="311" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="1174" y1="317" x2="1200" y2="317" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="1320" y1="211" x2="1340" y2="260" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="1320" y1="317" x2="1340" y2="270" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Lines from defect detection → robot blocks (curved approximation) -->
+<path d="M979 178 Q979 140 1054 154" fill="none" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M979 178 L979 160 L1054 160 L1054 176" fill="none" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- ===== BELOW MAIN FLOW (bottom items from original) ===== -->
+
+<!-- Input from OMTC labels -->
+<text x="10" y="452" font-size="8" fill="#333" font-weight="bold">Input from OMTC</text>
+<rect x="10" y="458" width="82" height="26" rx="3" fill="#E8E8E8" stroke="#AAA" stroke-width="1"/>
+<text x="51" y="474" text-anchor="middle" font-size="7" fill="#333">Input from OMTC</text>
+
+<rect x="10" y="490" width="82" height="26" rx="3" fill="#E8E8E8" stroke="#AAA" stroke-width="1"/>
+<text x="51" y="506" text-anchor="middle" font-size="7" fill="#333">Input from OAK</text>
+
+<rect x="10" y="522" width="82" height="26" rx="3" fill="#E8E8E8" stroke="#AAA" stroke-width="1"/>
+<text x="51" y="532" text-anchor="middle" font-size="6.5" fill="#333">Input from Corporate</text>
+<text x="51" y="542" text-anchor="middle" font-size="6.5" fill="#333">Maintenance</text>
+
+<!-- Arrow OMTC → Maintenance and Reliability -->
+<line x1="92" y1="500" x2="136" y2="462" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Maintenance and Reliability -->
+<rect x="136" y="440" width="82" height="36" rx="3" fill="#FFD9A0" stroke="#F5A742" stroke-width="1"/>
+<text x="177" y="455" text-anchor="middle" font-size="7.5" fill="#6B3A00" font-weight="bold">Maintenance and</text>
+<text x="177" y="466" text-anchor="middle" font-size="7" fill="#6B3A00">Reliability</text>
+
+<!-- Edge Control / Computing -->
+<rect x="340" y="456" width="90" height="30" rx="3" fill="#E8E8E8" stroke="#AAA" stroke-width="1"/>
+<text x="385" y="470" text-anchor="middle" font-size="7" fill="#333">Edge Control /</text>
+<text x="385" y="480" text-anchor="middle" font-size="7" fill="#333">Computing</text>
+
+<!-- Engineering Station -->
+<rect x="460" y="456" width="90" height="30" rx="3" fill="#E8E8E8" stroke="#AAA" stroke-width="1"/>
+<text x="505" y="470" text-anchor="middle" font-size="7" fill="#333">Engineering</text>
+<text x="505" y="480" text-anchor="middle" font-size="7" fill="#333">Station</text>
+
+<!-- Ambition -->
+<rect x="650" y="440" width="100" height="50" rx="3" fill="#FFD9A0" stroke="#F5A742" stroke-width="1"/>
+<text x="700" y="455" text-anchor="middle" font-size="7.5" fill="#6B3A00" font-weight="bold">Ambition</text>
+<text x="700" y="466" text-anchor="middle" font-size="6.5" fill="#6B3A00">Models / Agent</text>
+<text x="700" y="476" text-anchor="middle" font-size="6.5" fill="#6B3A00">Controls / loop</text>
+<text x="700" y="486" text-anchor="middle" font-size="6.5" fill="#6B3A00">control for kPPs</text>
+
+<!-- For Qualification -->
+<rect x="820" y="456" width="90" height="26" rx="3" fill="#E8F5A0" stroke="#B8CC40" stroke-width="1"/>
+<text x="865" y="473" text-anchor="middle" font-size="7" fill="#3A4A00">For Qualification</text>
+
+<!-- Maintenance and Reliability (bottom) -->
+<rect x="640" y="506" width="100" height="30" rx="3" fill="#FFD9A0" stroke="#F5A742" stroke-width="1"/>
+<text x="690" y="519" text-anchor="middle" font-size="7" fill="#6B3A00">Maintenance and</text>
+<text x="690" y="529" text-anchor="middle" font-size="7" fill="#6B3A00">Reliability</text>
+
+<!-- Arrows from Predictive/Quality/Ambition going to Robot blocks (multi-line from original) -->
+<path d="M784 325 L920 325 L920 263 L1054 263" fill="none" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M784 376 L930 376 L930 311 L1054 311" fill="none" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M700 490 L960 490 L960 270 L1054 270" fill="none" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M865 469 L960 469 L960 317 L1054 317" fill="none" stroke="#444" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- ============================================================ -->
+<!-- WP 5.3 — NEW BLOCKS ONLY, linked to existing                 -->
+<!-- ============================================================ -->
+
+<!-- WP 5.3 container -->
+<rect x="238" y="580" width="870" height="390" rx="4" fill="none" stroke="#7B68C8" stroke-width="1.5" stroke-dasharray="6,3"/>
+<text x="250" y="595" font-size="8.5" fill="#3C3489" font-weight="bold">WP 5.3 — Process Optimization</text>
+
+<!-- Dashed signal line: Data Mining → Behavioral Digital Twin -->
+<path d="M604 321 L604 540 L310 540 L310 580" fill="none" stroke="#7B68C8" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#arr-purple)"/>
+<text x="440" y="534" text-anchor="middle" font-size="7" fill="#534AB7">Processed signals (Data Mining output)</text>
+
+<!-- 1. Behavioral Digital Twin -->
+<rect x="254" y="608" width="120" height="56" rx="3" fill="#E0D8F8" stroke="#7B68C8" stroke-width="1.5"/>
+<text x="314" y="624" text-anchor="middle" font-size="8" fill="#2C1870" font-weight="bold">Behavioral</text>
+<text x="314" y="635" text-anchor="middle" font-size="8" fill="#2C1870" font-weight="bold">Digital Twin</text>
+<text x="314" y="647" text-anchor="middle" font-size="6.5" fill="#534AB7">Model · Simulate</text>
+<text x="314" y="657" text-anchor="middle" font-size="6.5" fill="#534AB7">u(k)→y(k)</text>
+
+<!-- arrow → System ID -->
+<line x1="374" y1="636" x2="394" y2="636" stroke="#7B68C8" stroke-width="1" marker-end="url(#arr-purple)"/>
+<text x="384" y="630" text-anchor="middle" font-size="6" fill="#7B68C8">I/O data</text>
+
+<!-- 2. System Identification -->
+<rect x="394" y="608" width="120" height="56" rx="3" fill="#E0D8F8" stroke="#7B68C8" stroke-width="1.2"/>
+<text x="454" y="624" text-anchor="middle" font-size="8" fill="#2C1870" font-weight="bold">System</text>
+<text x="454" y="635" text-anchor="middle" font-size="8" fill="#2C1870" font-weight="bold">Identification</text>
+<text x="454" y="647" text-anchor="middle" font-size="6.5" fill="#534AB7">ARX · State-Space</text>
+<text x="454" y="657" text-anchor="middle" font-size="6.5" fill="#534AB7">Transfer Fn</text>
+
+<!-- arrow → Analysis -->
+<line x1="514" y1="636" x2="534" y2="636" stroke="#7B68C8" stroke-width="1" marker-end="url(#arr-purple)"/>
+<text x="524" y="630" text-anchor="middle" font-size="6" fill="#7B68C8">Model</text>
+
+<!-- 3. Analysis & Simulation -->
+<rect x="534" y="608" width="126" height="56" rx="3" fill="#E0D8F8" stroke="#7B68C8" stroke-width="1.2"/>
+<text x="597" y="624" text-anchor="middle" font-size="8" fill="#2C1870" font-weight="bold">Analysis &amp;</text>
+<text x="597" y="635" text-anchor="middle" font-size="8" fill="#2C1870" font-weight="bold">Simulation</text>
+<text x="597" y="647" text-anchor="middle" font-size="6.5" fill="#534AB7">What-if · Sensitivity</text>
+<text x="597" y="657" text-anchor="middle" font-size="6.5" fill="#534AB7">Root Cause · KPI</text>
+
+<!-- arrow → Optimization -->
+<line x1="660" y1="636" x2="680" y2="636" stroke="#7B68C8" stroke-width="1" marker-end="url(#arr-purple)"/>
+<text x="670" y="630" text-anchor="middle" font-size="6" fill="#7B68C8">Results</text>
+
+<!-- 4. Optimization & Decision Support -->
+<rect x="680" y="608" width="136" height="56" rx="3" fill="#E0D8F8" stroke="#7B68C8" stroke-width="1.2"/>
+<text x="748" y="622" text-anchor="middle" font-size="7.5" fill="#2C1870" font-weight="bold">Optimization &amp;</text>
+<text x="748" y="633" text-anchor="middle" font-size="7.5" fill="#2C1870" font-weight="bold">Decision Support</text>
+<text x="748" y="645" text-anchor="middle" font-size="6.5" fill="#534AB7">Tune params</text>
+<text x="748" y="655" text-anchor="middle" font-size="6.5" fill="#534AB7">min J(u) = w₁f₁+w₂f₂</text>
+
+<!-- arrow → MES -->
+<line x1="816" y1="636" x2="836" y2="636" stroke="#7B68C8" stroke-width="1" marker-end="url(#arr-purple)"/>
+<text x="826" y="630" text-anchor="middle" font-size="6" fill="#7B68C8">Opt. params</text>
+
+<!-- 5. MES Integration -->
+<rect x="836" y="608" width="116" height="56" rx="3" fill="#B8EDE0" stroke="#3ABAAA" stroke-width="1.2"/>
+<text x="894" y="624" text-anchor="middle" font-size="8" fill="#0A3D35" font-weight="bold">MES</text>
+<text x="894" y="635" text-anchor="middle" font-size="8" fill="#0A3D35" font-weight="bold">Integration</text>
+<text x="894" y="647" text-anchor="middle" font-size="6.5" fill="#0F6E56">Orders · KPIs</text>
+<text x="894" y="657" text-anchor="middle" font-size="6.5" fill="#0F6E56">Scheduling</text>
+
+<!-- arrow → Mold Ref -->
+<line x1="952" y1="636" x2="972" y2="636" stroke="#3ABAAA" stroke-width="1" marker-end="url(#arr-teal)"/>
+<text x="962" y="630" text-anchor="middle" font-size="6" fill="#3ABAAA">Context</text>
+
+<!-- 6. Mold Referencing -->
+<rect x="972" y="608" width="116" height="56" rx="3" fill="#B8EDE0" stroke="#3ABAAA" stroke-width="1.2"/>
+<text x="1030" y="624" text-anchor="middle" font-size="8" fill="#0A3D35" font-weight="bold">Mold</text>
+<text x="1030" y="635" text-anchor="middle" font-size="8" fill="#0A3D35" font-weight="bold">Referencing</text>
+<text x="1030" y="647" text-anchor="middle" font-size="6.5" fill="#0F6E56">Geometry · offsets</text>
+<text x="1030" y="657" text-anchor="middle" font-size="6.5" fill="#0F6E56">Part traceability</text>
+
+<!-- arrow → VC -->
+<line x1="1088" y1="636" x2="1098" y2="636" stroke="#3ABAAA" stroke-width="1" marker-end="url(#arr-teal)"/>
+
+<!-- 7. Virtual Commissioning -->
+<rect x="972" y="690" width="116" height="56" rx="3" fill="#B8EDE0" stroke="#3ABAAA" stroke-width="1.2"/>
+<text x="1030" y="706" text-anchor="middle" font-size="7.5" fill="#0A3D35" font-weight="bold">Virtual</text>
+<text x="1030" y="717" text-anchor="middle" font-size="7.5" fill="#0A3D35" font-weight="bold">Commissioning</text>
+<text x="1030" y="729" text-anchor="middle" font-size="6.5" fill="#0F6E56">DT validation</text>
+<text x="1030" y="739" text-anchor="middle" font-size="6.5" fill="#0F6E56">Robot / machine sim</text>
+
+<!-- connector Mold → VC vertical -->
+<line x1="1030" y1="664" x2="1030" y2="690" stroke="#3ABAAA" stroke-width="1" marker-end="url(#arr-teal)"/>
+
+<!-- ===== FEEDBACK ARROWS from WP5.3 back to existing blocks ===== -->
+
+<!-- Feedback 1: Optimization → back to Input/Load Source (WP5.1 loop) -->
+<!-- Down from Optimization, left along bottom, up to Input/Load Source -->
+<path d="M748 664 L748 760 L220 760 L220 187 L248 187" fill="none" stroke="#7B68C8" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#arr-purple)"/>
+<text x="180" y="756" text-anchor="middle" font-size="7" fill="#534AB7" transform="rotate(-90,180,756)">Optimal settings → retrain</text>
+
+<!-- Feedback 2: VC / Optimization → Auto Machine Control (WP5.2) -->
+<path d="M1030 746 L1030 800 L1180 800 L1180 211 L1200 211" fill="none" stroke="#5A9E40" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#arr-green)"/>
+<text x="1130" y="796" text-anchor="middle" font-size="7" fill="#3B6D11">Corrective commands → WP 5.2</text>
+
+<!-- ===== WP 5.3 — second row: sub-detail notes ===== -->
+
+<!-- Feedback Loop annotation box (inside WP5.3) -->
+<rect x="254" y="690" width="700" height="40" rx="3" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.8" stroke-dasharray="3,2"/>
+<text x="604" y="705" text-anchor="middle" font-size="7" fill="#3C3489" font-weight="bold">Feedback Loop — New data continuously improves the model</text>
+<text x="604" y="718" text-anchor="middle" font-size="6.5" fill="#534AB7">Optimal settings feed back to WP 5.1 (data acquisition) · Corrective commands feed back to WP 5.2 (Auto Machine Control)</text>
+
+<!-- Legend -->
+<rect x="238" y="748" width="700" height="28" rx="3" fill="#F8F8F8" stroke="#DDD" stroke-width="0.8"/>
+<rect x="248" y="757" width="10" height="8" rx="1" fill="#E0D8F8" stroke="#7B68C8" stroke-width="1"/>
+<text x="262" y="764" font-size="7" fill="#333">WP 5.3 Digital twin / Optimization</text>
+<rect x="390" y="757" width="10" height="8" rx="1" fill="#B8EDE0" stroke="#3ABAAA" stroke-width="1"/>
+<text x="404" y="764" font-size="7" fill="#333">WP 5.3 MES / Mold Ref / VC</text>
+<line x1="530" y1="761" x2="550" y2="761" stroke="#7B68C8" stroke-width="1.2" stroke-dasharray="4,2"/>
+<text x="555" y="764" font-size="7" fill="#333">Signal into WP 5.3</text>
+<line x1="640" y1="761" x2="660" y2="761" stroke="#5A9E40" stroke-width="1.2" stroke-dasharray="4,2"/>
+<text x="665" y="764" font-size="7" fill="#333">Feedback to WP 5.1 / 5.2</text>
+
+</svg>
+</div>

@@ -1,0 +1,20 @@
+nodes = server.nodes.all()
+xml_data = generate_nodeset_xml_from_nodes(nodes, template_path)
+
+
+nodes = server.nodes.all()
+xml_data = generate_nodeset_xml_from_nodes(nodes, template_path)
+
+
+
+Integrate in views.py
+
+Use either one.
+
+For lxml:
+
+from .nodeset_template_formatter_lxml import generate_nodeset_xml_from_nodes
+
+For xmltree:
+
+from .nodeset_template_formatter_xmltree import generate_nodeset_xml_from_node

@@ -18,3 +18,12 @@ from .nodeset_template_formatter_lxml import generate_nodeset_xml_from_nodes
 For xmltree:
 
 from .nodeset_template_formatter_xmltree import generate_nodeset_xml_from_node
+
+
+
+python /app/siome5_template_merge_exporter.py \
+  --endpoint opc.tcp://localhost:4840/siome5/server/ \
+  --template /data/AtlasCopco-Tools.Nodeset2_ToBeWantedSample.xml \
+  --output /workspace/final_reconstructed_siome5.xml \
+  --start-path DeviceSet \
+  --add-missing

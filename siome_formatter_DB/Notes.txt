@@ -1,0 +1,4 @@
+One note: if you want the SIOME5 parent-child hierarchy to remain completely untouched, comment out this block in _update_metadata_from_db():
+
+if db_parent_node_id:
+    variable.set("ParentNodeId", str(db_parent_node_id))

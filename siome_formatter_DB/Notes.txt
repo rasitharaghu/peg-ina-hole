@@ -2,3 +2,18 @@ One note: if you want the SIOME5 parent-child hierarchy to remain completely unt
 
 if db_parent_node_id:
     variable.set("ParentNodeId", str(db_parent_node_id))
+	
+	
+Your views.py can remain the same:
+
+xml_data = generate_siome5_xml_from_db_nodes(
+    nodes=nodes,
+    template_path=str(template_path),
+)
+
+This will give:
+
+<?xml version="1.0" encoding="utf-8"?>
+<UANodeSet ... LastModified="current-date-time">
+
+and it will avoid adding new <Value> tags where the SIOME template did not have them.

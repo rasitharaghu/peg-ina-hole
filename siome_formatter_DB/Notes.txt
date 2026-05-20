@@ -17,3 +17,19 @@ This will give:
 <UANodeSet ... LastModified="current-date-time">
 
 and it will avoid adding new <Value> tags where the SIOME template did not have them.
+
+
+
+Ver3:
+our views.py usage remains:
+
+from .siome5_exporter import generate_siome5_xml_from_db_nodes
+
+This version will:
+
+Keep SIOME5 structure
+Update LastModified
+Use double quotes in XML declaration
+Update only simple existing values
+Skip EUInformation / ExtensionObject / LocalizedText
+Not create new <Value> tags

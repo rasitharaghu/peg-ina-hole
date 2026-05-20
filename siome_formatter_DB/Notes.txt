@@ -33,3 +33,27 @@ Use double quotes in XML declaration
 Update only simple existing values
 Skip EUInformation / ExtensionObject / LocalizedText
 Not create new <Value> tags
+
+
+
+Ver4
+
+Update views.py
+
+Change your export call to pass the server endpoint:
+
+xml_data = generate_siome5_xml_from_db_nodes(
+    nodes=nodes,
+    template_path=str(template_path),
+    endpoint_url=server.endpoint,
+)
+
+So export now works even if the DB has only imported tags but no stored readings.
+
+Why temperature was zero:
+
+Server Temperature is changing
+but DB latest reading was not available
+so exporter used fallback 0
+
+Now it will try live OPC UA read using the DB node’s node_id.

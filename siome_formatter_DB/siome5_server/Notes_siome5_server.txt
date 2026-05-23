@@ -1,0 +1,75 @@
+Below is the complete updated setup for this architecture:
+
+SIOME5 NodeSet XML
+        ↓
+Imported into OPC UA server
+        ↓
+Server exposes SIOME5 hierarchy
+        ↓
+Simulation loop updates values
+        ↓
+Exporter browses server
+        ↓
+Generated XML
+
+
+
+
+What this server does
+1. Reads SIOME5 XML file
+2. Imports it into FreeOPCUA server
+3. Server exposes SIOME5 nodes/hierarchy
+4. Finds runtime-like variables such as Temperature, Torque, Status
+5. Updates those variables every second
+
+
+
+What this exporter does
+1. Connects to OPC UA server
+2. Browses full server address space
+3. Exports UAObject and UAVariable nodes
+4. Reads live values from server
+5. Generates XML
+
+
+
+3. Django views.py integration
+
+Replace your current export_nodes_xml() with:
+
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from django.views.decorators.http import require_http_methods
+
+from .models import OPCUAServer
+from .siome5_server_exporter import export_nodeset_from_server
+
+
+@require_http_methods(["GET"])
+def export_nodes_xml(request, server_id: int):
+    server = get_object_or_404(OPCUAServer, pk=server_id)
+
+    xml_data = export_nodeset_from_server(server.endpoint)
+
+    response = HttpResponse(xml_data, content_type="application/xml")
+
+    response["Content-Disposition"] = (
+        f'attachment; filename="siome5_{server.name.replace(" ", "_")}.xml"'
+    )
+
+    return response
+What this view does
+1. Gets server endpoint from database
+2. Calls exporter
+3. Returns generated XML as downloadable file
+4. Install dependencies
+pip install opcua lxml
+Important note
+
+This is the correct architecture, but it depends on whether:
+
+server.import_xml(siome5_nodeset_path)
+
+successfully imports your SIOME5 XML.
+
+If import fails or only partially imports, use the previous template-driven exporter.

@@ -1,0 +1,17 @@
+{
+  "ns=6;s=Objects.DeviceSet.UTN_Number.Health.Temperature": {
+    "source_node_id": "ns=2;s=Robot.ControllerTemperature"
+  },
+  "ns=6;s=Objects.DeviceSet.UTN_Number.Status": {
+    "source_node_id": "ns=2;s=Robot.RobotMode"
+  },
+  "ns=6;s=Objects.DeviceSet.UTN_Number.TCP.X": {
+    "source_node_id": "ns=2;s=Robot.TCP.X"
+  },
+  "ns=6;s=Objects.DeviceSet.UTN_Number.TCP.Y": {
+    "source_node_id": "ns=2;s=Robot.TCP.Y"
+  },
+  "ns=6;s=Objects.DeviceSet.UTN_Number.TCP.Z": {
+    "source_node_id": "ns=2;s=Robot.TCP.Z"
+  }
+}

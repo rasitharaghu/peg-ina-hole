@@ -1,0 +1,1391 @@
+<?xml version='1.0' encoding='utf-8'?>
+<UANodeSet LastModified="2026-05-31T17:07:17Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:si="http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns0="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:ns1="http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions" xmlns:ns2="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:ns3="http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/AIJT/Types.xsd" xmlns:ns4="http://opcfoundation.org/UA/Machinery/Result/Types.xsd" xmlns:ns5="http://opcfoundation.org/UA/IJT/Base/Types.xsd">
+    <NamespaceUris>
+        <Uri>http://opcfoundation.org/UA/</Uri>
+        <Uri>urn:freeopcua:python:server</Uri>
+        <Uri>http://learning.opcua.production</Uri>
+        </NamespaceUris>
+    <Models></Models>
+    <Aliases></Aliases>
+    <Extensions></Extensions>
+    <UAObject SymbolicName="Objects" NodeId="i=85" BrowseName="0:Objects" ParentNodeId="">
+        <DisplayName>Objects</DisplayName>
+        <References>
+            <Reference ReferenceType="i=35" IsForward="false">NumericNodeId(i=84)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=61)</Reference>
+            <Reference ReferenceType="i=35" IsForward="true">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=35" IsForward="true">NumericNodeId(ns=2;i=1)</Reference>
+            </References>
+        </UAObject>
+    <UAObject SymbolicName="Server" NodeId="i=2253" BrowseName="0:Server" ParentNodeId="i=85">
+        <DisplayName>Server</DisplayName>
+        <References>
+            <Reference ReferenceType="i=35" IsForward="false">NumericNodeId(i=85)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2004)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=2254)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=2255)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2256)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=2267)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=2994)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=12885)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=17634)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2274)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2295)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2296)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=11715)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=11492)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=12873)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=12749)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=12886)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=17594)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=12" NodeId="i=2254" BrowseName="0:ServerArray" ParentNodeId="i=2253">
+        <DisplayName>ServerArray</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>['urn:freeopcua:python:server']</Value>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=2255" BrowseName="0:NamespaceArray" ParentNodeId="i=2253">
+        <DisplayName>NamespaceArray</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>['http://opcfoundation.org/UA/', 'urn:freeopcua:python:server', 'http://learning.opcua.production']</Value>
+        </UAVariable>
+    <UAVariable DataType="i=862" NodeId="i=2256" BrowseName="0:ServerStatus" ParentNodeId="i=2253">
+        <DisplayName>ServerStatus</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2138)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2257)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2258)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2259)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2260)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2992)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2993)</Reference>
+            </References>
+        <Value>ServerStatusDataType(StartTime:{self.StartTime}, CurrentTime:{self.CurrentTime}, State:{self.State}, BuildInfo:{self.BuildInfo}, SecondsTillShutdown:{self.SecondsTillShutdown}, ShutdownReason:{self.ShutdownReason})</Value>
+        </UAVariable>
+    <UAVariable DataType="i=294" NodeId="i=2257" BrowseName="0:StartTime" ParentNodeId="i=2256">
+        <DisplayName>StartTime</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2256)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>2026-05-31 16:47:34.162782</Value>
+        </UAVariable>
+    <UAVariable DataType="i=294" NodeId="i=2258" BrowseName="0:CurrentTime" ParentNodeId="i=2256">
+        <DisplayName>CurrentTime</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2256)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>2026-05-31 17:07:17.157531</Value>
+        </UAVariable>
+    <UAVariable DataType="i=852" NodeId="i=2259" BrowseName="0:State" ParentNodeId="i=2256">
+        <DisplayName>State</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2256)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>0</Value>
+        </UAVariable>
+    <UAVariable DataType="i=338" NodeId="i=2260" BrowseName="0:BuildInfo" ParentNodeId="i=2256">
+        <DisplayName>BuildInfo</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2256)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=3051)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2262)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2263)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2261)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2264)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2265)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2266)</Reference>
+            </References>
+        <Value>BuildInfo(ProductUri:{self.ProductUri}, ManufacturerName:{self.ManufacturerName}, ProductName:{self.ProductName}, SoftwareVersion:{self.SoftwareVersion}, BuildNumber:{self.BuildNumber}, BuildDate:{self.BuildDate})</Value>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=2262" BrowseName="0:ProductUri" ParentNodeId="i=2260">
+        <DisplayName>ProductUri</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2260)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>urn:freeopcua.github.io:python:server</Value>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=2263" BrowseName="0:ManufacturerName" ParentNodeId="i=2260">
+        <DisplayName>ManufacturerName</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2260)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>FreeOpcUa</Value>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=2261" BrowseName="0:ProductName" ParentNodeId="i=2260">
+        <DisplayName>ProductName</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2260)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>FreeOpcUa Python Server</Value>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=2264" BrowseName="0:SoftwareVersion" ParentNodeId="i=2260">
+        <DisplayName>SoftwareVersion</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2260)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>1.0pre</Value>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=2265" BrowseName="0:BuildNumber" ParentNodeId="i=2260">
+        <DisplayName>BuildNumber</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2260)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>0</Value>
+        </UAVariable>
+    <UAVariable DataType="i=294" NodeId="i=2266" BrowseName="0:BuildDate" ParentNodeId="i=2260">
+        <DisplayName>BuildDate</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2260)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>2026-05-31 22:17:34.145782</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2992" BrowseName="0:SecondsTillShutdown" ParentNodeId="i=2256">
+        <DisplayName>SecondsTillShutdown</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2256)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=21" NodeId="i=2993" BrowseName="0:ShutdownReason" ParentNodeId="i=2256">
+        <DisplayName>ShutdownReason</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2256)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=3" NodeId="i=2267" BrowseName="0:ServiceLevel" ParentNodeId="i=2253">
+        <DisplayName>ServiceLevel</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=2994" BrowseName="0:Auditing" ParentNodeId="i=2253">
+        <DisplayName>Auditing</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=13" NodeId="i=12885" BrowseName="0:EstimatedReturnTime" ParentNodeId="i=2253">
+        <DisplayName>EstimatedReturnTime</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=8912" NodeId="i=17634" BrowseName="0:LocalTime" ParentNodeId="i=2253">
+        <DisplayName>LocalTime</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="ServerCapabilities" NodeId="i=2268" BrowseName="0:ServerCapabilities" ParentNodeId="i=2253">
+        <DisplayName>ServerCapabilities</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2013)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=2269)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=2271)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=2272)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=2735)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=2736)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=2737)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=3704)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11702)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11703)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=12911)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2996)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2997)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15606)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=11192)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=12" NodeId="i=2269" BrowseName="0:ServerProfileArray" ParentNodeId="i=2268">
+        <DisplayName>ServerProfileArray</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=295" NodeId="i=2271" BrowseName="0:LocaleIdArray" ParentNodeId="i=2268">
+        <DisplayName>LocaleIdArray</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=290" NodeId="i=2272" BrowseName="0:MinSupportedSampleRate" ParentNodeId="i=2268">
+        <DisplayName>MinSupportedSampleRate</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=5" NodeId="i=2735" BrowseName="0:MaxBrowseContinuationPoints" ParentNodeId="i=2268">
+        <DisplayName>MaxBrowseContinuationPoints</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=5" NodeId="i=2736" BrowseName="0:MaxQueryContinuationPoints" ParentNodeId="i=2268">
+        <DisplayName>MaxQueryContinuationPoints</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=5" NodeId="i=2737" BrowseName="0:MaxHistoryContinuationPoints" ParentNodeId="i=2268">
+        <DisplayName>MaxHistoryContinuationPoints</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=344" NodeId="i=3704" BrowseName="0:SoftwareCertificates" ParentNodeId="i=2268">
+        <DisplayName>SoftwareCertificates</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=11702" BrowseName="0:MaxArrayLength" ParentNodeId="i=2268">
+        <DisplayName>MaxArrayLength</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=11703" BrowseName="0:MaxStringLength" ParentNodeId="i=2268">
+        <DisplayName>MaxStringLength</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=12911" BrowseName="0:MaxByteStringLength" ParentNodeId="i=2268">
+        <DisplayName>MaxByteStringLength</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="OperationLimits" NodeId="i=11704" BrowseName="0:OperationLimits" ParentNodeId="i=2268">
+        <DisplayName>OperationLimits</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=11564)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11705)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=12165)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=12166)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11707)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=12167)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=12168)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11709)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11710)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11711)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11712)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11713)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11714)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=7" NodeId="i=11705" BrowseName="0:MaxNodesPerRead" ParentNodeId="i=11704">
+        <DisplayName>MaxNodesPerRead</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=12165" BrowseName="0:MaxNodesPerHistoryReadData" ParentNodeId="i=11704">
+        <DisplayName>MaxNodesPerHistoryReadData</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=12166" BrowseName="0:MaxNodesPerHistoryReadEvents" ParentNodeId="i=11704">
+        <DisplayName>MaxNodesPerHistoryReadEvents</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=11707" BrowseName="0:MaxNodesPerWrite" ParentNodeId="i=11704">
+        <DisplayName>MaxNodesPerWrite</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=12167" BrowseName="0:MaxNodesPerHistoryUpdateData" ParentNodeId="i=11704">
+        <DisplayName>MaxNodesPerHistoryUpdateData</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=12168" BrowseName="0:MaxNodesPerHistoryUpdateEvents" ParentNodeId="i=11704">
+        <DisplayName>MaxNodesPerHistoryUpdateEvents</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=11709" BrowseName="0:MaxNodesPerMethodCall" ParentNodeId="i=11704">
+        <DisplayName>MaxNodesPerMethodCall</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=11710" BrowseName="0:MaxNodesPerBrowse" ParentNodeId="i=11704">
+        <DisplayName>MaxNodesPerBrowse</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=11711" BrowseName="0:MaxNodesPerRegisterNodes" ParentNodeId="i=11704">
+        <DisplayName>MaxNodesPerRegisterNodes</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=11712" BrowseName="0:MaxNodesPerTranslateBrowsePathsToNodeIds" ParentNodeId="i=11704">
+        <DisplayName>MaxNodesPerTranslateBrowsePathsToNodeIds</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=11713" BrowseName="0:MaxNodesPerNodeManagement" ParentNodeId="i=11704">
+        <DisplayName>MaxNodesPerNodeManagement</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=11714" BrowseName="0:MaxMonitoredItemsPerCall" ParentNodeId="i=11704">
+        <DisplayName>MaxMonitoredItemsPerCall</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>10000</Value>
+        </UAVariable>
+    <UAObject SymbolicName="ModellingRules" NodeId="i=2996" BrowseName="0:ModellingRules" ParentNodeId="i=2268">
+        <DisplayName>ModellingRules</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=61)</Reference>
+            </References>
+        </UAObject>
+    <UAObject SymbolicName="AggregateFunctions" NodeId="i=2997" BrowseName="0:AggregateFunctions" ParentNodeId="i=2268">
+        <DisplayName>AggregateFunctions</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=61)</Reference>
+            </References>
+        </UAObject>
+    <UAObject SymbolicName="RoleSet" NodeId="i=15606" BrowseName="0:RoleSet" ParentNodeId="i=2268">
+        <DisplayName>RoleSet</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=15607)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16301)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16304)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15644)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15656)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15668)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15680)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16036)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15692)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15716)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15704)</Reference>
+            </References>
+        </UAObject>
+    <UAObject SymbolicName="Anonymous" NodeId="i=15644" BrowseName="0:Anonymous" ParentNodeId="i=15606">
+        <DisplayName>Anonymous</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=15606)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=15620)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16192)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16193)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15412)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16194)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15413)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15648)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15650)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16195)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16197)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16199)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16201)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=15634" NodeId="i=16192" BrowseName="0:Identities" ParentNodeId="i=15644">
+        <DisplayName>Identities</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15644)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=16193" BrowseName="0:Applications" ParentNodeId="i=15644">
+        <DisplayName>Applications</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15644)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15412" BrowseName="0:ApplicationsExclude" ParentNodeId="i=15644">
+        <DisplayName>ApplicationsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15644)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=15528" NodeId="i=16194" BrowseName="0:Endpoints" ParentNodeId="i=15644">
+        <DisplayName>Endpoints</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15644)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15413" BrowseName="0:EndpointsExclude" ParentNodeId="i=15644">
+        <DisplayName>EndpointsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15644)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="AuthenticatedUser" NodeId="i=15656" BrowseName="0:AuthenticatedUser" ParentNodeId="i=15606">
+        <DisplayName>AuthenticatedUser</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=15606)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=15620)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16203)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16204)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15414)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16205)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15415)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15660)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15662)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16206)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16208)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16210)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16212)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=15634" NodeId="i=16203" BrowseName="0:Identities" ParentNodeId="i=15656">
+        <DisplayName>Identities</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15656)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=16204" BrowseName="0:Applications" ParentNodeId="i=15656">
+        <DisplayName>Applications</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15656)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15414" BrowseName="0:ApplicationsExclude" ParentNodeId="i=15656">
+        <DisplayName>ApplicationsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15656)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=15528" NodeId="i=16205" BrowseName="0:Endpoints" ParentNodeId="i=15656">
+        <DisplayName>Endpoints</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15656)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15415" BrowseName="0:EndpointsExclude" ParentNodeId="i=15656">
+        <DisplayName>EndpointsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15656)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="Observer" NodeId="i=15668" BrowseName="0:Observer" ParentNodeId="i=15606">
+        <DisplayName>Observer</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=15606)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=15620)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16214)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16215)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15416)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16216)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15417)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15672)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15674)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16217)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16219)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16221)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16223)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=15634" NodeId="i=16214" BrowseName="0:Identities" ParentNodeId="i=15668">
+        <DisplayName>Identities</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15668)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=16215" BrowseName="0:Applications" ParentNodeId="i=15668">
+        <DisplayName>Applications</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15668)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15416" BrowseName="0:ApplicationsExclude" ParentNodeId="i=15668">
+        <DisplayName>ApplicationsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15668)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=15528" NodeId="i=16216" BrowseName="0:Endpoints" ParentNodeId="i=15668">
+        <DisplayName>Endpoints</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15668)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15417" BrowseName="0:EndpointsExclude" ParentNodeId="i=15668">
+        <DisplayName>EndpointsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15668)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="Operator" NodeId="i=15680" BrowseName="0:Operator" ParentNodeId="i=15606">
+        <DisplayName>Operator</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=15606)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=15620)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16225)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16226)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15418)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16227)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15423)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15684)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15686)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16228)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16230)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16232)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16234)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=15634" NodeId="i=16225" BrowseName="0:Identities" ParentNodeId="i=15680">
+        <DisplayName>Identities</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15680)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=16226" BrowseName="0:Applications" ParentNodeId="i=15680">
+        <DisplayName>Applications</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15680)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15418" BrowseName="0:ApplicationsExclude" ParentNodeId="i=15680">
+        <DisplayName>ApplicationsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15680)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=15528" NodeId="i=16227" BrowseName="0:Endpoints" ParentNodeId="i=15680">
+        <DisplayName>Endpoints</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15680)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15423" BrowseName="0:EndpointsExclude" ParentNodeId="i=15680">
+        <DisplayName>EndpointsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15680)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="Engineer" NodeId="i=16036" BrowseName="0:Engineer" ParentNodeId="i=15606">
+        <DisplayName>Engineer</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=15606)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=15620)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16236)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16237)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15424)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16238)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15425)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16041)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16043)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16239)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16241)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16243)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16245)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=15634" NodeId="i=16236" BrowseName="0:Identities" ParentNodeId="i=16036">
+        <DisplayName>Identities</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=16036)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=16237" BrowseName="0:Applications" ParentNodeId="i=16036">
+        <DisplayName>Applications</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=16036)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15424" BrowseName="0:ApplicationsExclude" ParentNodeId="i=16036">
+        <DisplayName>ApplicationsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=16036)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=15528" NodeId="i=16238" BrowseName="0:Endpoints" ParentNodeId="i=16036">
+        <DisplayName>Endpoints</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=16036)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15425" BrowseName="0:EndpointsExclude" ParentNodeId="i=16036">
+        <DisplayName>EndpointsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=16036)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="Supervisor" NodeId="i=15692" BrowseName="0:Supervisor" ParentNodeId="i=15606">
+        <DisplayName>Supervisor</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=15606)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=15620)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16247)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16248)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15426)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16249)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15427)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15696)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15698)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16250)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16252)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16254)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16256)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=15634" NodeId="i=16247" BrowseName="0:Identities" ParentNodeId="i=15692">
+        <DisplayName>Identities</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15692)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=16248" BrowseName="0:Applications" ParentNodeId="i=15692">
+        <DisplayName>Applications</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15692)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15426" BrowseName="0:ApplicationsExclude" ParentNodeId="i=15692">
+        <DisplayName>ApplicationsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15692)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=15528" NodeId="i=16249" BrowseName="0:Endpoints" ParentNodeId="i=15692">
+        <DisplayName>Endpoints</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15692)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15427" BrowseName="0:EndpointsExclude" ParentNodeId="i=15692">
+        <DisplayName>EndpointsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15692)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="ConfigureAdmin" NodeId="i=15716" BrowseName="0:ConfigureAdmin" ParentNodeId="i=15606">
+        <DisplayName>ConfigureAdmin</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=15606)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=15620)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16269)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16270)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15428)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16271)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15429)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15720)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15722)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16272)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16274)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16276)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16278)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=15634" NodeId="i=16269" BrowseName="0:Identities" ParentNodeId="i=15716">
+        <DisplayName>Identities</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15716)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=16270" BrowseName="0:Applications" ParentNodeId="i=15716">
+        <DisplayName>Applications</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15716)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15428" BrowseName="0:ApplicationsExclude" ParentNodeId="i=15716">
+        <DisplayName>ApplicationsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15716)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=15528" NodeId="i=16271" BrowseName="0:Endpoints" ParentNodeId="i=15716">
+        <DisplayName>Endpoints</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15716)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15429" BrowseName="0:EndpointsExclude" ParentNodeId="i=15716">
+        <DisplayName>EndpointsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15716)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="SecurityAdmin" NodeId="i=15704" BrowseName="0:SecurityAdmin" ParentNodeId="i=15606">
+        <DisplayName>SecurityAdmin</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=15606)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=15620)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16258)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16259)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15430)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16260)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15527)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15708)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15710)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16261)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16263)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16265)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=16267)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=15634" NodeId="i=16258" BrowseName="0:Identities" ParentNodeId="i=15704">
+        <DisplayName>Identities</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=16259" BrowseName="0:Applications" ParentNodeId="i=15704">
+        <DisplayName>Applications</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15430" BrowseName="0:ApplicationsExclude" ParentNodeId="i=15704">
+        <DisplayName>ApplicationsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=15528" NodeId="i=16260" BrowseName="0:Endpoints" ParentNodeId="i=15704">
+        <DisplayName>Endpoints</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15527" BrowseName="0:EndpointsExclude" ParentNodeId="i=15704">
+        <DisplayName>EndpointsExclude</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15704)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="HistoryServerCapabilities" NodeId="i=11192" BrowseName="0:HistoryServerCapabilities" ParentNodeId="i=2268">
+        <DisplayName>HistoryServerCapabilities</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2268)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2330)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11193)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11242)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11273)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11274)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11196)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11197)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11198)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11199)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11200)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11281)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11282)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11283)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11502)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11275)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=11201)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=19091)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=1" NodeId="i=11193" BrowseName="0:AccessHistoryDataCapability" ParentNodeId="i=11192">
+        <DisplayName>AccessHistoryDataCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=11242" BrowseName="0:AccessHistoryEventsCapability" ParentNodeId="i=11192">
+        <DisplayName>AccessHistoryEventsCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=11273" BrowseName="0:MaxReturnDataValues" ParentNodeId="i=11192">
+        <DisplayName>MaxReturnDataValues</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=11274" BrowseName="0:MaxReturnEventValues" ParentNodeId="i=11192">
+        <DisplayName>MaxReturnEventValues</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=11196" BrowseName="0:InsertDataCapability" ParentNodeId="i=11192">
+        <DisplayName>InsertDataCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=11197" BrowseName="0:ReplaceDataCapability" ParentNodeId="i=11192">
+        <DisplayName>ReplaceDataCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=11198" BrowseName="0:UpdateDataCapability" ParentNodeId="i=11192">
+        <DisplayName>UpdateDataCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=11199" BrowseName="0:DeleteRawCapability" ParentNodeId="i=11192">
+        <DisplayName>DeleteRawCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=11200" BrowseName="0:DeleteAtTimeCapability" ParentNodeId="i=11192">
+        <DisplayName>DeleteAtTimeCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=11281" BrowseName="0:InsertEventCapability" ParentNodeId="i=11192">
+        <DisplayName>InsertEventCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=11282" BrowseName="0:ReplaceEventCapability" ParentNodeId="i=11192">
+        <DisplayName>ReplaceEventCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=11283" BrowseName="0:UpdateEventCapability" ParentNodeId="i=11192">
+        <DisplayName>UpdateEventCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=11502" BrowseName="0:DeleteEventCapability" ParentNodeId="i=11192">
+        <DisplayName>DeleteEventCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=11275" BrowseName="0:InsertAnnotationCapability" ParentNodeId="i=11192">
+        <DisplayName>InsertAnnotationCapability</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="AggregateFunctions" NodeId="i=11201" BrowseName="0:AggregateFunctions" ParentNodeId="i=11192">
+        <DisplayName>AggregateFunctions</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=61)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=1" NodeId="i=19091" BrowseName="0:ServerTimestampSupported" ParentNodeId="i=11192">
+        <DisplayName>ServerTimestampSupported</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=11192)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="ServerDiagnostics" NodeId="i=2274" BrowseName="0:ServerDiagnostics" ParentNodeId="i=2253">
+        <DisplayName>ServerDiagnostics</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2020)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2289)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2290)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=3706)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=2294)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=859" NodeId="i=2275" BrowseName="0:ServerDiagnosticsSummary" ParentNodeId="i=2274">
+        <DisplayName>ServerDiagnosticsSummary</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2274)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2150)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2276)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2277)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2278)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2279)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=3705)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2281)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2282)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2284)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2285)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2286)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2287)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=2288)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2276" BrowseName="0:ServerViewCount" ParentNodeId="i=2275">
+        <DisplayName>ServerViewCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2277" BrowseName="0:CurrentSessionCount" ParentNodeId="i=2275">
+        <DisplayName>CurrentSessionCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2278" BrowseName="0:CumulatedSessionCount" ParentNodeId="i=2275">
+        <DisplayName>CumulatedSessionCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2279" BrowseName="0:SecurityRejectedSessionCount" ParentNodeId="i=2275">
+        <DisplayName>SecurityRejectedSessionCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=3705" BrowseName="0:RejectedSessionCount" ParentNodeId="i=2275">
+        <DisplayName>RejectedSessionCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2281" BrowseName="0:SessionTimeoutCount" ParentNodeId="i=2275">
+        <DisplayName>SessionTimeoutCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2282" BrowseName="0:SessionAbortCount" ParentNodeId="i=2275">
+        <DisplayName>SessionAbortCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2284" BrowseName="0:PublishingIntervalCount" ParentNodeId="i=2275">
+        <DisplayName>PublishingIntervalCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2285" BrowseName="0:CurrentSubscriptionCount" ParentNodeId="i=2275">
+        <DisplayName>CurrentSubscriptionCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2286" BrowseName="0:CumulatedSubscriptionCount" ParentNodeId="i=2275">
+        <DisplayName>CumulatedSubscriptionCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2287" BrowseName="0:SecurityRejectedRequestsCount" ParentNodeId="i=2275">
+        <DisplayName>SecurityRejectedRequestsCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=7" NodeId="i=2288" BrowseName="0:RejectedRequestsCount" ParentNodeId="i=2275">
+        <DisplayName>RejectedRequestsCount</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2275)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=856" NodeId="i=2289" BrowseName="0:SamplingIntervalDiagnosticsArray" ParentNodeId="i=2274">
+        <DisplayName>SamplingIntervalDiagnosticsArray</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2274)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2164)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=874" NodeId="i=2290" BrowseName="0:SubscriptionDiagnosticsArray" ParentNodeId="i=2274">
+        <DisplayName>SubscriptionDiagnosticsArray</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2274)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2171)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="SessionsDiagnosticsSummary" NodeId="i=3706" BrowseName="0:SessionsDiagnosticsSummary" ParentNodeId="i=2274">
+        <DisplayName>SessionsDiagnosticsSummary</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2274)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2026)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=3707)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=3708)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=865" NodeId="i=3707" BrowseName="0:SessionDiagnosticsArray" ParentNodeId="i=3706">
+        <DisplayName>SessionDiagnosticsArray</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=3706)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2196)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=868" NodeId="i=3708" BrowseName="0:SessionSecurityDiagnosticsArray" ParentNodeId="i=3706">
+        <DisplayName>SessionSecurityDiagnosticsArray</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=3706)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2243)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=2294" BrowseName="0:EnabledFlag" ParentNodeId="i=2274">
+        <DisplayName>EnabledFlag</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2274)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="VendorServerInfo" NodeId="i=2295" BrowseName="0:VendorServerInfo" ParentNodeId="i=2253">
+        <DisplayName>VendorServerInfo</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2033)</Reference>
+            </References>
+        </UAObject>
+    <UAObject SymbolicName="ServerRedundancy" NodeId="i=2296" BrowseName="0:ServerRedundancy" ParentNodeId="i=2253">
+        <DisplayName>ServerRedundancy</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=2034)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=3709)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11312)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11313)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=11314)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=14415)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=851" NodeId="i=3709" BrowseName="0:RedundancySupport" ParentNodeId="i=2296">
+        <DisplayName>RedundancySupport</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2296)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=11312" BrowseName="0:CurrentServerId" ParentNodeId="i=2296">
+        <DisplayName>CurrentServerId</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2296)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=853" NodeId="i=11313" BrowseName="0:RedundantServerArray" ParentNodeId="i=2296">
+        <DisplayName>RedundantServerArray</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2296)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=11314" BrowseName="0:ServerUriArray" ParentNodeId="i=2296">
+        <DisplayName>ServerUriArray</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2296)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=11944" NodeId="i=14415" BrowseName="0:ServerNetworkGroups" ParentNodeId="i=2296">
+        <DisplayName>ServerNetworkGroups</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=2296)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="Namespaces" NodeId="i=11715" BrowseName="0:Namespaces" ParentNodeId="i=2253">
+        <DisplayName>Namespaces</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=11645)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(i=15957)</Reference>
+            </References>
+        </UAObject>
+    <UAObject SymbolicName="http://opcfoundation.org/UA/" NodeId="i=15957" BrowseName="0:http://opcfoundation.org/UA/" ParentNodeId="i=11715">
+        <DisplayName>http://opcfoundation.org/UA/</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=11715)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=11616)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15958)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15959)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15960)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15961)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15962)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15963)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=15964)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16134)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16135)</Reference>
+            <Reference ReferenceType="i=46" IsForward="true">NumericNodeId(i=16136)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=12" NodeId="i=15958" BrowseName="0:NamespaceUri" ParentNodeId="i=15957">
+        <DisplayName>NamespaceUri</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15957)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>http://opcfoundation.org/UA/</Value>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=15959" BrowseName="0:NamespaceVersion" ParentNodeId="i=15957">
+        <DisplayName>NamespaceVersion</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15957)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>1.04.6</Value>
+        </UAVariable>
+    <UAVariable DataType="i=13" NodeId="i=15960" BrowseName="0:NamespacePublicationDate" ParentNodeId="i=15957">
+        <DisplayName>NamespacePublicationDate</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15957)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>2020-04-14 00:00:00</Value>
+        </UAVariable>
+    <UAVariable DataType="i=1" NodeId="i=15961" BrowseName="0:IsNamespaceSubset" ParentNodeId="i=15957">
+        <DisplayName>IsNamespaceSubset</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15957)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>False</Value>
+        </UAVariable>
+    <UAVariable DataType="i=256" NodeId="i=15962" BrowseName="0:StaticNodeIdTypes" ParentNodeId="i=15957">
+        <DisplayName>StaticNodeIdTypes</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15957)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>[0]</Value>
+        </UAVariable>
+    <UAVariable DataType="i=291" NodeId="i=15963" BrowseName="0:StaticNumericNodeIdRange" ParentNodeId="i=15957">
+        <DisplayName>StaticNumericNodeIdRange</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15957)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>['1:65535']</Value>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="i=15964" BrowseName="0:StaticStringNodeIdPattern" ParentNodeId="i=15957">
+        <DisplayName>StaticStringNodeIdPattern</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15957)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        <Value>
+      </Value>
+        </UAVariable>
+    <UAVariable DataType="i=96" NodeId="i=16134" BrowseName="0:DefaultRolePermissions" ParentNodeId="i=15957">
+        <DisplayName>DefaultRolePermissions</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15957)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=96" NodeId="i=16135" BrowseName="0:DefaultUserRolePermissions" ParentNodeId="i=15957">
+        <DisplayName>DefaultUserRolePermissions</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15957)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAVariable DataType="i=95" NodeId="i=16136" BrowseName="0:DefaultAccessRestrictions" ParentNodeId="i=15957">
+        <DisplayName>DefaultAccessRestrictions</DisplayName>
+        <References>
+            <Reference ReferenceType="i=46" IsForward="false">NumericNodeId(i=15957)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=68)</Reference>
+            </References>
+        </UAVariable>
+    <UAObject SymbolicName="Dictionaries" NodeId="i=17594" BrowseName="0:Dictionaries" ParentNodeId="i=2253">
+        <DisplayName>Dictionaries</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(i=2253)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=17591)</Reference>
+            </References>
+        </UAObject>
+    <UAObject SymbolicName="ProductionLine" NodeId="ns=2;i=1" BrowseName="2:ProductionLine" ParentNodeId="i=85">
+        <DisplayName>ProductionLine</DisplayName>
+        <References>
+            <Reference ReferenceType="i=35" IsForward="false">TwoByteNodeId(i=85)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=61)</Reference>
+            <Reference ReferenceType="i=35" IsForward="true">NumericNodeId(ns=2;i=2)</Reference>
+            </References>
+        </UAObject>
+    <UAObject SymbolicName="Sensors" NodeId="ns=2;i=2" BrowseName="2:Sensors" ParentNodeId="ns=2;i=1">
+        <DisplayName>Sensors</DisplayName>
+        <References>
+            <Reference ReferenceType="i=35" IsForward="false">NumericNodeId(ns=2;i=1)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=61)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(ns=2;i=3)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(ns=2;i=4)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(ns=2;i=5)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(ns=2;i=6)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(ns=2;i=7)</Reference>
+            <Reference ReferenceType="i=47" IsForward="true">NumericNodeId(ns=2;i=8)</Reference>
+            </References>
+        </UAObject>
+    <UAVariable DataType="i=10" NodeId="ns=2;i=3" BrowseName="2:Temperature" ParentNodeId="ns=2;i=2">
+        <DisplayName>Temperature</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(ns=2;i=2)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>69.82</Value>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="ns=2;i=4" BrowseName="2:Temperature_Unit" ParentNodeId="ns=2;i=2">
+        <DisplayName>Temperature_Unit</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(ns=2;i=2)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>°C</Value>
+        </UAVariable>
+    <UAVariable DataType="i=10" NodeId="ns=2;i=5" BrowseName="2:Pressure" ParentNodeId="ns=2;i=2">
+        <DisplayName>Pressure</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(ns=2;i=2)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>5.14</Value>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="ns=2;i=6" BrowseName="2:Pressure_Unit" ParentNodeId="ns=2;i=2">
+        <DisplayName>Pressure_Unit</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(ns=2;i=2)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>bar</Value>
+        </UAVariable>
+    <UAVariable DataType="i=10" NodeId="ns=2;i=7" BrowseName="2:Speed" ParentNodeId="ns=2;i=2">
+        <DisplayName>Speed</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(ns=2;i=2)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>498.6</Value>
+        </UAVariable>
+    <UAVariable DataType="i=12" NodeId="ns=2;i=8" BrowseName="2:Speed_Unit" ParentNodeId="ns=2;i=2">
+        <DisplayName>Speed_Unit</DisplayName>
+        <References>
+            <Reference ReferenceType="i=47" IsForward="false">NumericNodeId(ns=2;i=2)</Reference>
+            <Reference ReferenceType="i=40" IsForward="true">NumericNodeId(i=63)</Reference>
+            </References>
+        <Value>RPM</Value>
+        </UAVariable>
+    </UANodeSet>

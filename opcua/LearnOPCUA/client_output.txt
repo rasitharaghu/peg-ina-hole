@@ -1,0 +1,8 @@
+cryptography is not installed, use of crypto disabled
+cryptography is not installed, use of crypto disabled
+[CLIENT] Production Line OPCUA Client
+[CLIENT] Endpoint: opc.tcp://127.0.0.1:4840
+
+[CLIENT] Step 1: CONNECT
+[CLIENT] Error: 'charmap' codec can't encode characters in position 0-49: character maps to <undefined>
+[CLIENT] Disconnect error: 'NoneType' object has no attribute 'disconnect_socket'

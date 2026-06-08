@@ -8,6 +8,7 @@ Usage:
 """
 
 import os
+import re
 import time
 import sys
 from datetime import datetime
@@ -194,9 +195,39 @@ class ProductionLineClient:
         except Exception:
             pass
 
-    def add_extensions(self, root):
-        """Keep Extensions container consistent with sample structure."""
-        SubElement(root, "Extensions")
+    def add_extensions(self, root, product0="SiOME", edition0="Sinumerik", version0="2.8.5-installer",
+                       product1="SiOME", edition1="Sinumerik", version1="2.8.5-installer",
+                       hash1="b929aa38d5a80048ba9c44c5996fc044", hash2="3649071798aa7e23c0cc2a52e739b463"):
+        """Add Extensions with Generator elements for si and ns1 namespaces."""
+        extensions_el = SubElement(root, "Extensions")
+        
+        # First Extension: si:Generator
+        ext1 = SubElement(extensions_el, "Extension")
+        SubElement(ext1, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}Generator", {
+            "Product": product0,
+            "Edition": edition0,
+            "Version": version0
+        })
+        
+        # Second Extension: ns1:Generator
+        ext2 = SubElement(extensions_el, "Extension")
+        SubElement(ext2, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}Generator", {
+            "Product": product1,
+            "Edition": edition1,
+            "Version": version1
+        })
+        
+        # Third Extension: ns1:GeneratorExtension
+        ext3 = SubElement(extensions_el, "Extension")
+        SubElement(ext3, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
+            "Hash": hash1
+        })
+        
+        # Fourth Extension: si:GeneratorExtension
+        ext4 = SubElement(extensions_el, "Extension")
+        SubElement(ext4, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
+            "Hash": hash2
+        })
 
     def build_display_name_element(self, element, node):
         display_name = SubElement(element, "DisplayName")
@@ -312,7 +343,24 @@ class ProductionLineClient:
 
         tree = ElementTree(root)
         tree.write(file_path, encoding="utf-8", xml_declaration=True, short_empty_elements=False)
+        self.rewrite_extension_children_self_closing(file_path)
         print(f"[CLIENT] Wrote address space XML: {file_path}")
+
+    def rewrite_extension_children_self_closing(self, file_path):
+        """Rewrite empty extension child elements to self-closing syntax only for extensions."""
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                xml_text = f.read()
+
+            xml_text = re.sub(r"<(si:Generator\b[^>]*)></si:Generator>", r"<\1 />", xml_text)
+            xml_text = re.sub(r"<(ns1:Generator\b[^>]*)></ns1:Generator>", r"<\1 />", xml_text)
+            xml_text = re.sub(r"<(si:GeneratorExtension\b[^>]*)></si:GeneratorExtension>", r"<\1 />", xml_text)
+            xml_text = re.sub(r"<(ns1:GeneratorExtension\b[^>]*)></ns1:GeneratorExtension>", r"<\1 />", xml_text)
+
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(xml_text)
+        except Exception:
+            pass
 
     def dump_address_space_periodically(self, output_dir, interval_seconds=10, count=2):
         """Dump the address space export periodically into XML files."""

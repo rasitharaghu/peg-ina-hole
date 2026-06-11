@@ -15,7 +15,7 @@ from datetime import datetime
 from xml.etree.ElementTree import Element, SubElement, ElementTree, register_namespace
 
 from opcua import Client, ua
-
+from datetime import datetime, timezone
 
 class ProductionLineClient:
     """OPCUA Client for the production line."""
@@ -95,12 +95,25 @@ class ProductionLineClient:
         register_namespace("si", "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions")
         register_namespace("xsd", "http://www.w3.org/2001/XMLSchema")
 
+        # root = Element("UANodeSet", {
+        #     "LastModified": datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
+        #     "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+        #     "xmlns": "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd",
+        #     "xmlns:uax": "http://opcfoundation.org/UA/2008/02/Types.xsd",
+        #     "xmlns:si": "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions",
+        #     "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+        #     "xmlns:ns0": "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd",
+        #     "xmlns:ns1": "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions",
+        #     "xmlns:ns2": "http://opcfoundation.org/UA/2008/02/Types.xsd",
+        #     "xmlns:ns3": "http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/AIJT/Types.xsd",
+        #     "xmlns:ns4": "http://opcfoundation.org/UA/Machinery/Result/Types.xsd",
+        #     "xmlns:ns5": "http://opcfoundation.org/UA/IJT/Base/Types.xsd",
+        # })
         root = Element("UANodeSet", {
             "LastModified": datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
             "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
             "xmlns": "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd",
             "xmlns:uax": "http://opcfoundation.org/UA/2008/02/Types.xsd",
-            "xmlns:si": "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions",
             "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
             "xmlns:ns0": "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd",
             "xmlns:ns1": "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions",
@@ -122,13 +135,34 @@ class ProductionLineClient:
             pass
         return None
 
+    # def get_child_value(self, parent, child_name):
+    #     """Read a child variable value by browse name."""
+    #     child = self.find_child_by_browse_name(parent, child_name)
+    #     if child is None:
+    #         return ""
+    #     try:
+    #         return str(child.get_value())
+    #     except Exception:
+    #         return ""
+
+
     def get_child_value(self, parent, child_name):
         """Read a child variable value by browse name."""
         child = self.find_child_by_browse_name(parent, child_name)
         if child is None:
             return ""
+
         try:
-            return str(child.get_value())
+            value = child.get_value()
+
+            if isinstance(value, datetime):
+                if value.tzinfo is None:
+                    value = value.replace(tzinfo=timezone.utc)
+
+                return value.isoformat().replace("+00:00", "Z")
+
+            return str(value)
+
         except Exception:
             return ""
 
@@ -346,6 +380,21 @@ class ProductionLineClient:
         self.rewrite_extension_children_self_closing(file_path)
         print(f"[CLIENT] Wrote address space XML: {file_path}")
 
+        # Validate the written XML against the UANodeSet XSD
+        try:
+            from .xml_validator import validate_xml_with_xsd, log_validation_error
+        except Exception:
+            # relative import fallback for script execution context
+            from xml_validator import validate_xml_with_xsd, log_validation_error
+
+        xsd_path = os.path.join(os.path.dirname(__file__), "UANodeSet.xsd")
+        is_valid, error_text = validate_xml_with_xsd(file_path, xsd_path)
+        if not is_valid:
+            log_path = os.path.join(os.path.dirname(__file__), "validation_errors.log")
+            log_validation_error(log_path, file_path, error_text)
+            raise RuntimeError(f"XML validation failed for {file_path}; see {log_path}")
+
+        return file_path
     def rewrite_extension_children_self_closing(self, file_path):
         """Rewrite empty extension child elements to self-closing syntax only for extensions."""
         try:
@@ -365,10 +414,8 @@ class ProductionLineClient:
     def dump_address_space_periodically(self, output_dir, interval_seconds=10, count=2):
         """Dump the address space export periodically into XML files."""
         for index in range(count):
-            try:
-                self.write_address_space_xml(output_dir)
-            except Exception as e:
-                print(f"[CLIENT] Periodic dump error: {e}")
+            # Let exceptions propagate so validation failures stop the client
+            self.write_address_space_xml(output_dir)
             if index < count - 1:
                 time.sleep(interval_seconds)
 

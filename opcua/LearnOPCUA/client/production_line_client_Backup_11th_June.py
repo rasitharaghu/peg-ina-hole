@@ -371,17 +371,17 @@ class ProductionLineClient:
             "Version": version1
         })
         
-        # # Third Extension: ns1:GeneratorExtension
-        # ext3 = SubElement(extensions_el, "Extension")
-        # SubElement(ext3, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
-        #     "Hash": hash_ns1
-        # })
+        # Third Extension: ns1:GeneratorExtension
+        ext3 = SubElement(extensions_el, "Extension")
+        SubElement(ext3, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
+            "Hash": hash_ns1
+        })
         
-        # # Fourth Extension: si:GeneratorExtension
-        # ext4 = SubElement(extensions_el, "Extension")
-        # SubElement(ext4, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
-        #     "Hash": hash_si
-        # })
+        # Fourth Extension: si:GeneratorExtension
+        ext4 = SubElement(extensions_el, "Extension")
+        SubElement(ext4, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
+            "Hash": hash_si
+        })
 
     def build_display_name_element(self, element, node):
         display_name = SubElement(element, "DisplayName")

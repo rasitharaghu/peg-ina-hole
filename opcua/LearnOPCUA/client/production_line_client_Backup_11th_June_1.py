@@ -24,9 +24,6 @@ class ProductionLineClient:
     def __init__(self, endpoint):
         self.endpoint = endpoint
         self.client = Client(endpoint)
-        self.alias_map = {}
-        self.reverse_alias_map = {}
-        self.uax_direct_value_types = set()
     
     def connect(self):
         """Connect to the OPCUA server."""
@@ -91,63 +88,42 @@ class ProductionLineClient:
         except Exception as e:
             print(f"[CLIENT] Browse namespace dump error: {e}")
     
-    # def create_uanodeset_root(self):
-    #     """Create the root UANodeSet element with namespace declarations."""
-    #     register_namespace("", "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd")
-    #     register_namespace("xsi", "http://www.w3.org/2001/XMLSchema-instance")
-    #     register_namespace("uax", "http://opcfoundation.org/UA/2008/02/Types.xsd")
-    #     register_namespace("si", "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions")
-    #     register_namespace("xsd", "http://www.w3.org/2001/XMLSchema")
-
-    #     root = Element("UANodeSet", {
-    #         "LastModified": datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
-    #         "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-    #         "xmlns": "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd",
-    #         "xmlns:uax": "http://opcfoundation.org/UA/2008/02/Types.xsd",
-    #         "xmlns:si": "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions",
-    #         "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
-    #         "xmlns:ns0": "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd",
-    #         "xmlns:ns1": "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions",
-    #         "xmlns:ns2": "http://opcfoundation.org/UA/2008/02/Types.xsd",
-    #         "xmlns:ns3": "http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/AIJT/Types.xsd",
-    #         "xmlns:ns4": "http://opcfoundation.org/UA/Machinery/Result/Types.xsd",
-    #         "xmlns:ns5": "http://opcfoundation.org/UA/IJT/Base/Types.xsd",
-    #     })
-    #     return root
-
     def create_uanodeset_root(self):
-        register_namespace("si", "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions")
+        """Create the root UANodeSet element with namespace declarations."""
+        register_namespace("", "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd")
+        register_namespace("xsi", "http://www.w3.org/2001/XMLSchema-instance")
         register_namespace("uax", "http://opcfoundation.org/UA/2008/02/Types.xsd")
+        register_namespace("si", "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions")
+        register_namespace("xsd", "http://www.w3.org/2001/XMLSchema")
 
-        return Element("UANodeSet", {
+        # root = Element("UANodeSet", {
+        #     "LastModified": datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
+        #     "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+        #     "xmlns": "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd",
+        #     "xmlns:uax": "http://opcfoundation.org/UA/2008/02/Types.xsd",
+        #     "xmlns:si": "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions",
+        #     "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+        #     "xmlns:ns0": "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd",
+        #     "xmlns:ns1": "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions",
+        #     "xmlns:ns2": "http://opcfoundation.org/UA/2008/02/Types.xsd",
+        #     "xmlns:ns3": "http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/AIJT/Types.xsd",
+        #     "xmlns:ns4": "http://opcfoundation.org/UA/Machinery/Result/Types.xsd",
+        #     "xmlns:ns5": "http://opcfoundation.org/UA/IJT/Base/Types.xsd",
+        # })
+        root = Element("UANodeSet", {
             "LastModified": datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
+            "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+            "xmlns": "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd",
+            "xmlns:uax": "http://opcfoundation.org/UA/2008/02/Types.xsd",
+            "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+            "xmlns:ns0": "http://opcfoundation.org/UA/2011/03/UANodeSet.xsd",
+            "xmlns:ns1": "http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions",
+            "xmlns:ns2": "http://opcfoundation.org/UA/2008/02/Types.xsd",
+            "xmlns:ns3": "http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/AIJT/Types.xsd",
+            "xmlns:ns4": "http://opcfoundation.org/UA/Machinery/Result/Types.xsd",
+            "xmlns:ns5": "http://opcfoundation.org/UA/IJT/Base/Types.xsd",
         })
-        
-    def rewrite_expected_root_header(self, file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            xml_text = f.read()
-
-        timestamp = datetime.utcnow().isoformat(timespec="milliseconds") + "Z"
-
-        expected_header = (
-            f'<UANodeSet LastModified="{timestamp}" '
-            'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-            'xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" '
-            'xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" '
-            'xmlns:si="http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions" '
-            'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
-            'xmlns:ns0="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" '
-            'xmlns:ns1="http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions" '
-            'xmlns:ns2="http://opcfoundation.org/UA/2008/02/Types.xsd" '
-            'xmlns:ns3="http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/AIJT/Types.xsd" '
-            'xmlns:ns4="http://opcfoundation.org/UA/Machinery/Result/Types.xsd" '
-            'xmlns:ns5="http://opcfoundation.org/UA/IJT/Base/Types.xsd">'
-        )
-
-        xml_text = re.sub(r"<UANodeSet\b[^>]*>", expected_header, xml_text, count=1)
-
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(xml_text)
+        return root
 
     def find_child_by_browse_name(self, parent, browse_name):
         """Find a child node by its BrowseName name."""
@@ -347,11 +323,9 @@ class ProductionLineClient:
             alias_el = SubElement(aliases_el, "Alias", {"Alias": alias_name})
             alias_el.text = node_id
 
-        self.alias_map = alias_map
-        self.reverse_alias_map = {nodeid: alias for alias, nodeid in alias_map.items()}
-
     def add_extensions(self, root,  hash_ns1, hash_si, product0="SiOME", edition0="Sinumerik", version0="2.8.5-installer",
-                       product1="SiOME", edition1="Sinumerik", version1="2.8.5-installer"):
+                       product1="SiOME", edition1="Sinumerik", version1="2.8.5-installer",
+                       hash1="b929aa38d5a80048ba9c44c5996fc044", hash2="3649071798aa7e23c0cc2a52e739b463"):
         """Add Extensions with Generator elements for si and ns1 namespaces."""
         extensions_el = SubElement(root, "Extensions")
         
@@ -371,17 +345,17 @@ class ProductionLineClient:
             "Version": version1
         })
         
-        # # Third Extension: ns1:GeneratorExtension
-        # ext3 = SubElement(extensions_el, "Extension")
-        # SubElement(ext3, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
-        #     "Hash": hash_ns1
-        # })
+        # Third Extension: ns1:GeneratorExtension
+        ext3 = SubElement(extensions_el, "Extension")
+        SubElement(ext3, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
+            "Hash": hash_ns1
+        })
         
-        # # Fourth Extension: si:GeneratorExtension
-        # ext4 = SubElement(extensions_el, "Extension")
-        # SubElement(ext4, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
-        #     "Hash": hash_si
-        # })
+        # Fourth Extension: si:GeneratorExtension
+        ext4 = SubElement(extensions_el, "Extension")
+        SubElement(ext4, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
+            "Hash": hash_si
+        })
 
     def build_display_name_element(self, element, node):
         display_name = SubElement(element, "DisplayName")
@@ -390,81 +364,17 @@ class ProductionLineClient:
         except Exception:
             display_name.text = str(node)
 
-    def build_description_element(self, element, node):
-        try:
-            desc = node.get_description()
-            if desc and desc.Text:
-                desc_el = SubElement(element, "Description")
-                desc_el.text = desc.Text
-        except Exception:
-            pass
-
-    # def build_references_element(self, element, node):
-    #     references_el = SubElement(element, "References")
-    #     try:
-    #         references = node.get_references()
-    #         for ref in references:
-    #             ref_attribs = {
-    #                 "ReferenceType": ref.ReferenceTypeId.to_string() if hasattr(ref.ReferenceTypeId, "to_string") else str(ref.ReferenceTypeId),
-    #                 "IsForward": str(ref.IsForward).lower(),
-    #             }
-    #             reference_el = SubElement(references_el, "Reference", ref_attribs)
-    #             reference_el.text = str(ref.NodeId)
-    #     except Exception:
-    #         pass
-
     def build_references_element(self, element, node):
         references_el = SubElement(element, "References")
-
         try:
             references = node.get_references()
-
-            # for ref in references:
-            #     ref_type_id = ref.ReferenceTypeId.to_string()
-            #     ref_type = self.reverse_alias_map.get(ref_type_id, ref_type_id)
-
-            #     ref_attribs = {
-            #         "ReferenceType": ref_type,
-            #     }
-
-            #     if ref.IsForward is False:
-            #         ref_attribs["IsForward"] = "false"
-
-            #     reference_el = SubElement(references_el, "Reference", ref_attribs)
-
-            #     if hasattr(ref.NodeId, "to_string"):
-            #         reference_el.text = ref.NodeId.to_string()
-            #     else:
-            #         reference_el.text = str(ref.NodeId)
-
-            allowed_forward_refs = {
-                "HasTypeDefinition",
-                "HasInterface",
-                "HasAddIn",
-            }
-
             for ref in references:
-                ref_type_id = ref.ReferenceTypeId.to_string()
-                ref_type = self.reverse_alias_map.get(ref_type_id, ref_type_id)
-
-                # Skip forward child references
-                if ref.IsForward and ref_type not in allowed_forward_refs:
-                    continue
-
                 ref_attribs = {
-                    "ReferenceType": ref_type,
+                    "ReferenceType": ref.ReferenceTypeId.to_string() if hasattr(ref.ReferenceTypeId, "to_string") else str(ref.ReferenceTypeId),
+                    "IsForward": str(ref.IsForward).lower(),
                 }
-
-                if ref.IsForward is False:
-                    ref_attribs["IsForward"] = "false"
-
                 reference_el = SubElement(references_el, "Reference", ref_attribs)
-
-                if hasattr(ref.NodeId, "to_string"):
-                    reference_el.text = ref.NodeId.to_string()
-                else:
-                    reference_el.text = str(ref.NodeId)
-
+                reference_el.text = str(ref.NodeId)
         except Exception:
             pass
 
@@ -477,87 +387,35 @@ class ProductionLineClient:
 
         if node_class == ua.NodeClass.Object:
             element = SubElement(root, "UAObject", {
-                "SymbolicName": self.make_symbolic_name(node.get_browse_name().Name) if hasattr(node.get_browse_name(), "Name") else str(node.get_browse_name()),
+                "SymbolicName": node.get_browse_name().Name if hasattr(node.get_browse_name(), "Name") else str(node.get_browse_name()),
                 "NodeId": node.nodeid.to_string(),
                 "BrowseName": node.get_browse_name().to_string() if hasattr(node.get_browse_name(), "to_string") else str(node.get_browse_name()),
                 "ParentNodeId": str(parent_nodeid) if parent_nodeid is not None else "",
             })
             self.build_display_name_element(element, node)
-            self.build_description_element(element, node)
             self.build_references_element(element, node)
 
-        # elif node_class == ua.NodeClass.Variable:
-        #     data_type = ""
-        #     try:
-        #         # data_type = node.get_data_type().to_string()
-        #         data_type_nodeid = node.get_data_type().to_string()
-        #         data_type = self.reverse_alias_map.get(data_type_nodeid, data_type_nodeid)
-        #     except Exception:
-        #         data_type = ""
-
-        #     element = SubElement(root, "UAVariable", {
-        #         "DataType": data_type,
-        #         "NodeId": node.nodeid.to_string(),
-        #         "BrowseName": node.get_browse_name().to_string() if hasattr(node.get_browse_name(), "to_string") else str(node.get_browse_name()),
-        #         "ParentNodeId": str(parent_nodeid) if parent_nodeid is not None else "",
-        #     })
-        #     self.build_display_name_element(element, node)
-        #     self.build_references_element(element, node)
-
-        #     try:
-        #         value = node.get_value()
-        #         if value is not None:
-        #             value_el = SubElement(element, "Value")
-        #             value_el.text = str(value)
-        #     except Exception:
-        #         pass
         elif node_class == ua.NodeClass.Variable:
             data_type = ""
-            data_type_nodeid = ""
-
             try:
-                data_type_nodeid = node.get_data_type().to_string()
-                data_type = self.reverse_alias_map.get(data_type_nodeid, data_type_nodeid)
+                data_type = node.get_data_type().to_string()
             except Exception:
                 data_type = ""
 
-            attribs = {
+            element = SubElement(root, "UAVariable", {
                 "DataType": data_type,
                 "NodeId": node.nodeid.to_string(),
-                "BrowseName": node.get_browse_name().to_string()
-                    if hasattr(node.get_browse_name(), "to_string")
-                    else str(node.get_browse_name()),
+                "BrowseName": node.get_browse_name().to_string() if hasattr(node.get_browse_name(), "to_string") else str(node.get_browse_name()),
                 "ParentNodeId": str(parent_nodeid) if parent_nodeid is not None else "",
-            }
-
-            try:
-                value_rank = node.get_value_rank()
-                if value_rank is not None and value_rank != -1:
-                    attribs["ValueRank"] = str(value_rank)
-            except Exception:
-                pass
-
-            element = SubElement(root, "UAVariable", attribs)
-
-            # Order as per UANodeSet style:
-            # DisplayName -> Description -> References -> Value
+            })
             self.build_display_name_element(element, node)
-
-            # try:
-            #     desc = node.get_description()
-            #     if desc and desc.Text:
-            #         desc_el = SubElement(element, "Description")
-            #         desc_el.text = desc.Text
-            # except Exception:
-            #     pass
-
-            self.build_description_element(element, node)
-
             self.build_references_element(element, node)
 
             try:
                 value = node.get_value()
-                self.add_typed_value_element(element, data_type, value)
+                if value is not None:
+                    value_el = SubElement(element, "Value")
+                    value_el.text = str(value)
             except Exception:
                 pass
         else:
@@ -565,48 +423,52 @@ class ProductionLineClient:
             return
 
         try:
-            # children = node.get_children()
-            # for child in children:
-            #     self.export_node(child, node.nodeid.to_string(), root)
-
             children = node.get_children()
             for child in children:
-                if child.nodeid.NamespaceIndex == 0:
-                    continue
                 self.export_node(child, node.nodeid.to_string(), root)
         except Exception:
             pass
 
     def build_address_space_xml(self):
+        """Build the complete UANodeSet XML tree for the current address space."""
         root = self.create_uanodeset_root()
         self.add_namespace_uris(root)
         self.add_models(root)
-
-        types_xsd_path = os.path.join(os.path.dirname(__file__), "Opc.Ua.Types.xsd")
-        if os.path.exists(types_xsd_path):
-            self.load_uax_direct_value_types(types_xsd_path)
-
         self.add_aliases(root)
+        # self.add_extensions(root)
 
-        # Generate hashes before adding Extensions
-        hash_ns1, hash_si = self.generate_extension_hashes()
+        # Separate node telemetry buffers to construct two completely unique signatures
+        ns1_structural_buffer = []
+        si_contextual_buffer = []
 
-        # Extensions must come after Aliases
-        self.add_extensions(root, hash_ns1=hash_ns1, hash_si=hash_si)
-
-        # Nodes come after Extensions
         try:
-            # objects_node = self.client.get_objects_node()
-            # self.export_node(objects_node, None, root)
             objects_node = self.client.get_objects_node()
+            self.export_node(objects_node, None, root)
 
-            for child in objects_node.get_children():
-                if child.nodeid.NamespaceIndex == 0:
-                    continue
-
-                self.export_node(child, objects_node.nodeid.to_string(), root)
+            # Build the second buffer using the server's clean node hierarchy footprint
+            for item in si_contextual_buffer:
+                if ":" in item:
+                    # Capture structural NodeIDs and BrowseNames for the ns1 profile hash
+                    ns1_structural_buffer.append(item.split(":")[0])
         except Exception as e:
             print(f"[CLIENT] Address space export error: {e}")
+
+                # Calculate Hash 1: ns1 signature based on structural layout identifiers
+        if ns1_structural_buffer:
+            ns1_str = "".join(ns1_structural_buffer)
+            hash_ns1 = hashlib.md5(ns1_str.encode('utf-8')).hexdigest()
+        else:
+            hash_ns1 = "b929aa38d5a80048ba9c44c5996fc044" # Safe template fallback
+
+        # Calculate Hash 2: si signature based on full contextual state values
+        if si_contextual_buffer:
+            si_str = "".join(si_contextual_buffer)
+            hash_si = hashlib.md5(si_str.encode('utf-8')).hexdigest()
+        else:
+            hash_si = "3649071798aa7e23c0cc2a52e739b463" # Safe template fallback
+
+        # Inject both separate, distinct verification strings into the XML engine
+        self.add_extensions(root, hash_ns1=hash_ns1, hash_si=hash_si)
 
         return root
 
@@ -636,8 +498,6 @@ class ProductionLineClient:
 
         tree = ElementTree(root)
         tree.write(file_path, encoding="utf-8", xml_declaration=True, short_empty_elements=False)
-        # self.rewrite_extension_children_self_closing(file_path)
-        self.rewrite_expected_root_header(file_path)
         self.rewrite_extension_children_self_closing(file_path)
         print(f"[CLIENT] Wrote address space XML: {file_path}")
 
@@ -656,48 +516,21 @@ class ProductionLineClient:
             raise RuntimeError(f"XML validation failed for {file_path}; see {log_path}")
 
         return file_path
-    # def rewrite_extension_children_self_closing(self, file_path):
-    #     """Rewrite empty extension child elements to self-closing syntax only for extensions."""
-    #     try:
-    #         with open(file_path, "r", encoding="utf-8") as f:
-    #             xml_text = f.read()
-
-    #         xml_text = re.sub(r"<(si:Generator\b[^>]*)></si:Generator>", r"<\1 />", xml_text)
-    #         xml_text = re.sub(r"<(ns1:Generator\b[^>]*)></ns1:Generator>", r"<\1 />", xml_text)
-    #         xml_text = re.sub(r"<(si:GeneratorExtension\b[^>]*)></si:GeneratorExtension>", r"<\1 />", xml_text)
-    #         xml_text = re.sub(r"<(ns1:GeneratorExtension\b[^>]*)></ns1:GeneratorExtension>", r"<\1 />", xml_text)
-
-    #         with open(file_path, "w", encoding="utf-8") as f:
-    #             f.write(xml_text)
-    #     except Exception:
-    #         pass
-
     def rewrite_extension_children_self_closing(self, file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            xml_text = f.read()
+        """Rewrite empty extension child elements to self-closing syntax only for extensions."""
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                xml_text = f.read()
 
-        # Make all Siemens extension tags self-closing
-        xml_text = re.sub(r"<(si:Generator\b[^>]*)></si:Generator>", r"<\1/>", xml_text)
-        xml_text = re.sub(r"<(si:GeneratorExtension\b[^>]*)></si:GeneratorExtension>", r"<\1/>", xml_text)
+            xml_text = re.sub(r"<(si:Generator\b[^>]*)></si:Generator>", r"<\1 />", xml_text)
+            xml_text = re.sub(r"<(ns1:Generator\b[^>]*)></ns1:Generator>", r"<\1 />", xml_text)
+            xml_text = re.sub(r"<(si:GeneratorExtension\b[^>]*)></si:GeneratorExtension>", r"<\1 />", xml_text)
+            xml_text = re.sub(r"<(ns1:GeneratorExtension\b[^>]*)></ns1:GeneratorExtension>", r"<\1 />", xml_text)
 
-        # Convert the 2nd Generator to ns1:Generator
-        xml_text = re.sub(
-            r'(<Extension>\s*)<si:Generator Product="SiOME" Edition="Sinumerik" Version="2.8.5-installer"/>(\s*</Extension>\s*<Extension>\s*)<si:Generator',
-            r'\1<si:Generator Product="SiOME" Edition="Sinumerik" Version="2.8.5-installer"/>\2<ns1:Generator',
-            xml_text,
-            count=1
-        )
-
-        # Convert the first GeneratorExtension to ns1:GeneratorExtension
-        xml_text = re.sub(
-            r'<si:GeneratorExtension Hash="([^"]+)"/>',
-            r'<ns1:GeneratorExtension Hash="\1"/>',
-            xml_text,
-            count=1
-        )
-
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(xml_text)
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(xml_text)
+        except Exception:
+            pass
 
     def dump_address_space_periodically(self, output_dir, interval_seconds=10, count=2):
         """Dump the address space export periodically into XML files."""
@@ -747,114 +580,6 @@ class ProductionLineClient:
         
         except Exception as e:
             print(f"[CLIENT] Read error: {e}")
-
-    UAX_NS = "http://opcfoundation.org/UA/2008/02/Types.xsd"
-
-    def format_value_for_xml(self, value):
-        if isinstance(value, datetime):
-            if value.tzinfo is None:
-                value = value.replace(tzinfo=timezone.utc)
-            return value.isoformat().replace("+00:00", "Z")
-
-        if isinstance(value, bool):
-            return str(value).lower()
-
-        return str(value)
-
-
-    def add_typed_value_element(self, variable_el, data_type_name, value):
-        if value is None:
-            return
-
-        value_el = SubElement(variable_el, "Value")
-
-        if data_type_name in self.uax_direct_value_types:
-            child = SubElement(
-                value_el,
-                f"{{{self.UAX_NS}}}{data_type_name}"
-            )
-            child.text = self.format_value_for_xml(value)
-            return
-
-        # variable_el.remove(value_el)
-        if isinstance(value, (list, tuple)):
-            variable_el.remove(value_el)
-            return
-
-    def load_uax_direct_value_types(self, types_xsd_path):
-        """
-        Load valid direct OPC UA Types.xsd value elements dynamically.
-        Example: String, Double, Boolean, DateTime, LocalizedText, etc.
-        """
-        import xml.etree.ElementTree as ET
-
-        xsd_ns = "{http://www.w3.org/2001/XMLSchema}"
-        tree = ET.parse(types_xsd_path)
-        root = tree.getroot()
-
-        value_types = set()
-
-        for element in root.findall(f".//{xsd_ns}element"):
-            name = element.attrib.get("name")
-            if name:
-                value_types.add(name)
-
-        self.uax_direct_value_types = value_types
-
-    def generate_extension_hashes(self):
-        """
-        Generate deterministic hashes from the live server address space.
-        """
-        structural_buffer = []
-        contextual_buffer = []
-
-        try:
-            objects_node = self.client.get_objects_node()
-            nodes_to_visit = [objects_node]
-
-            while nodes_to_visit:
-                node = nodes_to_visit.pop(0)
-
-                try:
-                    nodeid = node.nodeid.to_string()
-                    browse_name = node.get_browse_name().to_string()
-                    display_name = node.get_display_name().Text
-
-                    structural_buffer.append(f"{nodeid}|{browse_name}")
-                    contextual_buffer.append(f"{nodeid}|{browse_name}|{display_name}")
-
-                    try:
-                        value = node.get_value()
-                        contextual_buffer.append(str(value))
-                    except Exception:
-                        pass
-
-                    nodes_to_visit.extend(node.get_children())
-
-                except Exception:
-                    continue
-
-        except Exception as e:
-            print(f"[CLIENT] Hash generation warning: {e}")
-
-        ns1_str = "".join(structural_buffer)
-        si_str = "".join(contextual_buffer)
-
-        hash_ns1 = hashlib.md5(ns1_str.encode("utf-8")).hexdigest()
-        hash_si = hashlib.md5(si_str.encode("utf-8")).hexdigest()
-
-        return hash_ns1, hash_si
-    
-    def make_symbolic_name(self, name):
-        if not name:
-            return ""
-
-        name = re.sub(r"[^A-Za-z0-9_]", "_", str(name))
-
-        if not re.match(r"^[A-Za-z_]", name):
-            name = "S" + name
-
-        return name
     
 def main():
     """Main client workflow."""

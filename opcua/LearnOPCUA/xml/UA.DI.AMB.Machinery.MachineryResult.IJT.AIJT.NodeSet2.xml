@@ -1,0 +1,2149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UANodeSet LastModified="2025-12-11T12:01:04.050Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:si="http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns0="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:ns1="http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions" xmlns:ns2="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:ns3="http://airbus.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/AIJT/Types.xsd" xmlns:ns4="http://opcfoundation.org/UA/Machinery/Result/Types.xsd" xmlns:ns5="http://opcfoundation.org/UA/IJT/Base/Types.xsd">
+    <NamespaceUris>
+        <Uri>http://opcfoundation.org/UA/DI/</Uri>
+        <Uri>http://opcfoundation.org/UA/Machinery/</Uri>
+        <Uri>http://opcfoundation.org/UA/Machinery/Result/</Uri>
+        <Uri>http://opcfoundation.org/UA/IJT/Base/</Uri>
+        <Uri>http://airbus.com/UA/DI/AMB/Machinery/MachineryResult/IJT/AIJT</Uri>
+    </NamespaceUris>
+    <Models>
+        <Model ModelUri="http://airbus.com/UA/DI/AMB/Machinery/MachineryResult/IJT/AIJT" PublicationDate="2024-03-28T11:18:01+05:30" Version="1.6">
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/" PublicationDate="2023-12-15T00:00:00Z" Version="1.05.03"/>
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/DI/" PublicationDate="2022-11-03T00:00:00Z" Version="1.04.0"/>
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/Machinery/" PublicationDate="2023-08-01T00:00:00Z" Version="1.03.0"/>
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/Machinery/Result/" PublicationDate="2023-01-01T00:00:00Z" Version="1.00.0"/>
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/IJT/Base/" PublicationDate="2024-03-07T00:00:00Z" Version="1.00.0"/>
+        </Model>
+    </Models>
+    <Aliases>
+        <Alias Alias="Boolean">i=1</Alias>
+        <Alias Alias="Byte">i=3</Alias>
+        <Alias Alias="Int16">i=4</Alias>
+        <Alias Alias="Int32">i=6</Alias>
+        <Alias Alias="UInt32">i=7</Alias>
+        <Alias Alias="Int64">i=8</Alias>
+        <Alias Alias="UInt64">i=9</Alias>
+        <Alias Alias="Float">i=10</Alias>
+        <Alias Alias="Double">i=11</Alias>
+        <Alias Alias="DateTime">i=13</Alias>
+        <Alias Alias="String">i=12</Alias>
+        <Alias Alias="LocalizedText">i=21</Alias>
+        <Alias Alias="Number">i=26</Alias>
+        <Alias Alias="Integer">i=27</Alias>
+        <Alias Alias="UInteger">i=28</Alias>
+        <Alias Alias="HasComponent">i=47</Alias>
+        <Alias Alias="HasProperty">i=46</Alias>
+        <Alias Alias="HasSubtype">i=45</Alias>
+        <Alias Alias="HasTypeDefinition">i=40</Alias>
+        <Alias Alias="HasModellingRule">i=37</Alias>
+        <Alias Alias="HasEncoding">i=38</Alias>
+        <Alias Alias="IdType">i=256</Alias>
+        <Alias Alias="Duration">i=290</Alias>
+        <Alias Alias="NumericRange">i=291</Alias>
+        <Alias Alias="UtcTime">i=294</Alias>
+        <Alias Alias="Argument">i=296</Alias>
+        <Alias Alias="EnumValueType">i=7594</Alias>
+        <Alias Alias="UriString">i=23751</Alias>
+        <Alias Alias="EUInformation">i=887</Alias>
+        <Alias Alias="TrimmedString">i=31918</Alias>
+        <Alias Alias="ResultEvaluationEnum">ns=3;i=3002</Alias>
+        <Alias Alias="ProcessingTimesDataType">ns=3;i=3006</Alias>
+        <Alias Alias="ResultMetaDataType">ns=3;i=3007</Alias>
+        <Alias Alias="ResultCounterDataType">ns=4;i=3004</Alias>
+        <Alias Alias="ResultValueDataType">ns=4;i=3007</Alias>
+        <Alias Alias="KeyValueDataType">ns=4;i=3008</Alias>
+        <Alias Alias="StepResultDataType">ns=4;i=3009</Alias>
+        <Alias Alias="EntityDataType">ns=4;i=3010</Alias>
+        <Alias Alias="JoiningTraceDataType">ns=4;i=3012</Alias>
+        <Alias Alias="StepTraceDataType">ns=4;i=3013</Alias>
+        <Alias Alias="TraceContentDataType">ns=4;i=3014</Alias>
+        <Alias Alias="JoiningResultMetaDataType">ns=4;i=3020</Alias>
+    </Aliases>
+    <Extensions>
+        <Extension>
+            <si:Generator Product="SiOME" Edition="Sinumerik" Version="2.8.5-installer"/>
+        </Extension>
+<Extension>
+    <ns1:Generator Product="SiOME" Edition="Sinumerik" Version="2.8.5-installer"/>
+</Extension>
+<Extension>
+    <ns1:GeneratorExtension Hash="b929aa38d5a80048ba9c44c5996fc044"/>
+</Extension>
+        <Extension>
+            <si:GeneratorExtension Hash="224e59e56ca17fb35a25e3812761ddb3"/>
+        </Extension>
+    </Extensions>
+    <UAObject SymbolicName="http___airbus_com_UA_DI_AMB_Machinery_Result_Base_Tightening_AIJT" NodeId="ns=5;i=5000" BrowseName="5:http://airbus.com/UA/DI/AMB/Machinery/MachineryResult/IJT/AIJT" ParentNodeId="i=11715">
+        <DisplayName>http://airbus.com/UA/DI/AMB/Machinery/MachineryResult/IJT/AIJT</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">i=11715</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=11616</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" NodeId="ns=5;i=6000" BrowseName="IsNamespaceSubset" ParentNodeId="ns=5;i=5000">
+        <DisplayName>IsNamespaceSubset</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=5;i=5000</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="DateTime" NodeId="ns=5;i=6001" BrowseName="NamespacePublicationDate" ParentNodeId="ns=5;i=5000">
+        <DisplayName>NamespacePublicationDate</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=5;i=5000</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:DateTime>2024-03-28T11:18:01+05:30</uax:DateTime>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6002" BrowseName="NamespaceUri" ParentNodeId="ns=5;i=5000">
+        <DisplayName>NamespaceUri</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=5;i=5000</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:String>http://airbus.com/UA/DI/AMB/Machinery/MachineryResult/IJT/AIJT</uax:String>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6003" BrowseName="NamespaceVersion" ParentNodeId="ns=5;i=5000">
+        <DisplayName>NamespaceVersion</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=5;i=5000</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:String>1.6</uax:String>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="IdType" ValueRank="1" NodeId="ns=5;i=6004" BrowseName="StaticNodeIdTypes" ParentNodeId="ns=5;i=5000">
+        <DisplayName>StaticNodeIdTypes</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=5;i=5000</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="NumericRange" ValueRank="1" NodeId="ns=5;i=6005" BrowseName="StaticNumericNodeIdRange" ParentNodeId="ns=5;i=5000">
+        <DisplayName>StaticNumericNodeIdRange</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=5;i=5000</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6006" BrowseName="StaticStringNodeIdPattern" ParentNodeId="ns=5;i=5000">
+        <DisplayName>StaticStringNodeIdPattern</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=5;i=5000</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="i=96" ValueRank="1" NodeId="ns=5;i=6007" BrowseName="DefaultRolePermissions" ParentNodeId="ns=5;i=5000">
+        <DisplayName>DefaultRolePermissions</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=5;i=5000</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAObjectType NodeId="ns=5;i=1001" BrowseName="5:JoiningSystemAssetMethodSetType">
+        <DisplayName>JoiningSystemAssetMethodSetType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=4;i=1026</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=7000</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=7001</Reference>
+        </References>
+    </UAObjectType>
+    <UAMethod NodeId="ns=5;i=7000" BrowseName="5:CmdDisableAsset" ParentNodeId="ns=5;i=1001">
+        <DisplayName>CmdDisableAsset</DisplayName>
+        <References>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6030</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6031</Reference>
+        </References>
+    </UAMethod>
+    <UAVariable DataType="Argument" ValueRank="1" NodeId="ns=5;i=6030" BrowseName="InputArguments" ParentNodeId="ns=5;i=7000">
+        <DisplayName>InputArguments</DisplayName>
+        <Description>the definition of the input argument of method 7:JoiningSystemAssetMethodSetType.7:CmdDisableAsset</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Argument" ValueRank="1" NodeId="ns=5;i=6031" BrowseName="OutputArguments" ParentNodeId="ns=5;i=7000">
+        <DisplayName>OutputArguments</DisplayName>
+        <Description>the definition of the output arguments of method 7:JoiningSystemAssetMethodSetType.7:CmdDisableAsset</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAMethod NodeId="ns=5;i=7001" BrowseName="5:CmdDownloadIdentifiers" ParentNodeId="ns=5;i=1001">
+        <DisplayName>CmdDownloadIdentifiers</DisplayName>
+        <References>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6032</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6033</Reference>
+        </References>
+    </UAMethod>
+    <UAVariable DataType="Argument" ValueRank="1" NodeId="ns=5;i=6032" BrowseName="InputArguments" ParentNodeId="ns=5;i=7001">
+        <DisplayName>InputArguments</DisplayName>
+        <Description>the definition of the input argument of method 7:JoiningSystemAssetMethodSetType.7:CmdDownloadIdentifiers</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Argument" ValueRank="1" NodeId="ns=5;i=6033" BrowseName="OutputArguments" ParentNodeId="ns=5;i=7001">
+        <DisplayName>OutputArguments</DisplayName>
+        <Description>the definition of the output arguments of method 7:JoiningSystemAssetMethodSetType.7:CmdDownloadIdentifiers</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UADataType NodeId="ns=5;i=3000" BrowseName="5:JoiningResultMetaDataType">
+        <DisplayName>JoiningResultMetaDataType</DisplayName>
+        <Description>This structure is a subtype of ResultMetaDataType. It is used to define additional meta data of a Result in a joining system.</Description>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=4;i=3020</Reference>
+            <Reference ReferenceType="HasEncoding">ns=5;i=5001</Reference>
+            <Reference ReferenceType="HasEncoding">ns=5;i=5002</Reference>
+        </References>
+        <Definition Name="5:JoiningResultMetaDataType">
+            <Field IsOptional="true" DataType="String" Name="ActStrategy">
+                <Description>Reverse cycles performed as strategy</Description>
+            </Field>
+            <Field IsOptional="true" DataType="String" Name="ParameterSetName">
+                <Description>It is a user defined name given in the method when invoked.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="String" Name="TaskIdentifier">
+                <Description>Is a unique identifier assigned to each task in a workorder.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="String" Name="ManufacturersSerialNumber">
+                <Description>Is a unique identifier assigned to each product.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="String" Name="WorkOrder">
+                <Description>Is a unique identifier assigned to each workorder.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="String" Name="WorkOrderTask">
+                <Description>Is a unique identifier assigned to each workorder task.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="String" Name="SerialNumber"/>
+            <Field IsOptional="true" DataType="Double" Name="InternalRecipeVersion"/>
+            <Field IsOptional="true" DataType="TrimmedString" Name="InternalRecipeType"/>
+            <Field IsOptional="true" DataType="Float" Name="SampleRate"/>
+            <Field IsOptional="true" DataType="TrimmedString" Name="Version"/>
+            <Field IsOptional="true" DataType="Int32" Name="Distance"/>
+            <Field IsOptional="true" DataType="String" Name="HeadSerialNumber">
+                <Description>SerialNumber of the Head component of the Tool.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="LocalizedText" Name="ServosModel">
+                <Description>Model Name of the Motor in the Tool.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="EnumValueType" Name="ResultEvaluation">
+                <Description>The ResultEvaluation indicates whether the result was in tolerance.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="Int64" Name="BatchQuantity">
+                <Description>Batch Size</Description>
+            </Field>
+            <Field IsOptional="true" DataType="Int16" Name="Direction">
+                <Description>Clockwise or anticlockwise</Description>
+            </Field>
+        </Definition>
+    </UADataType>
+    <UAObject SymbolicName="DefaultBinary" NodeId="ns=5;i=5001" BrowseName="Default Binary">
+        <DisplayName>Default Binary</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=76</Reference>
+        </References>
+    </UAObject>
+    <UAObject SymbolicName="DefaultXML" NodeId="ns=5;i=5002" BrowseName="Default XML">
+        <DisplayName>Default XML</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=76</Reference>
+        </References>
+    </UAObject>
+    <UAVariableType DataType="ResultValueDataType" NodeId="ns=5;i=2005" BrowseName="4:ResultValueType">
+        <DisplayName>ResultValueType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=63</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6060</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6061</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6062</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6063</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6064</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6065</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6066</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6067</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6068</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6069</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6070</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6071</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6072</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6073</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6074</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6075</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6076</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6060" BrowseName="5:MeasuredValue" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>MeasuredValue</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6061" BrowseName="5:Name" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Name</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ResultEvaluationEnum" NodeId="ns=5;i=6062" BrowseName="5:ResultEvaluation" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluation</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6063" BrowseName="5:ValueId" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ValueId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int16" NodeId="ns=5;i=6064" BrowseName="5:ValueTag" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ValueTag</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" NodeId="ns=5;i=6065" BrowseName="5:TracePointIndex" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>TracePointIndex</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Duration" NodeId="ns=5;i=6066" BrowseName="5:TracePointTimeOffset" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>TracePointTimeOffset</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" ValueRank="1" NodeId="ns=5;i=6067" BrowseName="5:ParameterIdList" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ParameterIdList</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Byte" NodeId="ns=5;i=6068" BrowseName="5:ViolationType" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ViolationType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Byte" NodeId="ns=5;i=6069" BrowseName="5:ViolationConsequence" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ViolationConsequence</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6070" BrowseName="5:SensorId" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SensorId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6071" BrowseName="5:LowLimit" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>LowLimit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6072" BrowseName="5:HighLimit" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>HighLimit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6073" BrowseName="5:TargetValue" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>TargetValue</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6074" BrowseName="5:ResultStep" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultStep</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Byte" NodeId="ns=5;i=6075" BrowseName="5:PhysicalQuantity" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>PhysicalQuantity</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6076" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=2005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6077</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6078</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6079</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6080</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6077" BrowseName="5:NamespaceUri" ParentNodeId="ns=5;i=6076" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>NamespaceUri</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" NodeId="ns=5;i=6078" BrowseName="5:UnitId" ParentNodeId="ns=5;i=6076" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>UnitId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=5;i=6079" BrowseName="5:DisplayName" ParentNodeId="ns=5;i=6076" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=5;i=6080" BrowseName="5:Description" ParentNodeId="ns=5;i=6076" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariableType DataType="TraceContentDataType" NodeId="ns=5;i=2006" BrowseName="4:TraceContentType">
+        <DisplayName>TraceContentType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=63</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6081</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6082</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6083</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6084</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6085</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6086</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="Double" ValueRank="1" NodeId="ns=5;i=6081" BrowseName="5:Values" ParentNodeId="ns=5;i=2006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Values</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6082" BrowseName="5:SensorId" ParentNodeId="ns=5;i=2006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SensorId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6083" BrowseName="5:Name" ParentNodeId="ns=5;i=2006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Name</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6084" BrowseName="5:Description" ParentNodeId="ns=5;i=2006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Byte" NodeId="ns=5;i=6085" BrowseName="5:PhysicalQuantity" ParentNodeId="ns=5;i=2006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>PhysicalQuantity</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6086" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=2006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6087</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6088</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6089</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6090</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6087" BrowseName="5:NamespaceUri" ParentNodeId="ns=5;i=6086" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>NamespaceUri</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" NodeId="ns=5;i=6088" BrowseName="5:UnitId" ParentNodeId="ns=5;i=6086" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>UnitId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=5;i=6089" BrowseName="5:DisplayName" ParentNodeId="ns=5;i=6086" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=5;i=6090" BrowseName="5:Description" ParentNodeId="ns=5;i=6086" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariableType DataType="StepTraceDataType" NodeId="ns=5;i=2007" BrowseName="4:StepTraceType">
+        <DisplayName>StepTraceType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=63</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6091</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6092</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6093</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6094</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6095</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6096</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6091" BrowseName="5:StepTraceId" ParentNodeId="ns=5;i=2007" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepTraceId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6092" BrowseName="5:StepResultId" ParentNodeId="ns=5;i=2007" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepResultId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UInt32" NodeId="ns=5;i=6093" BrowseName="5:NumberOfTracePoints" ParentNodeId="ns=5;i=2007" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>NumberOfTracePoints</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Duration" NodeId="ns=5;i=6094" BrowseName="5:SamplingInterval" ParentNodeId="ns=5;i=2007" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SamplingInterval</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Duration" NodeId="ns=5;i=6095" BrowseName="5:StartTimeOffset" ParentNodeId="ns=5;i=2007" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StartTimeOffset</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TraceContentDataType" ValueRank="1" NodeId="ns=5;i=6096" BrowseName="5:StepTraceContent" ParentNodeId="ns=5;i=2007" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepTraceContent</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariableType DataType="ns=4;i=3011" NodeId="ns=5;i=2008" BrowseName="4:TraceType">
+        <DisplayName>TraceType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=63</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6097</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6098</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6097" BrowseName="5:TraceId" ParentNodeId="ns=5;i=2008" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>TraceId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6098" BrowseName="5:ResultId" ParentNodeId="ns=5;i=2008" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariableType DataType="StepResultDataType" NodeId="ns=5;i=2009" BrowseName="4:StepResultType">
+        <DisplayName>StepResultType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=63</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6099</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6100</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6101</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6102</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6103</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6104</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6105</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6106</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6099" BrowseName="5:StepResultId" ParentNodeId="ns=5;i=2009" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepResultId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6100" BrowseName="5:ProgramStepId" ParentNodeId="ns=5;i=2009" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ProgramStepId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6101" BrowseName="5:ProgramStep" ParentNodeId="ns=5;i=2009" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ProgramStep</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6102" BrowseName="5:Name" ParentNodeId="ns=5;i=2009" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Name</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ResultEvaluationEnum" NodeId="ns=5;i=6103" BrowseName="5:ResultEvaluation" ParentNodeId="ns=5;i=2009" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluation</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Duration" NodeId="ns=5;i=6104" BrowseName="5:StartTimeOffset" ParentNodeId="ns=5;i=2009" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StartTimeOffset</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6105" BrowseName="5:StepTraceId" ParentNodeId="ns=5;i=2009" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepTraceId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ResultValueDataType" ValueRank="1" NodeId="ns=5;i=6106" BrowseName="5:StepResultValues" ParentNodeId="ns=5;i=2009" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepResultValues</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6059</Reference>
+        </References>
+    </UAVariable>
+    <UADataType NodeId="ns=5;i=3001" BrowseName="5:ResultDataType">
+        <DisplayName>ResultDataType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=22</Reference>
+            <Reference ReferenceType="HasEncoding">ns=5;i=5006</Reference>
+            <Reference ReferenceType="HasEncoding">ns=5;i=5007</Reference>
+        </References>
+        <Definition Name="5:ResultDataType">
+            <Field DataType="ns=5;i=3000" Name="ResultMetaData">
+                <Description>Contains meta data describing the resultContent.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="ns=5;i=3003" Name="ResultContent">
+                <Description>Abstract data type to be subtyped from to hold result data created by the selected recipe.</Description>
+            </Field>
+        </Definition>
+    </UADataType>
+    <UAObject SymbolicName="DefaultBinary" NodeId="ns=5;i=5006" BrowseName="Default Binary">
+        <DisplayName>Default Binary</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=76</Reference>
+        </References>
+    </UAObject>
+    <UAObject SymbolicName="DefaultXML" NodeId="ns=5;i=5007" BrowseName="Default XML">
+        <DisplayName>Default XML</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=76</Reference>
+        </References>
+    </UAObject>
+    <UAObjectType NodeId="ns=5;i=1004" BrowseName="5:JoiningSystemResultManagementType">
+        <DisplayName>JoiningSystemResultManagementType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=4;i=1022</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=5009</Reference>
+        </References>
+    </UAObjectType>
+    <UAObject NodeId="ns=5;i=5009" BrowseName="5:Results" ParentNodeId="ns=5;i=1004">
+        <DisplayName>Results</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6128</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="ResultValueDataType" NodeId="ns=5;i=6059" BrowseName="5:&lt;StepResultValues>" ParentNodeId="ns=5;i=6106" UserAccessLevel="3" AccessLevel="3" SymbolicName="S_StepResultValues_">
+        <DisplayName>&lt;StepResultValues&gt;</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2005</Reference>
+            <Reference ReferenceType="HasModellingRule">i=11508</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6060</Reference>
+        </References>
+    </UAVariable>
+    <UADataType NodeId="ns=5;i=3003" BrowseName="5:JoiningResultDataType">
+        <DisplayName>JoiningResultDataType</DisplayName>
+        <Description>This structure represents the data associated with Joining Result and the corresponding measurement values.</Description>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=22</Reference>
+            <Reference ReferenceType="HasEncoding">ns=5;i=5005</Reference>
+            <Reference ReferenceType="HasEncoding">ns=5;i=5008</Reference>
+        </References>
+        <Definition Name="5:JoiningResultDataType">
+            <Field IsOptional="true" DataType="Byte" Name="FailureReason">
+                <Description>It provides the primary reason for failure. If a violation is handled by a rework step resulting in a successful operation, then it is not reported as failure.</Description>
+            </Field>
+            <Field DataType="ns=5;i=3005" ValueRank="1" Name="OverallResultValues">
+                <Description>It is an array of overall result values which contains the measurement values of different quantities like torque, angle, time, etc. based on the program. Note: If the operation is terminated in the first step and no values are available to report, then this list may be empty.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="ns=5;i=3006" ValueRank="1" Name="StepResults">
+                <Description>It is an array of step results corresponding to each step in the program. This parameter is used if the system provides one or more step results.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="Int16" ValueRank="1" Name="Errors">
+                <Description>It is an array of external errors which captures the failures outside the boundary of the program are captured as part of the Errors. It is up to the application to fill in the critical/primary error in the Errors list as top entry.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="TrimmedString" Name="FailingStepResultId">
+                <Description>It is the identifier of the step result which is the primary cause of failure.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="JoiningTraceDataType" Name="Trace">
+                <Description>It is a structure to include the Joining Trace content. This can be NULL or empty and it is up to the application to send this as part of the Joining Result.</Description>
+            </Field>
+        </Definition>
+    </UADataType>
+    <UAObject SymbolicName="DefaultBinary" NodeId="ns=5;i=5005" BrowseName="Default Binary">
+        <DisplayName>Default Binary</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=76</Reference>
+        </References>
+    </UAObject>
+    <UAObject SymbolicName="DefaultXML" NodeId="ns=5;i=5008" BrowseName="Default XML">
+        <DisplayName>Default XML</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=76</Reference>
+        </References>
+    </UAObject>
+    <UAVariableType DataType="ns=5;i=3003" NodeId="ns=5;i=2010" BrowseName="5:JoiningResultType">
+        <DisplayName>JoiningResultType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=63</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6116</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6117</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6118</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6119</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6120</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6121</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="Byte" NodeId="ns=5;i=6116" BrowseName="5:FailureReason" ParentNodeId="ns=5;i=2010" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>FailureReason</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3005" ValueRank="1" NodeId="ns=5;i=6117" BrowseName="5:OverallResultValues" ParentNodeId="ns=5;i=2010" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>OverallResultValues</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6123</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3006" ValueRank="1" NodeId="ns=5;i=6118" BrowseName="5:StepResults" ParentNodeId="ns=5;i=2010" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepResults</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6124</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int16" ValueRank="1" NodeId="ns=5;i=6119" BrowseName="5:Errors" ParentNodeId="ns=5;i=2010" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Errors</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6120" BrowseName="5:FailingStepResultId" ParentNodeId="ns=5;i=2010" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>FailingStepResultId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="JoiningTraceDataType" NodeId="ns=5;i=6121" BrowseName="5:Trace" ParentNodeId="ns=5;i=2010" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Trace</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6122</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="StepTraceDataType" ValueRank="1" NodeId="ns=5;i=6122" BrowseName="5:StepTraces" ParentNodeId="ns=5;i=6121" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepTraces</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6125</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3005" NodeId="ns=5;i=6123" BrowseName="5:&lt;OverallResultValues>" ParentNodeId="ns=5;i=6117" UserAccessLevel="3" AccessLevel="3" SymbolicName="S_OverallResultValues_">
+        <DisplayName>&lt;OverallResultValues&gt;</DisplayName>
+        <References>
+            <Reference ReferenceType="HasModellingRule">i=11508</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2012</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6060</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6034</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6191</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3006" NodeId="ns=5;i=6124" BrowseName="5:&lt;StepResults>" ParentNodeId="ns=5;i=6118" UserAccessLevel="3" AccessLevel="3" SymbolicName="S_StepResults_">
+        <DisplayName>&lt;StepResults&gt;</DisplayName>
+        <References>
+            <Reference ReferenceType="HasModellingRule">i=11508</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2014</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6099</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="StepTraceDataType" NodeId="ns=5;i=6125" BrowseName="5:&lt;StepTraces>" ParentNodeId="ns=5;i=6122" UserAccessLevel="3" AccessLevel="3" SymbolicName="S_StepTraces_">
+        <DisplayName>&lt;StepTraces&gt;</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2007</Reference>
+            <Reference ReferenceType="HasModellingRule">i=11508</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6093</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6092</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6096</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6091</Reference>
+        </References>
+    </UAVariable>
+    <UAObjectType NodeId="ns=5;i=1000" BrowseName="5:MachineryOperationCounterType">
+        <DisplayName>MachineryOperationCounterType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;i=1009</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6051</Reference>
+        </References>
+    </UAObjectType>
+    <UAVariable DataType="UInteger" NodeId="ns=5;i=6051" BrowseName="1:OperationCycleCounter2" ParentNodeId="ns=5;i=1000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>OperationCycleCounter2</DisplayName>
+        <Description>OperationCycleCounter is counting the times the component switches from not performing an activity to performing an activity. For example, each time a valve starts moving, is counted. This value shall only increase during the lifetime of the component and shall not be reset when the component is restarted.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariableType DataType="Number" NodeId="ns=5;i=2003" BrowseName="5:LifetimeVariableType">
+        <DisplayName>LifetimeVariableType</DisplayName>
+        <Description>Remaining lifetime</Description>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;i=468</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6052</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6054</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="Duration" NodeId="ns=5;i=6052" BrowseName="5:LifeTimeDuration" ParentNodeId="ns=5;i=2003" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>LifeTimeDuration</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Integer" NodeId="ns=5;i=6054" BrowseName="5:LifeTimeCycleCounter" ParentNodeId="ns=5;i=2003" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>LifeTimeCycleCounter</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAObjectType NodeId="ns=5;i=1002" BrowseName="5:ProgramType">
+        <DisplayName>ProgramType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6112</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6113</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6114</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6115</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6129</Reference>
+        </References>
+    </UAObjectType>
+    <UAVariable DataType="Float" NodeId="ns=5;i=6112" BrowseName="5:MicropeckOscillation" ParentNodeId="ns=5;i=1002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>MicropeckOscillation</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6113" BrowseName="5:MicropeckAmplitude" ParentNodeId="ns=5;i=1002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>MicropeckAmplitude</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6114" BrowseName="5:PowerSupplyLimit" ParentNodeId="ns=5;i=1002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>PowerSupplyLimit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Float" NodeId="ns=5;i=6115" BrowseName="5:LubricationPumpCoefficient" ParentNodeId="ns=5;i=1002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>LubricationPumpCoefficient</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Boolean" NodeId="ns=5;i=6129" BrowseName="5:ParameterSetDefaultSelection" ParentNodeId="ns=5;i=1002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ParameterSetDefaultSelection</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAObjectType NodeId="ns=5;i=1006" BrowseName="5:CycleParametersType">
+        <DisplayName>CycleParametersType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6130</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6131</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6132</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6133</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6135</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6137</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6142</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6144</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6146</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6147</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6148</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6150</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6152</Reference>
+        </References>
+    </UAObjectType>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6130" BrowseName="5:MaximumCyclesLimit1" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>MaximumCyclesLimit1</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6131" BrowseName="5:MaximumCyclesLimit2" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>MaximumCyclesLimit2</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6132" BrowseName="5:CCPressure" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>CCPressure</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6133" BrowseName="5:MaximumStroke" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>MaximumStroke</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6134</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6134" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=6133" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6135" BrowseName="5:VacuumDelay" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>VacuumDelay</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6136</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6136" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=6135" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6137" BrowseName="5:VacuumFlowRate" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>VacuumFlowRate</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6141</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6141" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=6137" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6142" BrowseName="5:RetractRotationSpeed" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>RetractRotationSpeed</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6143</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6143" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=6142" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6144" BrowseName="5:RetractFeed" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>RetractFeed</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6145</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6145" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=6144" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6146" BrowseName="5:DisableAbort" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisableAbort</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6147" BrowseName="5:ToolBreakageStatus" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ToolBreakageStatus</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6148" BrowseName="5:ToolBreakageDEP" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ToolBreakageDEP</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6149</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6149" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=6148" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6150" BrowseName="5:ToolBreakageThrust" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ToolBreakageThrust</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6151</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6151" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=6150" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6152" BrowseName="5:ToolBreakageTorque" ParentNodeId="ns=5;i=1006" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ToolBreakageTorque</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6153</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6153" BrowseName="5:EngineeringUntis" ParentNodeId="ns=5;i=6152" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUntis</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariableType DataType="ResultMetaDataType" NodeId="ns=5;i=2000" BrowseName="3:ResultMetaType">
+        <DisplayName>ResultMetaType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=63</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6008</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6009</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6010</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6011</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6012</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6013</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6014</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6015</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6016</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6017</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6018</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6019</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6020</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6021</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6022</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6023</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6024</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6025</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6026</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6027</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6008" BrowseName="5:ResultId" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Boolean" NodeId="ns=5;i=6009" BrowseName="5:HasTransferableDataOnFile" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>HasTransferableDataOnFile</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Boolean" NodeId="ns=5;i=6010" BrowseName="5:IsPartial" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>IsPartial</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Boolean" NodeId="ns=5;i=6011" BrowseName="5:IsSimulated" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>IsSimulated</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" NodeId="ns=5;i=6012" BrowseName="5:ResultState" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultState</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6013" BrowseName="5:StepId" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6014" BrowseName="5:PartId" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>PartId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6015" BrowseName="5:ExternalRecipeId" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ExternalRecipeId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6016" BrowseName="5:InternalRecipeId" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>InternalRecipeId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6017" BrowseName="5:ProductId" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ProductId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6018" BrowseName="5:ExternalConfigurationId" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ExternalConfigurationId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6019" BrowseName="5:InternalConfigurationId" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>InternalConfigurationId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6020" BrowseName="5:JobId" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>JobId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UtcTime" NodeId="ns=5;i=6021" BrowseName="5:CreationTime" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>CreationTime</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ProcessingTimesDataType" NodeId="ns=5;i=6022" BrowseName="5:ProcessingTimes" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ProcessingTimes</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6028</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6029</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6035</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6036</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UriString" ValueRank="1" NodeId="ns=5;i=6023" BrowseName="5:ResultUri" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultUri</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ResultEvaluationEnum" NodeId="ns=5;i=6024" BrowseName="5:ResultEvaluation" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluation</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int64" NodeId="ns=5;i=6025" BrowseName="5:ResultEvaluationCode" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluationCode</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=5;i=6026" BrowseName="5:ResultEvaluationDetails" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluationDetails</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" ValueRank="1" NodeId="ns=5;i=6027" BrowseName="5:FileFormat" ParentNodeId="ns=5;i=2000" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>FileFormat</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UtcTime" NodeId="ns=5;i=6028" BrowseName="5:StartTime" ParentNodeId="ns=5;i=6022" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StartTime</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UtcTime" NodeId="ns=5;i=6029" BrowseName="5:EndTime" ParentNodeId="ns=5;i=6022" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EndTime</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Duration" NodeId="ns=5;i=6035" BrowseName="5:AcquisitionDuration" ParentNodeId="ns=5;i=6022" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>AcquisitionDuration</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Duration" NodeId="ns=5;i=6036" BrowseName="5:ProcessingDuration" ParentNodeId="ns=5;i=6022" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ProcessingDuration</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariableType DataType="JoiningResultMetaDataType" NodeId="ns=5;i=2001" BrowseName="4:JoiningResultMetaType">
+        <DisplayName>JoiningResultMetaType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=5;i=2000</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6037</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6038</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6039</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6040</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6041</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6042</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6043</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6044</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6045</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6046</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6047</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6048</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="LocalizedText" NodeId="ns=5;i=6037" BrowseName="5:JoiningTechnology" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>JoiningTechnology</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UInt64" NodeId="ns=5;i=6038" BrowseName="5:SequenceNumber" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SequenceNumber</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6039" BrowseName="5:Name" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Name</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=5;i=6040" BrowseName="5:Description" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Byte" NodeId="ns=5;i=6041" BrowseName="5:Classification" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Classification</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Byte" NodeId="ns=5;i=6042" BrowseName="5:OperationMode" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>OperationMode</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Byte" NodeId="ns=5;i=6043" BrowseName="5:AssemblyType" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>AssemblyType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EntityDataType" ValueRank="1" NodeId="ns=5;i=6044" BrowseName="5:AssociatedEntities" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>AssociatedEntities</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ResultCounterDataType" ValueRank="1" NodeId="ns=5;i=6045" BrowseName="5:ResultCounters" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultCounters</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6183</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Byte" NodeId="ns=5;i=6046" BrowseName="5:InterventionType" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>InterventionType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Boolean" NodeId="ns=5;i=6047" BrowseName="5:IsGeneratedOffline" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>IsGeneratedOffline</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="KeyValueDataType" ValueRank="1" NodeId="ns=5;i=6048" BrowseName="5:ExtendedMetaData" ParentNodeId="ns=5;i=2001" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ExtendedMetaData</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariableType DataType="ns=5;i=3000" NodeId="ns=5;i=2002" BrowseName="5:JoiningResultMetaType">
+        <DisplayName>JoiningResultMetaType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=5;i=2001</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6049</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6050</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6053</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6055</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6056</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6057</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6058</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6107</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6108</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6109</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6110</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6111</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6138</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6139</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6140</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6154</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6179</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6155</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6158</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="String" NodeId="ns=5;i=6049" BrowseName="5:ActStrategy" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ActStrategy</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6050" BrowseName="5:ParameterSetName" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ParameterSetName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6053" BrowseName="5:TaskIdentifier" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>TaskIdentifier</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6055" BrowseName="5:ManufacturersSerialNumber" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ManufacturersSerialNumber</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6056" BrowseName="5:WorkOrder" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>WorkOrder</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6057" BrowseName="5:WorkOrderTask" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>WorkOrderTask</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6058" BrowseName="5:SerialNumber" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SerialNumber</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6107" BrowseName="5:InternalRecipeVersion" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>InternalRecipeVersion</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6108" BrowseName="5:InternalRecipeType" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>InternalRecipeType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Float" NodeId="ns=5;i=6109" BrowseName="5:SampleRate" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SampleRate</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6110" BrowseName="5:Version" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Version</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" NodeId="ns=5;i=6111" BrowseName="5:Distance" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Distance</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariableType DataType="ns=5;i=3001" NodeId="ns=5;i=2004" BrowseName="5:ResultType">
+        <DisplayName>ResultType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=63</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6126</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6127</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="ns=5;i=3000" NodeId="ns=5;i=6126" BrowseName="5:ResultMetaData" ParentNodeId="ns=5;i=2004" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultMetaData</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2002</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6008</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6140</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6154</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6179</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6155</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6190</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3003" NodeId="ns=5;i=6127" BrowseName="5:ResultContent" ParentNodeId="ns=5;i=2004" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultContent</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2010</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6117</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3001" NodeId="ns=5;i=6128" BrowseName="5:&lt;ResultVariable>" ParentNodeId="ns=5;i=5009" UserAccessLevel="3" AccessLevel="3" SymbolicName="S_ResultVariable_">
+        <DisplayName>&lt;ResultVariable&gt;</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2004</Reference>
+            <Reference ReferenceType="HasModellingRule">i=11508</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6126</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Integer" NodeId="ns=5;i=6138" BrowseName="5:NumberOfFiles" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>NumberOfFiles</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=5;i=6139" BrowseName="5:CustomerInformation" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>CustomerInformation</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6140" BrowseName="5:HeadSerialNumber" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>HeadSerialNumber</DisplayName>
+        <Description>SerialNumber of the Head component of the Tool.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=5;i=6154" BrowseName="5:ServosModel" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ServosModel</DisplayName>
+        <Description>Model Name of the Motor in the Tool.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariableType DataType="EnumValueType" NodeId="ns=5;i=2011" BrowseName="EnumValueVariableType">
+        <DisplayName>EnumValueVariableType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=63</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6161</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6162</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6163</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="Int64" NodeId="ns=5;i=6161" BrowseName="5:Value" ParentNodeId="ns=5;i=2011" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Value</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=5;i=6162" BrowseName="5:DisplayName" ParentNodeId="ns=5;i=2011" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=5;i=6163" BrowseName="5:Description" ParentNodeId="ns=5;i=2011" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAObjectType IsAbstract="true" NodeId="ns=5;i=1005" BrowseName="5:ITighteningToolParametersType">
+        <DisplayName>ITighteningToolParametersType</DisplayName>
+        <Description>This interface is inherited from 0:BaseInterfaceType to add additional parameters of a tool in a tightening system. It shall be added to 2:Parameters object of the tool instance.</Description>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=17602</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6164</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6165</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6166</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6167</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6168</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6170</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6173</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6175</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6176</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6193</Reference>
+        </References>
+    </UAObjectType>
+    <UAVariable DataType="String" NodeId="ns=5;i=6164" BrowseName="5:ActStatus" ParentNodeId="ns=5;i=1005">
+        <DisplayName>ActStatus</DisplayName>
+        <Description>Current Status of the tool</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=5;i=6165" BrowseName="5:DesignType" ParentNodeId="ns=5;i=1005">
+        <DisplayName>DesignType</DisplayName>
+        <Description>DesignType provides information on the design of the Tool.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6163</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6162</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6161</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=5;i=6166" BrowseName="5:DriveMethod" ParentNodeId="ns=5;i=1005">
+        <DisplayName>DriveMethod</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6163</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6162</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6161</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=5;i=6167" BrowseName="5:DriveType" ParentNodeId="ns=5;i=1005">
+        <DisplayName>DriveType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6163</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6162</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6161</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6168" BrowseName="5:MaxSpeed" ParentNodeId="ns=5;i=1005">
+        <DisplayName>MaxSpeed</DisplayName>
+        <Description>MaxSpeed is the maximum rotation speed of the driving shaft.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6171</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6170" BrowseName="5:MaxTorque" ParentNodeId="ns=5;i=1005">
+        <DisplayName>MaxTorque</DisplayName>
+        <Description>MaxTorque is the maximum allowed torque for which the tool may be used for tightening processes. For Click Wrenches, it may not be available.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6172</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6171" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=6168">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <Description>0:EngineeringUnits defines the engineering unit of the values.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6172" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=6170">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <Description>0:EngineeringUnits defines the engineering unit of the values.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6173" BrowseName="5:MinTorque" ParentNodeId="ns=5;i=1005">
+        <DisplayName>MinTorque</DisplayName>
+        <Description>MinTorque is the minimum allowed torque for which the tool may be used for tightening processes.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty">ns=5;i=6174</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=5;i=6174" BrowseName="5:EngineeringUnits" ParentNodeId="ns=5;i=6173">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <Description>0:EngineeringUnits defines the engineering unit of the values.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6175" BrowseName="5:MotorType" ParentNodeId="ns=5;i=1005">
+        <DisplayName>MotorType</DisplayName>
+        <Description>MotorType is the type of motor in the tool.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=5;i=6176" BrowseName="5:ShutOffMethod" ParentNodeId="ns=5;i=1005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ShutOffMethod</DisplayName>
+        <Description>ShutOffMethod provides information on the shutoff method of the tool.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6163</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6162</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6161</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=5;i=6179" BrowseName="5:ResultEvaluation" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluation</DisplayName>
+        <Description>The ResultEvaluation indicates whether the result was in tolerance.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=7616</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EnumValueType>
+                        <uax:Value>0</uax:Value>
+                    </uax:EnumValueType>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UADataType NodeId="ns=5;i=3005" BrowseName="5:ResultValueDataType">
+        <DisplayName>ResultValueDataType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=4;i=3007</Reference>
+            <Reference ReferenceType="HasEncoding">ns=5;i=5010</Reference>
+            <Reference ReferenceType="HasEncoding">ns=5;i=5011</Reference>
+        </References>
+        <Definition Name="5:ResultValueDataType">
+            <Field IsOptional="true" DataType="EnumValueType" Name="ResultEvaluation">
+                <Description>It indicates whether the measured value is as per the configured limits and corresponds to a successful result or not.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="Double" Name="Threshold">
+                <Description>Threshold in Nm.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="EnumValueType" Name="Severity">
+                <Description>severity is a classification system that indicates the urgency and potential impact of a fault or alarm in a piece of equipment.</Description>
+            </Field>
+        </Definition>
+    </UADataType>
+    <UAObject SymbolicName="DefaultBinary" NodeId="ns=5;i=5010" BrowseName="Default Binary">
+        <DisplayName>Default Binary</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=76</Reference>
+        </References>
+    </UAObject>
+    <UAObject SymbolicName="DefaultXML" NodeId="ns=5;i=5011" BrowseName="Default XML">
+        <DisplayName>Default XML</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=76</Reference>
+        </References>
+    </UAObject>
+    <UAVariableType DataType="ns=5;i=3005" NodeId="ns=5;i=2012" BrowseName="5:ResultValueType">
+        <DisplayName>ResultValueType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=5;i=2005</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6182</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6034</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6191</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="EnumValueType" NodeId="ns=5;i=6182" BrowseName="5:ResultEvaluation" ParentNodeId="ns=5;i=2012" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluation</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6163</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6162</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6161</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=7616</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EnumValueType>
+                        <uax:Value>0</uax:Value>
+                    </uax:EnumValueType>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UADataType NodeId="ns=5;i=3006" BrowseName="5:StepResultDataType">
+        <DisplayName>StepResultDataType</DisplayName>
+        <Description>This structure represents the measurement values corresponding to a given step in the program. It is used in JoiningResultDataType.</Description>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=4;i=3009</Reference>
+            <Reference ReferenceType="HasEncoding">ns=5;i=5012</Reference>
+            <Reference ReferenceType="HasEncoding">ns=5;i=5013</Reference>
+        </References>
+        <Definition Name="5:StepResultDataType">
+            <Field IsOptional="true" DataType="EnumValueType" Name="ResultEvaluation">
+                <Description>It indicates if the StepResult is successful or not.</Description>
+            </Field>
+            <Field IsOptional="true" DataType="ns=5;i=3005" ValueRank="1" Name="StepResultValues">
+                <Description>It is the set of values which needs to be measured as per the program step.</Description>
+            </Field>
+        </Definition>
+    </UADataType>
+    <UAObject SymbolicName="DefaultBinary" NodeId="ns=5;i=5012" BrowseName="Default Binary">
+        <DisplayName>Default Binary</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=76</Reference>
+        </References>
+    </UAObject>
+    <UAObject SymbolicName="DefaultXML" NodeId="ns=5;i=5013" BrowseName="Default XML">
+        <DisplayName>Default XML</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=76</Reference>
+        </References>
+    </UAObject>
+    <UAVariableType DataType="ns=5;i=3006" NodeId="ns=5;i=2014" BrowseName="5:StepResultType">
+        <DisplayName>StepResultType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">ns=5;i=2009</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6188</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6189</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="EnumValueType" NodeId="ns=5;i=6188" BrowseName="5:ResultEvaluation" ParentNodeId="ns=5;i=2014" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluation</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6163</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6162</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6161</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3005" ValueRank="1" NodeId="ns=5;i=6189" BrowseName="5:StepResultValues" ParentNodeId="ns=5;i=2014" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepResultValues</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6192</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3005" NodeId="ns=5;i=6192" BrowseName="5:&lt;StepResultValues>" ParentNodeId="ns=5;i=6189" UserAccessLevel="3" AccessLevel="3" SymbolicName="S_StepResultValues_">
+        <DisplayName>&lt;StepResultValues&gt;</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2012</Reference>
+            <Reference ReferenceType="HasModellingRule">i=11508</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6060</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6034</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6191</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=5;i=6193" BrowseName="5:Type" ParentNodeId="ns=5;i=1005" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Type</DisplayName>
+        <Description>Type is the classification of a Tool.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6163</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6162</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6161</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=7616</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EnumValueType>
+                        <uax:Value>0</uax:Value>
+                    </uax:EnumValueType>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6034" BrowseName="5:Threshold" ParentNodeId="ns=5;i=2012" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Threshold</DisplayName>
+        <Description>Threshold in Nm.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int64" NodeId="ns=5;i=6155" BrowseName="5:BatchQuantity" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>BatchQuantity</DisplayName>
+        <Description>Batch Size</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6156" BrowseName="5:AdapterLength" ParentNodeId="ns=4;i=5008" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>AdapterLength</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6157" BrowseName="5:AdapterId" ParentNodeId="ns=4;i=5008" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>AdapterId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Integer" NodeId="ns=5;i=6159" BrowseName="5:CalibrationOperationCycles" ParentNodeId="ns=4;i=5003" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>CalibrationOperationCycles</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariableType DataType="ResultCounterDataType" NodeId="ns=5;i=2013" BrowseName="4:ResultCounterType">
+        <DisplayName>ResultCounterType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=63</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6178</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6180</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6181</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="String" NodeId="ns=5;i=6178" BrowseName="5:Name" ParentNodeId="ns=5;i=2013" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Name</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UInt32" NodeId="ns=5;i=6180" BrowseName="5:CounterValue" ParentNodeId="ns=5;i=2013" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>CounterValue</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int16" NodeId="ns=5;i=6181" BrowseName="5:CounterType" ParentNodeId="ns=5;i=2013" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>CounterType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ResultCounterDataType" NodeId="ns=5;i=6183" BrowseName="5:&lt;ResultCounters>" ParentNodeId="ns=5;i=6045" UserAccessLevel="3" AccessLevel="3" SymbolicName="S_ResultCounters_">
+        <DisplayName>&lt;ResultCounters&gt;</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2013</Reference>
+            <Reference ReferenceType="HasModellingRule">i=11508</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6181</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6180</Reference>
+        </References>
+    </UAVariable>
+    <UAObjectType NodeId="ns=5;i=1003" BrowseName="5:NetworkType">
+        <DisplayName>NetworkType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=5003</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=5004</Reference>
+        </References>
+    </UAObjectType>
+    <UAObject NodeId="ns=5;i=5003" BrowseName="5:NetworkInterface" ParentNodeId="ns=5;i=1003">
+        <DisplayName>NetworkInterface</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6169</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6185</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=5;i=5004" BrowseName="5:Wireless" ParentNodeId="ns=5;i=1003">
+        <DisplayName>Wireless</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6177</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6184</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6194</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="String" NodeId="ns=5;i=6169" BrowseName="5:IPAddress" ParentNodeId="ns=5;i=1007" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>IPAddress</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int16" NodeId="ns=5;i=6177" BrowseName="5:SignalStrength" ParentNodeId="ns=5;i=5004" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SignalStrength</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6184" BrowseName="5:AccessPointConnected" ParentNodeId="ns=5;i=5004" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>AccessPointConnected</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAObjectType IsAbstract="true" NodeId="ns=5;i=1007" BrowseName="5:IIeeeTsnInterfaceConfigurationType">
+        <DisplayName>IIeeeTsnInterfaceConfigurationType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=24188</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6169</Reference>
+        </References>
+    </UAObjectType>
+    <UAVariable DataType="String" NodeId="ns=5;i=6185" BrowseName="5:MacAddress" ParentNodeId="ns=5;i=5003" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>MacAddress</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int64" NodeId="ns=5;i=6186" BrowseName="5:CalibrationOperationCycles" ParentNodeId="ns=4;i=5003" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>CalibrationOperationCycles</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=5;i=6160" BrowseName="5:AdapterLength" ParentNodeId="ns=4;i=5008" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>AdapterLength</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6187" BrowseName="5:AdapterId" ParentNodeId="ns=4;i=5008" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>AdapterId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=5;i=6190" BrowseName="5:Direction" ParentNodeId="ns=5;i=6126" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Direction</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6163</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6162</Reference>
+            <Reference ReferenceType="HasComponent">ns=5;i=6161</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6158" BrowseName="5:JobName" ParentNodeId="ns=5;i=2002" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>JobName</DisplayName>
+        <Description>Name of the job which produced the result</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=5;i=6191" BrowseName="5:Severity" ParentNodeId="ns=5;i=2012" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Severity</DisplayName>
+        <Description>severity is a classification system that indicates the urgency and potential impact of a fault or alarm in a piece of equipment.</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=5;i=6194" BrowseName="5:SoftwareRevision" ParentNodeId="ns=5;i=5004" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SoftwareRevision</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+        </References>
+    </UAVariable>
+</UANodeSet>

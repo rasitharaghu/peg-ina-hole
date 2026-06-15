@@ -17,7 +17,6 @@ from xml.etree.ElementTree import Element, SubElement, ElementTree, register_nam
 from opcua import Client, ua
 from datetime import datetime, timezone
 import hashlib
-import xml.etree.ElementTree as ET
 
 class ProductionLineClient:
     """OPCUA Client for the production line."""
@@ -351,42 +350,9 @@ class ProductionLineClient:
         self.alias_map = alias_map
         self.reverse_alias_map = {nodeid: alias for alias, nodeid in alias_map.items()}
 
-    # def add_extensions(self, root,  hash_ns1, hash_si, product0="SiOME", edition0="Sinumerik", version0="2.8.5-installer",
-    #                    product1="SiOME", edition1="Sinumerik", version1="2.8.5-installer"):
-    #     """Add Extensions with Generator elements for si and ns1 namespaces."""
-    #     extensions_el = SubElement(root, "Extensions")
-        
-    #     # First Extension: si:Generator
-    #     ext1 = SubElement(extensions_el, "Extension")
-    #     SubElement(ext1, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}Generator", {
-    #         "Product": product0,
-    #         "Edition": edition0,
-    #         "Version": version0
-    #     })
-        
-    #     # Second Extension: ns1:Generator
-    #     ext2 = SubElement(extensions_el, "Extension")
-    #     SubElement(ext2, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}Generator", {
-    #         "Product": product1,
-    #         "Edition": edition1,
-    #         "Version": version1
-    #     })
-        
-    #     # Third Extension: ns1:GeneratorExtension
-    #     ext3 = SubElement(extensions_el, "Extension")
-    #     SubElement(ext3, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
-    #         "Hash": hash_ns1
-    #     })
-        
-    #     # Fourth Extension: si:GeneratorExtension
-    #     ext4 = SubElement(extensions_el, "Extension")
-    #     SubElement(ext4, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
-    #         "Hash": hash_si
-    #     })
-    
-    def add_extensions(self, root, hash_ns1, hash_si, product0="SiOME", edition0="Sinumerik", version0="2.8.5-installer",
+    def add_extensions(self, root,  hash_ns1, hash_si, product0="SiOME", edition0="Sinumerik", version0="2.8.5-installer",
                        product1="SiOME", edition1="Sinumerik", version1="2.8.5-installer"):
-        """Add Extensions with correctly uncommented Generator & GeneratorExtension elements."""
+        """Add Extensions with Generator elements for si and ns1 namespaces."""
         extensions_el = SubElement(root, "Extensions")
         
         # First Extension: si:Generator
@@ -405,17 +371,17 @@ class ProductionLineClient:
             "Version": version1
         })
         
-        # Third Extension: ns1:GeneratorExtension (Uncommented and active)
-        ext3 = SubElement(extensions_el, "Extension")
-        SubElement(ext3, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
-            "Hash": hash_ns1
-        })
+        # # Third Extension: ns1:GeneratorExtension
+        # ext3 = SubElement(extensions_el, "Extension")
+        # SubElement(ext3, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
+        #     "Hash": hash_ns1
+        # })
         
-        # Fourth Extension: si:GeneratorExtension (Uncommented and active)
-        ext4 = SubElement(extensions_el, "Extension")
-        SubElement(ext4, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
-            "Hash": hash_si
-        })
+        # # Fourth Extension: si:GeneratorExtension
+        # ext4 = SubElement(extensions_el, "Extension")
+        # SubElement(ext4, "{http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions}GeneratorExtension", {
+        #     "Hash": hash_si
+        # })
 
     def build_display_name_element(self, element, node):
         display_name = SubElement(element, "DisplayName")
@@ -619,7 +585,6 @@ class ProductionLineClient:
         types_xsd_path = os.path.join(os.path.dirname(__file__), "Opc.Ua.Types.xsd")
         if os.path.exists(types_xsd_path):
             self.load_uax_direct_value_types(types_xsd_path)
-            self.load_uax_complex_type_fields(types_xsd_path)
 
         self.add_aliases(root)
 
@@ -796,77 +761,6 @@ class ProductionLineClient:
 
         return str(value)
 
-    NUMERIC_UAX_TYPES = {
-        "Int64", "Int32", "UInt32", "UInt64", "Double", "Float",
-        "SByte", "Byte", "Int16", "UInt16",
-    }
-
-    def format_value_for_uax(self, data_type_name, value):
-        """Format a python value to the canonical string expected by UAX typed elements.
-
-        Returns a string or None when the value cannot be represented safely.
-        """
-        if value is None:
-            return None
-
-        # Strings that are empty should be treated as missing for numeric types
-        if isinstance(value, str) and value.strip() == "":
-            if data_type_name in self.NUMERIC_UAX_TYPES:
-                return None
-
-        # DateTime
-        if data_type_name == "DateTime":
-            try:
-                return self.format_value_for_xml(value)
-            except Exception:
-                return None
-
-        # Boolean
-        if data_type_name == "Boolean":
-            try:
-                return str(bool(value)).lower()
-            except Exception:
-                return None
-
-        # Floating point types
-        if data_type_name in ("Double", "Float"):
-            try:
-                return str(float(value))
-            except Exception:
-                return None
-
-        # Integer-like types
-        if data_type_name in self.NUMERIC_UAX_TYPES:
-            try:
-                return str(int(value))
-            except Exception:
-                return None
-
-        # Fallback to generic formatter
-        try:
-            return self.format_value_for_xml(value)
-        except Exception:
-            return None
-
-
-    # def add_typed_value_element(self, variable_el, data_type_name, value):
-    #     if value is None:
-    #         return
-
-    #     value_el = SubElement(variable_el, "Value")
-
-    #     if data_type_name in self.uax_direct_value_types:
-    #         child = SubElement(
-    #             value_el,
-    #             f"{{{self.UAX_NS}}}{data_type_name}"
-    #         )
-    #         child.text = self.format_value_for_xml(value)
-    #         return
-
-    #     # variable_el.remove(value_el)
-    #     if isinstance(value, (list, tuple)):
-    #         variable_el.remove(value_el)
-    #         return
 
     def add_typed_value_element(self, variable_el, data_type_name, value):
         if value is None:
@@ -874,42 +768,18 @@ class ProductionLineClient:
 
         value_el = SubElement(variable_el, "Value")
 
-        # Lists should be handled separately
-        if isinstance(value, (list, tuple)):
-            variable_el.remove(value_el)
-            return
-
-        # Simple scalar types only
-        if data_type_name in self.uax_direct_value_types and data_type_name not in self.uax_complex_type_fields:
-            child = SubElement(value_el, f"{{{self.UAX_NS}}}{data_type_name}")
+        if data_type_name in self.uax_direct_value_types:
+            child = SubElement(
+                value_el,
+                f"{{{self.UAX_NS}}}{data_type_name}"
+            )
             child.text = self.format_value_for_xml(value)
             return
 
-        # Generic complex type handling
-        if data_type_name in self.uax_complex_type_fields:
-            ext_obj = SubElement(value_el, f"{{{self.UAX_NS}}}ExtensionObject")
-
-            type_id = SubElement(ext_obj, f"{{{self.UAX_NS}}}TypeId")
-            SubElement(type_id, f"{{{self.UAX_NS}}}Identifier").text = self.get_binary_encoding_id(data_type_name)
-
-            body = SubElement(ext_obj, f"{{{self.UAX_NS}}}Body")
-            complex_el = SubElement(body, f"{{{self.UAX_NS}}}{data_type_name}")
-
-            for field_name in self.uax_complex_type_fields[data_type_name]:
-                field_value = getattr(value, field_name, None)
-
-                field_el = SubElement(complex_el, f"{{{self.UAX_NS}}}{field_name}")
-
-                if hasattr(field_value, "Text"):
-                    text_el = SubElement(field_el, f"{{{self.UAX_NS}}}Text")
-                    text_el.text = str(field_value.Text or "")
-                elif field_value is not None:
-                    field_el.text = self.format_value_for_xml(field_value)
-
+        # variable_el.remove(value_el)
+        if isinstance(value, (list, tuple)):
+            variable_el.remove(value_el)
             return
-
-        # Unknown datatype: avoid invalid XML
-        variable_el.remove(value_el)
 
     def load_uax_direct_value_types(self, types_xsd_path):
         """
@@ -931,60 +801,12 @@ class ProductionLineClient:
 
         self.uax_direct_value_types = value_types
 
-    # def generate_extension_hashes(self):
-    #     """
-    #     Generate deterministic hashes from the live server address space.
-    #     """
-    #     structural_buffer = []
-    #     contextual_buffer = []
-
-    #     try:
-    #         objects_node = self.client.get_objects_node()
-    #         nodes_to_visit = [objects_node]
-
-    #         while nodes_to_visit:
-    #             node = nodes_to_visit.pop(0)
-
-    #             try:
-    #                 nodeid = node.nodeid.to_string()
-    #                 browse_name = node.get_browse_name().to_string()
-    #                 display_name = node.get_display_name().Text
-
-    #                 structural_buffer.append(f"{nodeid}|{browse_name}")
-    #                 contextual_buffer.append(f"{nodeid}|{browse_name}|{display_name}")
-
-    #                 try:
-    #                     value = node.get_value()
-    #                     contextual_buffer.append(str(value))
-    #                 except Exception:
-    #                     pass
-
-    #                 nodes_to_visit.extend(node.get_children())
-
-    #             except Exception:
-    #                 continue
-
-    #     except Exception as e:
-    #         print(f"[CLIENT] Hash generation warning: {e}")
-
-    #     ns1_str = "".join(structural_buffer)
-    #     si_str = "".join(contextual_buffer)
-
-    #     hash_ns1 = hashlib.md5(ns1_str.encode("utf-8")).hexdigest()
-    #     hash_si = hashlib.md5(si_str.encode("utf-8")).hexdigest()
-
-    #     return hash_ns1, hash_si
-    
     def generate_extension_hashes(self):
         """
-        Generates deterministic cryptographic hashes from the live server address space.
-        Implements cyclic tracking to prevent infinite tree-crawling loops.
+        Generate deterministic hashes from the live server address space.
         """
         structural_buffer = []
         contextual_buffer = []
-        
-        # Tracking set to remember nodes we've already visited (Prevents infinite loops)
-        visited_nodes = set()
 
         try:
             objects_node = self.client.get_objects_node()
@@ -992,53 +814,32 @@ class ProductionLineClient:
 
             while nodes_to_visit:
                 node = nodes_to_visit.pop(0)
-                nodeid_str = node.nodeid.to_string()
-                
-                # If we have already crawled this exact node, skip it
-                if nodeid_str in visited_nodes:
-                    continue
-                visited_nodes.add(nodeid_str)
-
-                # Skip core Namespace 0 components to ensure identical hashes across different server versions
-                if node.nodeid.NamespaceIndex == 0 and nodeid_str != "i=85":
-                    continue
 
                 try:
-                    browse_name = node.get_browse_name().to_string() if hasattr(node.get_browse_name(), "to_string") else str(node.get_browse_name())
-                    display_name = node.get_display_name().Text if hasattr(node.get_display_name(), "Text") else str(node.get_display_name())
+                    nodeid = node.nodeid.to_string()
+                    browse_name = node.get_browse_name().to_string()
+                    display_name = node.get_display_name().Text
 
-                    # Clean up strings by stripping random whitespace
-                    browse_name_clean = browse_name.strip()
-                    display_name_clean = display_name.strip()
+                    structural_buffer.append(f"{nodeid}|{browse_name}")
+                    contextual_buffer.append(f"{nodeid}|{browse_name}|{display_name}")
 
-                    # Append to tracking buffers
-                    structural_buffer.append(f"{nodeid_str}|{browse_name_clean}")
-                    contextual_buffer.append(f"{nodeid_str}|{browse_name_clean}|{display_name_clean}")
-
-                    # Attempt to pull dynamic value metrics for the SI contextual hash signature
                     try:
                         value = node.get_value()
-                        if value is not None:
-                            contextual_buffer.append(self.format_value_for_xml(value))
+                        contextual_buffer.append(str(value))
                     except Exception:
                         pass
 
-                    # Safely extend the crawling queue with child objects
-                    for child in node.get_children():
-                        if child.nodeid.to_string() not in visited_nodes:
-                            nodes_to_visit.append(child)
+                    nodes_to_visit.extend(node.get_children())
 
                 except Exception:
                     continue
 
         except Exception as e:
-            print(f"[CLIENT] Dynamic hash generation warning: {e}")
+            print(f"[CLIENT] Hash generation warning: {e}")
 
-        # Combine items into unified byte strings
         ns1_str = "".join(structural_buffer)
         si_str = "".join(contextual_buffer)
 
-        # Convert to standard lowercase MD5 hex digests expected by SiOME
         hash_ns1 = hashlib.md5(ns1_str.encode("utf-8")).hexdigest()
         hash_si = hashlib.md5(si_str.encode("utf-8")).hexdigest()
 
@@ -1054,40 +855,6 @@ class ProductionLineClient:
             name = "S" + name
 
         return name
-    
-    def load_uax_complex_type_fields(self, types_xsd_path):
-
-        XS = "{http://www.w3.org/2001/XMLSchema}"
-        tree = ET.parse(types_xsd_path)
-        root = tree.getroot()
-
-        self.uax_complex_type_fields = {}
-
-        for complex_type in root.findall(f".//{XS}complexType"):
-            type_name = complex_type.attrib.get("name")
-            if not type_name:
-                continue
-
-            # Example: EUInformation -> EUInformation
-            if type_name.endswith("DataType"):
-                element_name = type_name.replace("DataType", "")
-            else:
-                element_name = type_name
-
-            fields = []
-
-            for field in complex_type.findall(f".//{XS}element"):
-                field_name = field.attrib.get("name")
-                if field_name:
-                    fields.append(field_name)
-
-            if fields:
-                self.uax_complex_type_fields[element_name] = fields
-
-    def get_binary_encoding_id(self, data_type_name):
-        # Generic fallback.
-        # Better: browse server for HasEncoding -> Default Binary.
-        return ""
     
 def main():
     """Main client workflow."""

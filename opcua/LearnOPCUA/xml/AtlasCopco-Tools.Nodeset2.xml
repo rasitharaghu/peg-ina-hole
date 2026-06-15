@@ -1,0 +1,1661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UANodeSet LastModified="2025-09-19T11:03:13.732Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:si="http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns0="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:ns1="http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions" xmlns:ns2="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:ns3="http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/AIJT/Types.xsd" xmlns:ns4="http://opcfoundation.org/UA/Machinery/Result/Types.xsd" xmlns:ns5="http://opcfoundation.org/UA/IJT/Base/Types.xsd">
+    <NamespaceUris>
+        <Uri>http://opcfoundation.org/UA/DI/</Uri>
+        <Uri>http://opcfoundation.org/UA/Machinery/</Uri>
+        <Uri>http://opcfoundation.org/UA/Machinery/Result/</Uri>
+        <Uri>http://opcfoundation.org/UA/IJT/Base/</Uri>
+        <Uri>http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJT/AIJT</Uri>
+        <Uri>http://ab.com/IJT/AFastening</Uri>
+    </NamespaceUris>
+    <Models>
+        <Model ModelUri="http://ab.com/IJT/AFastening" PublicationDate="2024-08-29T10:34:19+05:30" Version="1.04">
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/" PublicationDate="2023-12-15T00:00:00Z" Version="1.05.03"/>
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/DI/" PublicationDate="2022-11-03T00:00:00Z" Version="1.04.0"/>
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/Machinery/" PublicationDate="2023-08-01T00:00:00Z" Version="1.03.0"/>
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/Machinery/Result/" PublicationDate="2023-01-01T00:00:00Z" Version="1.00.0"/>
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/IJT/Base/" PublicationDate="2024-03-07T00:00:00Z" Version="1.00.0"/>
+            <RequiredModel ModelUri="http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJT/AIJT" PublicationDate="2024-03-28T11:18:01+05:30" Version="1.5"/>
+        </Model>
+    </Models>
+    <Aliases>
+        <Alias Alias="Boolean">i=1</Alias>
+        <Alias Alias="Byte">i=3</Alias>
+        <Alias Alias="Int16">i=4</Alias>
+        <Alias Alias="Int32">i=6</Alias>
+        <Alias Alias="UInt32">i=7</Alias>
+        <Alias Alias="Int64">i=8</Alias>
+        <Alias Alias="Double">i=11</Alias>
+        <Alias Alias="DateTime">i=13</Alias>
+        <Alias Alias="String">i=12</Alias>
+        <Alias Alias="LocalizedText">i=21</Alias>
+        <Alias Alias="UInteger">i=28</Alias>
+        <Alias Alias="HasComponent">i=47</Alias>
+        <Alias Alias="HasProperty">i=46</Alias>
+        <Alias Alias="HasTypeDefinition">i=40</Alias>
+        <Alias Alias="HasAddIn">i=17604</Alias>
+        <Alias Alias="HasInterface">i=17603</Alias>
+        <Alias Alias="IdType">i=256</Alias>
+        <Alias Alias="Duration">i=290</Alias>
+        <Alias Alias="NumericRange">i=291</Alias>
+        <Alias Alias="UtcTime">i=294</Alias>
+        <Alias Alias="EnumValueType">i=7594</Alias>
+        <Alias Alias="EUInformation">i=887</Alias>
+        <Alias Alias="TrimmedString">i=31918</Alias>
+        <Alias Alias="JoiningTraceDataType">ns=4;i=3012</Alias>
+        <Alias Alias="StepTraceDataType">ns=4;i=3013</Alias>
+        <Alias Alias="TraceContentDataType">ns=4;i=3014</Alias>
+    </Aliases>
+    <Extensions>
+        <Extension>
+            <si:Generator Product="SiOME" Edition="Sinumerik" Version="2.8.5-installer"/>
+        </Extension>
+<Extension>
+    <ns1:Generator Product="SiOME" Edition="Sinumerik" Version="2.8.5-installer"/>
+</Extension>
+<Extension>
+    <ns1:GeneratorExtension Hash="b929aa38d5a80048ba9c44c5996fc044"/>
+</Extension>
+        <Extension>
+            <si:GeneratorExtension Hash="3649071798aa7e23c0cc2a52e739b463"/>
+        </Extension>
+    </Extensions>
+    <UAObject SymbolicName="http___ab_com_UA_DI_AMB_Machinery_MachineryResult_IJTBase_IJTTightening_ATightening_AIJT_ALocalization_AWorkOrder_AProduct_AtlasCopco_Tools" NodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools" BrowseName="6:http://ab.com/IJT/AFastening" ParentNodeId="i=11715">
+        <DisplayName>http://ab.com/IJT/AFastening</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">i=11715</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=11616</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" NodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools.IsNamespaceSubset" BrowseName="IsNamespaceSubset" ParentNodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools">
+        <DisplayName>IsNamespaceSubset</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="DateTime" NodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools.NamespacePublicationDate" BrowseName="NamespacePublicationDate" ParentNodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools">
+        <DisplayName>NamespacePublicationDate</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:DateTime>2024-08-29T10:34:19+05:30</uax:DateTime>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools.NamespaceUri" BrowseName="NamespaceUri" ParentNodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools">
+        <DisplayName>NamespaceUri</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:String>http://ab.com/IJT/AFastening</uax:String>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools.NamespaceVersion" BrowseName="NamespaceVersion" ParentNodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools">
+        <DisplayName>NamespaceVersion</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:String>1.04</uax:String>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="IdType" ValueRank="1" NodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools.StaticNodeIdTypes" BrowseName="StaticNodeIdTypes" ParentNodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools">
+        <DisplayName>StaticNodeIdTypes</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="NumericRange" ValueRank="1" NodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools.StaticNumericNodeIdRange" BrowseName="StaticNumericNodeIdRange" ParentNodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools">
+        <DisplayName>StaticNumericNodeIdRange</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools.StaticStringNodeIdPattern" BrowseName="StaticStringNodeIdPattern" ParentNodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools">
+        <DisplayName>StaticStringNodeIdPattern</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="i=96" ValueRank="1" NodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools.DefaultRolePermissions" BrowseName="DefaultRolePermissions" ParentNodeId="ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools">
+        <DisplayName>DefaultRolePermissions</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.Server.Namespaces.http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJTBase/IJTTightening/ATightening/AIJT/ALocalization/AWorkOrder/AProduct/AtlasCopco-Tools</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number" BrowseName="6:UTN_Number" ParentNodeId="ns=1;i=5001">
+        <DisplayName>UTN_Number</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=5001</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=4;i=1005</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement" BrowseName="4:AssetManagement" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number">
+        <DisplayName>AssetManagement</DisplayName>
+        <Description>The AssetManagement Object is an instance of FolderType to group assets and related objects in the joining system.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets" BrowseName="4:Assets" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement">
+        <DisplayName>Assets</DisplayName>
+        <Description>The Assets Object is an instance of FolderType to group set of assets available in the given system.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries" BrowseName="4:Batteries" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets">
+        <DisplayName>Batteries</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+    </UAObject>
+    <UAObject SymbolicName="S0" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0" BrowseName="4:0" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries">
+        <DisplayName>0</DisplayName>
+        <Description>The Identification Object, using the standardized name defined in OPC 10000-100, provides identification information about the asset. This is a mandatory place holder and any asset inheriting IJoiningSystemAssetType will replace it with MachineIdentificationType or MachineryComponentIdentificationType.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+            <Reference ReferenceType="HasInterface">ns=4;i=1010</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Health" BrowseName="4:Health" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0">
+        <DisplayName>Health</DisplayName>
+        <Description>The Health Object is an instance of 2:FunctionalGroupType to group health related parameters for all the assets in a Joining System.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+            <Reference ReferenceType="HasInterface">ns=1;i=15051</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Identification" BrowseName="1:Identification" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0">
+        <DisplayName>Identification</DisplayName>
+        <Description>The Identification Object, using the standardized name defined in OPC 10000-100, provides identification information about the asset. This is a mandatory place holder and any asset inheriting IJoiningSystemAssetType will replace it with MachineIdentificationType or MachineryComponentIdentificationType.</Description>
+        <References>
+            <Reference ReferenceType="HasAddIn" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=2;i=1004</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="DateTime" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Identification.InitialOperationDate" BrowseName="2:InitialOperationDate" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Identification">
+        <DisplayName>InitialOperationDate</DisplayName>
+        <Description>The date, when the MachineryItem was switched on the first time after it has left the manufacturer plant.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Identification.SerialNumber" BrowseName="1:SerialNumber" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Identification">
+        <DisplayName>SerialNumber</DisplayName>
+        <Description>A string containing a unique production number of the manufacturer of the MachineryItem. The global uniqueness of the serial number is only given in the context of the manufacturer, and potentially the model. The value shall not change during the life-cycle of the MachineryItem.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters" BrowseName="4:Parameters" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0">
+        <DisplayName>Parameters</DisplayName>
+        <Description>The Parameters Object is an instance of 0:FolderType to group set of common parameters of an asset in a joining system.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.Capacity" BrowseName="4:Capacity" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters">
+        <DisplayName>Capacity</DisplayName>
+        <Description>Capacity is the nominal capacity of the battery.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=4;i=2011</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.Capacity.EngineeringUnits" BrowseName="4:EngineeringUnits" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.Capacity">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <Description>0:EngineeringUnits defines the engineering unit of the values.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.Capacity</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:NamespaceUri>http://www.opcfoundation.org/UA/units/un/cefact</uax:NamespaceUri>
+                        <uax:UnitId>4279624</uax:UnitId>
+                        <uax:DisplayName>
+                            <uax:Text>A·h</uax:Text>
+                        </uax:DisplayName>
+                        <uax:Description>
+                            <uax:Text>ampere hour</uax:Text>
+                        </uax:Description>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.NominalVoltage" BrowseName="4:NominalVoltage" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters">
+        <DisplayName>NominalVoltage</DisplayName>
+        <Description>NominalVoltage is the nominal DC voltage of the battery.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=4;i=2011</Reference>
+        </References>
+        <Value>
+            <uax:Double>0</uax:Double>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.NominalVoltage.EngineeringUnits" BrowseName="4:EngineeringUnits" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.NominalVoltage">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <Description>0:EngineeringUnits defines the engineering unit of the values.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.NominalVoltage</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:NamespaceUri>http://www.opcfoundation.org/UA/units/un/cefact</uax:NamespaceUri>
+                        <uax:UnitId>5655636</uax:UnitId>
+                        <uax:DisplayName>
+                            <uax:Text>V</uax:Text>
+                        </uax:DisplayName>
+                        <uax:Description>
+                            <uax:Text>volt</uax:Text>
+                        </uax:Description>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers" BrowseName="4:Controllers" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets">
+        <DisplayName>Controllers</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+    </UAObject>
+    <UAObject SymbolicName="S0" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0" BrowseName="4:0" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers">
+        <DisplayName>0</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+            <Reference ReferenceType="HasInterface">ns=4;i=1003</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Health" BrowseName="4:Health" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0">
+        <DisplayName>Health</DisplayName>
+        <Description>The Health Object is an instance of 2:FunctionalGroupType to group health related parameters for all the assets in a Joining System.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+            <Reference ReferenceType="HasInterface">ns=1;i=15051</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Int64" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Health.ErrorCode" BrowseName="4:ErrorCode" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Health">
+        <DisplayName>ErrorCode</DisplayName>
+        <Description>ErrorCode is the system specific code for the error occurred.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Health</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Health.ErrorMessage" BrowseName="4:ErrorMessage" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Health">
+        <DisplayName>ErrorMessage</DisplayName>
+        <Description>ErrorMessage is the user readable text of the error reported by the given asset.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Health</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Identification" BrowseName="1:Identification" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0">
+        <DisplayName>Identification</DisplayName>
+        <Description>The Identification Object, using the standardized name defined in OPC 10000-100, provides identification information about the asset. This is a mandatory place holder and any asset inheriting IJoiningSystemAssetType will replace it with MachineIdentificationType or MachineryComponentIdentificationType.</Description>
+        <References>
+            <Reference ReferenceType="HasAddIn" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=2;i=1004</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Identification.SerialNumber" BrowseName="1:SerialNumber" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Identification">
+        <DisplayName>SerialNumber</DisplayName>
+        <Description>A string containing a unique production number of the manufacturer of the MachineryItem. The global uniqueness of the serial number is only given in the context of the manufacturer, and potentially the model. The value shall not change during the life-cycle of the MachineryItem.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Identification.SoftwareRevision" BrowseName="1:SoftwareRevision" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Identification">
+        <DisplayName>SoftwareRevision</DisplayName>
+        <Description>A string representation of the revision level of a MachineryItem. In most cases, MachineryItems consist of several software components. In that case, information about the software components might be provided as additional information in the address space, including individual revision information. In that case, this property is either not provided or provides an overall software revision level. The value might change during the life-cycle of a MachineryItem.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Parameters" BrowseName="4:Parameters" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0">
+        <DisplayName>Parameters</DisplayName>
+        <Description>The Parameters Object is an instance of 0:FolderType to group set of common parameters of an asset in a joining system.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools" BrowseName="4:Tools" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets">
+        <DisplayName>Tools</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+    </UAObject>
+    <UAObject SymbolicName="S0" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0" BrowseName="4:0" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools">
+        <DisplayName>0</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+            <Reference ReferenceType="HasInterface">ns=4;i=1004</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Health" BrowseName="4:Health" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0">
+        <DisplayName>Health</DisplayName>
+        <Description>The Health Object is an instance of 2:FunctionalGroupType to group health related parameters for all the assets in a Joining System.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+            <Reference ReferenceType="HasInterface">ns=1;i=15051</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification" BrowseName="1:Identification" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0">
+        <DisplayName>Identification</DisplayName>
+        <Description>The Identification Object, using the standardized name defined in OPC 10000-100, provides identification information about the asset. This is a mandatory place holder and any asset inheriting IJoiningSystemAssetType will replace it with MachineIdentificationType or MachineryComponentIdentificationType.</Description>
+        <References>
+            <Reference ReferenceType="HasAddIn" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=2;i=1004</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification.SerialNumber" BrowseName="1:SerialNumber" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification">
+        <DisplayName>SerialNumber</DisplayName>
+        <Description>A string containing a unique production number of the manufacturer of the MachineryItem. The global uniqueness of the serial number is only given in the context of the manufacturer, and potentially the model. The value shall not change during the life-cycle of the MachineryItem.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification.SoftwareRevision" BrowseName="1:SoftwareRevision" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification">
+        <DisplayName>SoftwareRevision</DisplayName>
+        <Description>A string representation of the revision level of a MachineryItem. In most cases, MachineryItems consist of several software components. In that case, information about the software components might be provided as additional information in the address space, including individual revision information. In that case, this property is either not provided or provides an overall software revision level. The value might change during the life-cycle of a MachineryItem.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance" BrowseName="1:Maintenance" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0">
+        <DisplayName>Maintenance</DisplayName>
+        <Description>The Maintenance Object is an instance of 2:FunctionalGroupType to group maintenance related parameters for the given asset in a Joining System.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Calibration" BrowseName="4:Calibration" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance">
+        <DisplayName>Calibration</DisplayName>
+        <Description>The Calibration Object provides a set of parameters related to the calibration operations performed on a given asset.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Calibration.CalibrationValue" BrowseName="4:CalibrationValue" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Calibration">
+        <DisplayName>CalibrationValue</DisplayName>
+        <Description>CalibrationValue is the configured value of the calibration.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Calibration</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UtcTime" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Calibration.LastCalibration" BrowseName="4:LastCalibration" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Calibration">
+        <DisplayName>LastCalibration</DisplayName>
+        <Description>LastCalibration is the date when the last calibration was completed.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Calibration</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Service" BrowseName="4:Service" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance">
+        <DisplayName>Service</DisplayName>
+        <Description>The Service Object provides a set of parameters related to the service operations performed on a given asset.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="UtcTime" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Service.LastService" BrowseName="4:LastService" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Service">
+        <DisplayName>LastService</DisplayName>
+        <Description>LastService is the date when the last service was completed.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Service</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Service.ServiceCycleCount" BrowseName="4:ServiceCycleCount" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Service">
+        <DisplayName>ServiceCycleCount</DisplayName>
+        <Description>ServiceCycleCount is the total cycle counter since the last service.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Service</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Service.ServicePlace" BrowseName="4:ServicePlace" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Service">
+        <DisplayName>ServicePlace</DisplayName>
+        <Description>ServicePlace is the location where the last service was completed.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Maintenance.Service</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.OperationCounters" BrowseName="1:OperationCounters" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0">
+        <DisplayName>OperationCounters</DisplayName>
+        <Description>It provides information about the duration something is turned on and how long it performs an activity.</Description>
+        <References>
+            <Reference ReferenceType="HasAddIn" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=2;i=1009</Reference>
+            <Reference ReferenceType="HasInterface">ns=1;i=480</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Duration" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.OperationCounters.PowerOnDuration" BrowseName="1:PowerOnDuration" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.OperationCounters">
+        <DisplayName>PowerOnDuration</DisplayName>
+        <Description>PowerOnDuration is the duration the Device has been powered. The main purpose is to determine the time in which degradation of the Device occurred. The details, when the time is counted, is implementation-specific. Companion specifications might define specific rules. Typically, when the Device has supply voltage and the main CPU is running, the time is counted. This may include any kind of sleep mode, but may not include pure Wake on LAN. This value shall only increase during the lifetime of the Device and shall not be reset when the Device is restarted. The PowerOnDuration is provided as Duration, i.e., in milliseconds or even fractions of a millisecond. However, the Server is not expected to update the value in such a high frequency, but maybe once a minute or once an hour, depending on the application.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.OperationCounters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters" BrowseName="4:Parameters" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0">
+        <DisplayName>Parameters</DisplayName>
+        <Description>The Parameters Object is an instance of 0:FolderType to group set of common parameters of an asset in a joining system.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+            <Reference ReferenceType="HasInterface">ns=5;i=1005</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Byte" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type" BrowseName="4:Type" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters">
+        <DisplayName>Type</DisplayName>
+        <Description>Type is the classification of a Tool.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=2376</Reference>
+        </References>
+        <Value>
+            <uax:Byte>2</uax:Byte>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" ValueRank="1" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type.EnumStrings" BrowseName="EnumStrings" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type">
+        <DisplayName>EnumStrings</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:ListOfLocalizedText>
+                <uax:LocalizedText>
+                    <uax:Text>OTHER</uax:Text>
+                </uax:LocalizedText>
+                <uax:LocalizedText>
+                    <uax:Text>FIXTURED</uax:Text>
+                </uax:LocalizedText>
+                <uax:LocalizedText>
+                    <uax:Text>HANDHELD</uax:Text>
+                </uax:LocalizedText>
+                <uax:LocalizedText>
+                    <uax:Text>MANUAL</uax:Text>
+                </uax:LocalizedText>
+            </uax:ListOfLocalizedText>
+        </Value>
+    </UAVariable>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.Identification" BrowseName="1:Identification" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number">
+        <DisplayName>Identification</DisplayName>
+        <Description>The Identification Object provides identification parameters of the joining system.</Description>
+        <References>
+            <Reference ReferenceType="HasAddIn" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=4;i=1029</Reference>
+            <Reference ReferenceType="HasInterface">ns=1;i=15035</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.Identification.Name" BrowseName="4:Name" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.Identification" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Name</DisplayName>
+        <Description>Name is the name of the joining system. It can also be the standard browse name of the instance of JoiningSystemType.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification.DeviceClass" BrowseName="1:DeviceClass" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification">
+        <DisplayName>DeviceClass</DisplayName>
+        <Description>Indicates in which domain or for what purpose the MachineryItem is used.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Parameters.ActStatus" BrowseName="6:ActStatus" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Parameters" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ActStatus</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Health.Temperature" BrowseName="4:Temperature" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Health">
+        <DisplayName>Temperature</DisplayName>
+        <Description>Temperature is the measured temperature of the asset.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Health</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=4;i=2011</Reference>
+        </References>
+        <Value>
+            <uax:Double>0</uax:Double>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Health.Temperature.EngineeringUnits" BrowseName="4:EngineeringUnits" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Health.Temperature">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <Description>0:EngineeringUnits defines the engineering unit of the values.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Health.Temperature</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Identification.Manufacturer" BrowseName="1:Manufacturer" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Identification">
+        <DisplayName>Manufacturer</DisplayName>
+        <Description>A human-readable, localized name of the manufacturer of the MachineryItem.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Byte" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.StateOfCharge" BrowseName="4:StateOfCharge" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters">
+        <DisplayName>StateOfCharge</DisplayName>
+        <Description>StateOfCharge is the state of charge (SOC) indicator functions as a sort of fuel gauge that displays the usable amount of energy. This helps determine optimal charging and discharging. It is given in percentage.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:Byte>0</uax:Byte>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Byte" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.StateOfHealth" BrowseName="4:StateOfHealth" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters">
+        <DisplayName>StateOfHealth</DisplayName>
+        <Description>StateOfHealth is the State of Health is a measurement that reflects the general condition of a battery and its ability to deliver the specified performance compared with a fresh battery. It considers such factors as charge acceptance, internal resistance, voltage, and self-discharge. It is given in percentage.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:Byte>0</uax:Byte>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Identification.Manufacturer" BrowseName="1:Manufacturer" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Identification">
+        <DisplayName>Manufacturer</DisplayName>
+        <Description>A human-readable, localized name of the manufacturer of the MachineryItem.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Controllers.0.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Health.Temperature" BrowseName="4:Temperature" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Health">
+        <DisplayName>Temperature</DisplayName>
+        <Description>Temperature is the measured temperature of the asset.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Health</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=4;i=2011</Reference>
+        </References>
+        <Value>
+            <uax:Double>0</uax:Double>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Health.Temperature.EngineeringUnits" BrowseName="4:EngineeringUnits" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Health.Temperature">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <Description>0:EngineeringUnits defines the engineering unit of the values.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Health.Temperature</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification.Model" BrowseName="1:Model" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification">
+        <DisplayName>Model</DisplayName>
+        <Description>A human-readable, localized name of the model of the MachineryItem.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification.Manufacturer" BrowseName="1:Manufacturer" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification">
+        <DisplayName>Manufacturer</DisplayName>
+        <Description>A human-readable, localized name of the manufacturer of the MachineryItem.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Identification</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UInteger" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.OperationCounters.OperationCycleCounter" BrowseName="1:OperationCycleCounter" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.OperationCounters">
+        <DisplayName>OperationCycleCounter</DisplayName>
+        <Description>OperationCycleCounter is counting the times the Device switches from not performing an activity to performing an activity. For example, each time a valve starts moving, is counted. This value shall only increase during the lifetime of the Device and shall not be reset when the Device is restarted.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.OperationCounters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.ActStatus" BrowseName="5:ActStatus" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters">
+        <DisplayName>ActStatus</DisplayName>
+        <Description>Current Status of the tool</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DesignType" BrowseName="5:DesignType" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters">
+        <DisplayName>DesignType</DisplayName>
+        <Description>DesignType provides information on the design of the Tool.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DesignType.Description" BrowseName="5:Description" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DesignType" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DesignType</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int64" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DesignType.Value" BrowseName="5:Value" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DesignType" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Value</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DesignType</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveMethod" BrowseName="5:DriveMethod" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters">
+        <DisplayName>DriveMethod</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveMethod.Description" BrowseName="5:Description" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveMethod" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveMethod</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveMethod.DisplayName" BrowseName="5:DisplayName" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveMethod" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveMethod</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int64" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveMethod.Value" BrowseName="5:Value" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveMethod" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Value</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveMethod</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.MaxSpeed" BrowseName="5:MaxSpeed" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters">
+        <DisplayName>MaxSpeed</DisplayName>
+        <Description>MaxSpeed is the maximum rotation speed of the driving shaft.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveType" BrowseName="5:DriveType" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters">
+        <DisplayName>DriveType</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveType.Description" BrowseName="5:Description" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveType" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveType</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveType.DisplayName" BrowseName="5:DisplayName" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveType" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveType</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int64" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveType.Value" BrowseName="5:Value" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveType" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Value</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DriveType</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.MaxTorque" BrowseName="5:MaxTorque" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters">
+        <DisplayName>MaxTorque</DisplayName>
+        <Description>MaxTorque is the maximum allowed torque for which the tool may be used for tightening processes. For Click Wrenches, it may not be available.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type_1" BrowseName="5:Type" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Type</DisplayName>
+        <Description>Type is the classification of a Tool.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=7616</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EnumValueType>
+                        <uax:Value>0</uax:Value>
+                    </uax:EnumValueType>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type.Description" BrowseName="5:Description" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type_1" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type_1</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type.DisplayName" BrowseName="5:DisplayName" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type_1" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type_1</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int64" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type.Value" BrowseName="5:Value" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type_1" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Value</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.Type_1</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.MaxSpeed.EngineeringUnits" BrowseName="5:EngineeringUnits" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.MaxSpeed">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <Description>0:EngineeringUnits defines the engineering unit of the values.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.MaxSpeed</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.MaxTorque.EngineeringUnits" BrowseName="5:EngineeringUnits" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.MaxTorque">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <Description>0:EngineeringUnits defines the engineering unit of the values.</Description>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.MaxTorque</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement" BrowseName="3:ResultManagement" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number">
+        <DisplayName>ResultManagement</DisplayName>
+        <Description>The ResultManagement Object is an instance of JoiningSystemResultManagementType which provides mechanisms to access results generated by the joining system.</Description>
+        <References>
+            <Reference ReferenceType="HasAddIn" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=1004</Reference>
+        </References>
+    </UAObject>
+    <UAObject NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results" BrowseName="5:Results" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement">
+        <DisplayName>Results</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="ns=5;i=3001" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0" BrowseName="5:0" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results" UserAccessLevel="3" AccessLevel="3" SymbolicName="S0">
+        <DisplayName>0</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2004</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3000" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" BrowseName="5:ResultMetaData" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultMetaData</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2002</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.ResultId" BrowseName="5:ResultId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3003" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent" BrowseName="5:ResultContent" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultContent</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2010</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>ns=5;i=5008</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <JoiningResultDataType xmlns="http://ab.com/UA/DI/AMB/Machinery/MachineryResult/IJT/AIJT/Types.xsd">
+                        <EncodingMask>1</EncodingMask>
+                        <FailureReason>0</FailureReason>
+                    </JoiningResultDataType>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3005" ValueRank="1" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues" BrowseName="5:OverallResultValues" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>OverallResultValues</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.ActStrategy" BrowseName="5:ActStrategy" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ActStrategy</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UtcTime" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.CreationTime" BrowseName="5:CreationTime" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>CreationTime</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.InternalRecipeId" BrowseName="5:InternalRecipeId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>InternalRecipeId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.JobId" BrowseName="5:JobId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>JobId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.ManufacturersSerialNumber" BrowseName="5:ManufacturersSerialNumber" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ManufacturersSerialNumber</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.ParameterSetName" BrowseName="5:ParameterSetName" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ParameterSetName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.ResultEvaluation" BrowseName="5:ResultEvaluation" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluation</DisplayName>
+        <Description>The ResultEvaluation indicates whether the result was in tolerance.</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=7616</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EnumValueType>
+                        <uax:Value>0</uax:Value>
+                    </uax:EnumValueType>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.TaskIdentifier" BrowseName="5:TaskIdentifier" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>TaskIdentifier</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.WorkOrder" BrowseName="5:WorkOrder" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>WorkOrder</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.WorkOrderTask" BrowseName="5:WorkOrderTask" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>WorkOrderTask</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int16" ValueRank="1" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Errors" ArrayDimensions="1" BrowseName="5:Errors" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Errors</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:ListOfInt16>
+                <uax:Int16>0</uax:Int16>
+            </uax:ListOfInt16>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3005" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle" BrowseName="5:ActFinalAngle" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ActFinalAngle</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2012</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.MeasuredValue" BrowseName="5:MeasuredValue" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>MeasuredValue</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits" BrowseName="5:EngineeringUnits" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits.Description" BrowseName="5:Description" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits.DisplayName" BrowseName="5:DisplayName" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits.NamespaceUri" BrowseName="5:NamespaceUri" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>NamespaceUri</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits.UnitId" BrowseName="5:UnitId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>UnitId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.HighLimit" BrowseName="5:HighLimit" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>HighLimit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.LowLimit" BrowseName="5:LowLimit" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>LowLimit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.TargetValue" BrowseName="5:TargetValue" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>TargetValue</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.ResultEvaluation" BrowseName="5:ResultEvaluation" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluation</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=7616</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EnumValueType>
+                        <uax:Value>0</uax:Value>
+                    </uax:EnumValueType>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.ResultEvaluation.Description" BrowseName="5:Description" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.ResultEvaluation" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.ResultEvaluation</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.ResultEvaluation.DisplayName" BrowseName="5:DisplayName" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.ResultEvaluation" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.ResultEvaluation</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int64" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.ResultEvaluation.Value" BrowseName="5:Value" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.ResultEvaluation" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Value</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalAngle.ResultEvaluation</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3005" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque" BrowseName="5:ActFinalTorque" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ActFinalTorque</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2012</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits" BrowseName="5:EngineeringUnits" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits.Description" BrowseName="5:Description" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits.DisplayName" BrowseName="5:DisplayName" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits.NamespaceUri" BrowseName="5:NamespaceUri" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>NamespaceUri</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits.UnitId" BrowseName="5:UnitId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>UnitId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.HighLimit" BrowseName="5:HighLimit" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>HighLimit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.LowLimit" BrowseName="5:LowLimit" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>LowLimit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.MeasuredValue" BrowseName="5:MeasuredValue" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>MeasuredValue</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.ResultEvaluation" BrowseName="5:ResultEvaluation" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluation</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=7616</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EnumValueType>
+                        <uax:Value>0</uax:Value>
+                    </uax:EnumValueType>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.ResultEvaluation.Description" BrowseName="5:Description" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.ResultEvaluation" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.ResultEvaluation</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.ResultEvaluation.DisplayName" BrowseName="5:DisplayName" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.ResultEvaluation" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.ResultEvaluation</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int64" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.ResultEvaluation.Value" BrowseName="5:Value" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.ResultEvaluation" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Value</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.ResultEvaluation</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque.TargetValue" BrowseName="5:TargetValue" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>TargetValue</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActFinalTorque</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=5;i=3005" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle" BrowseName="5:ActRundownAngle" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ActRundownAngle</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2012</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits" BrowseName="5:EngineeringUnits" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits.Description" BrowseName="5:Description" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits.DisplayName" BrowseName="5:DisplayName" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits.NamespaceUri" BrowseName="5:NamespaceUri" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>NamespaceUri</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits.UnitId" BrowseName="5:UnitId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>UnitId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.EngineeringUnits</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.HighLimit" BrowseName="5:HighLimit" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>HighLimit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.LowLimit" BrowseName="5:LowLimit" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>LowLimit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Double" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.MeasuredValue" BrowseName="5:MeasuredValue" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>MeasuredValue</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EnumValueType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.ResultEvaluation" BrowseName="5:ResultEvaluation" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>ResultEvaluation</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2011</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=7616</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EnumValueType>
+                        <uax:Value>0</uax:Value>
+                    </uax:EnumValueType>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.ResultEvaluation.Description" BrowseName="5:Description" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.ResultEvaluation" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Description</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.ResultEvaluation</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.ResultEvaluation.DisplayName" BrowseName="5:DisplayName" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.ResultEvaluation" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.ResultEvaluation</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int64" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.ResultEvaluation.Value" BrowseName="5:Value" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.ResultEvaluation" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Value</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.OverallResultValues.ActRundownAngle.ResultEvaluation</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="JoiningTraceDataType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace" BrowseName="5:Trace" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>Trace</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>ns=4;i=5066</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <JoiningTraceDataType xmlns="http://opcfoundation.org/UA/IJT/Base/Types.xsd"/>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="StepTraceDataType" ValueRank="1" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces" ArrayDimensions="1" BrowseName="5:StepTraces" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepTraces</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:ListOfExtensionObject>
+                <uax:ExtensionObject>
+                    <uax:TypeId>
+                        <uax:Identifier>ns=4;i=5069</uax:Identifier>
+                    </uax:TypeId>
+                    <uax:Body>
+                        <StepTraceDataType xmlns="http://opcfoundation.org/UA/IJT/Base/Types.xsd">
+                            <EncodingMask>3</EncodingMask>
+                            <NumberOfTracePoints>0</NumberOfTracePoints>
+                            <SamplingInterval>0</SamplingInterval>
+                            <StartTimeOffset>0</StartTimeOffset>
+                        </StepTraceDataType>
+                    </uax:Body>
+                </uax:ExtensionObject>
+            </uax:ListOfExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="StepTraceDataType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace" BrowseName="5:AngleTrace" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>AngleTrace</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2007</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UInt32" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace.NumberOfTracePoints" BrowseName="5:NumberOfTracePoints" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>NumberOfTracePoints</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace.StepResultId" BrowseName="5:StepResultId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepResultId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TraceContentDataType" ValueRank="1" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace.StepTraceContent" ArrayDimensions="1" BrowseName="5:StepTraceContent" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepTraceContent</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:ListOfExtensionObject>
+                <uax:ExtensionObject>
+                    <uax:TypeId>
+                        <uax:Identifier>ns=4;i=5072</uax:Identifier>
+                    </uax:TypeId>
+                    <uax:Body>
+                        <TraceContentDataType xmlns="http://opcfoundation.org/UA/IJT/Base/Types.xsd">
+                            <EncodingMask>24</EncodingMask>
+                            <PhysicalQuantity>0</PhysicalQuantity>
+                            <EngineeringUnits>
+                                <UnitId xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</UnitId>
+                            </EngineeringUnits>
+                        </TraceContentDataType>
+                    </uax:Body>
+                </uax:ExtensionObject>
+            </uax:ListOfExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace.StepTraceId" BrowseName="5:StepTraceId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepTraceId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Duration" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace.SamplingInterval" BrowseName="5:SamplingInterval" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SamplingInterval</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.AngleTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="StepTraceDataType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace" BrowseName="5:CurrentTrace" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>CurrentTrace</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2007</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UInt32" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace.NumberOfTracePoints" BrowseName="5:NumberOfTracePoints" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>NumberOfTracePoints</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Duration" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace.SamplingInterval" BrowseName="5:SamplingInterval" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SamplingInterval</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace.StepResultId" BrowseName="5:StepResultId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepResultId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TraceContentDataType" ValueRank="1" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace.StepTraceContent" ArrayDimensions="1" BrowseName="5:StepTraceContent" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepTraceContent</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:ListOfExtensionObject>
+                <uax:ExtensionObject>
+                    <uax:TypeId>
+                        <uax:Identifier>ns=4;i=5072</uax:Identifier>
+                    </uax:TypeId>
+                    <uax:Body>
+                        <TraceContentDataType xmlns="http://opcfoundation.org/UA/IJT/Base/Types.xsd">
+                            <EncodingMask>24</EncodingMask>
+                            <PhysicalQuantity>0</PhysicalQuantity>
+                            <EngineeringUnits>
+                                <UnitId xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</UnitId>
+                            </EngineeringUnits>
+                        </TraceContentDataType>
+                    </uax:Body>
+                </uax:ExtensionObject>
+            </uax:ListOfExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace.StepTraceId" BrowseName="5:StepTraceId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepTraceId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.CurrentTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="StepTraceDataType" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace" BrowseName="5:TorqueTrace" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>TorqueTrace</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=5;i=2007</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="UInt32" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace.NumberOfTracePoints" BrowseName="5:NumberOfTracePoints" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>NumberOfTracePoints</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Duration" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace.SamplingInterval" BrowseName="5:SamplingInterval" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SamplingInterval</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace.StepResultId" BrowseName="5:StepResultId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepResultId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="TraceContentDataType" ValueRank="1" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace.StepTraceContent" ArrayDimensions="1" BrowseName="5:StepTraceContent" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepTraceContent</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:ListOfExtensionObject>
+                <uax:ExtensionObject>
+                    <uax:TypeId>
+                        <uax:Identifier>ns=4;i=5072</uax:Identifier>
+                    </uax:TypeId>
+                    <uax:Body>
+                        <TraceContentDataType xmlns="http://opcfoundation.org/UA/IJT/Base/Types.xsd">
+                            <EncodingMask>24</EncodingMask>
+                            <PhysicalQuantity>0</PhysicalQuantity>
+                            <EngineeringUnits>
+                                <UnitId xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</UnitId>
+                            </EngineeringUnits>
+                        </TraceContentDataType>
+                    </uax:Body>
+                </uax:ExtensionObject>
+            </uax:ListOfExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="TrimmedString" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace.StepTraceId" BrowseName="5:StepTraceId" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>StepTraceId</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultContent.Trace.StepTraces.TorqueTrace</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.StateOfCharge.EngineeringUnits" BrowseName="6:EngineeringUnits" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.StateOfCharge" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.StateOfCharge</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="EUInformation" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.StateOfHealth.EngineeringUnits" BrowseName="6:EngineeringUnits" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.StateOfHealth" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>EngineeringUnits</DisplayName>
+        <References>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Batteries.0.Parameters.StateOfHealth</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+        </References>
+        <Value>
+            <uax:ExtensionObject>
+                <uax:TypeId>
+                    <uax:Identifier>i=888</uax:Identifier>
+                </uax:TypeId>
+                <uax:Body>
+                    <uax:EUInformation>
+                        <uax:UnitId>0</uax:UnitId>
+                    </uax:EUInformation>
+                </uax:Body>
+            </uax:ExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="String" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData.SerialNumber" BrowseName="5:SerialNumber" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>SerialNumber</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.ResultManagement.Results.0.ResultMetaData</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="LocalizedText" NodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DesignType.DisplayName" BrowseName="5:DisplayName" ParentNodeId="ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DesignType" UserAccessLevel="3" AccessLevel="3">
+        <DisplayName>DisplayName</DisplayName>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=6;s=Objects.DeviceSet.UTN_Number.AssetManagement.Assets.Tools.0.Parameters.DesignType</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+    </UAVariable>
+</UANodeSet>

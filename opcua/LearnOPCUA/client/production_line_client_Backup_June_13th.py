@@ -28,6 +28,9 @@ class ProductionLineClient:
         self.alias_map = {}
         self.reverse_alias_map = {}
         self.uax_direct_value_types = set()
+        self.model_uris = set()
+        self.xsd_dir = os.path.join(os.path.dirname(__file__), "xml")
+        self.datatype_body_namespaces = {}
     
     def connect(self):
         """Connect to the OPCUA server."""
@@ -257,6 +260,8 @@ class ProductionLineClient:
                 if not namespace_uri:
                     continue
 
+                self.model_uris.add(namespace_uri)
+
                 if namespace_pub_date:
                     namespace_pub_date = namespace_pub_date.strip()
                     if " " in namespace_pub_date and "T" not in namespace_pub_date:
@@ -274,6 +279,23 @@ class ProductionLineClient:
                 })
         except Exception as e:
             print(f"[CLIENT] Model generation warning: {e}")
+
+    def model_uri_to_xsd_file(self, model_uri):
+        mapping = {
+            "http://opcfoundation.org/UA/": "Opc.Ua.Types.xsd",
+            "http://opcfoundation.org/UA/DI/": "Opc.Ua.Di.Types.xsd",
+            "http://opcfoundation.org/UA/IJT/Base/": "Opc.Ua.IJT.Base.Types.xsd",
+            "http://opcfoundation.org/UA/IJT/Tightening/": "Opc.Ua.IJT.Tightening.Types.xsd",
+            "http://opcfoundation.org/UA/Machinery/": "Opc.Ua.Machinery.Types.xsd",
+            "http://opcfoundation.org/UA/Machinery/Result/": "Opc.Ua.Machinery.Result.Types.xsd",
+        }
+
+        filename = mapping.get(model_uri)
+        if not filename:
+            return None
+
+        path = os.path.join(self.xsd_dir, filename)
+        return path if os.path.exists(path) else None
 
     # def add_aliases(self, root):
     #     """Add Aliases section from the server if available."""
@@ -501,66 +523,197 @@ class ProductionLineClient:
 
         except Exception:
             pass
+    ########################################################################
+    #####Not without using UANNodeset.xsd -, but still working   ###########
+    ########################################################################
+
+    # def export_node(self, node, parent_nodeid, root):
+    #     """Export a single node and recurse through children."""
+    #     try:
+    #         node_class = node.get_node_class()
+    #     except Exception:
+    #         return
+
+    #     if node_class == ua.NodeClass.Object:
+    #         element = SubElement(root, "UAObject", {
+    #             "SymbolicName": self.make_symbolic_name(node.get_browse_name().Name) if hasattr(node.get_browse_name(), "Name") else str(node.get_browse_name()),
+    #             "NodeId": node.nodeid.to_string(),
+    #             "BrowseName": node.get_browse_name().to_string() if hasattr(node.get_browse_name(), "to_string") else str(node.get_browse_name()),
+    #             "ParentNodeId": str(parent_nodeid) if parent_nodeid is not None else "",
+    #         })
+    #         self.build_display_name_element(element, node)
+    #         self.build_description_element(element, node)
+    #         self.build_references_element(element, node)
+    #         self.ensure_type_definition(element, node, node_class)
+
+    #     # elif node_class == ua.NodeClass.Variable:
+    #     #     data_type = ""
+    #     #     try:
+    #     #         # data_type = node.get_data_type().to_string()
+    #     #         data_type_nodeid = node.get_data_type().to_string()
+    #     #         data_type = self.reverse_alias_map.get(data_type_nodeid, data_type_nodeid)
+    #     #     except Exception:
+    #     #         data_type = ""
+
+    #     #     element = SubElement(root, "UAVariable", {
+    #     #         "DataType": data_type,
+    #     #         "NodeId": node.nodeid.to_string(),
+    #     #         "BrowseName": node.get_browse_name().to_string() if hasattr(node.get_browse_name(), "to_string") else str(node.get_browse_name()),
+    #     #         "ParentNodeId": str(parent_nodeid) if parent_nodeid is not None else "",
+    #     #     })
+    #     #     self.build_display_name_element(element, node)
+    #     #     self.build_references_element(element, node)
+
+    #     #     try:
+    #     #         value = node.get_value()
+    #     #         if value is not None:
+    #     #             value_el = SubElement(element, "Value")
+    #     #             value_el.text = str(value)
+    #     #     except Exception:
+    #     #         pass
+    #     elif node_class == ua.NodeClass.Variable:
+    #         data_type = ""
+    #         data_type_nodeid = ""
+
+    #         try:
+    #             # Try to resolve the DataType NodeId to a friendly type name
+    #             dt_nodeid = node.get_data_type()
+    #             try:
+    #                 dt_node = self.client.get_node(dt_nodeid)
+    #                 bn = dt_node.get_browse_name()
+    #                 if hasattr(bn, "Name"):
+    #                     data_type = bn.Name
+    #                 else:
+    #                     data_type = str(bn)
+    #             except Exception:
+    #                 # Fallback: use alias map or NodeId string
+    #                 dt_sid = dt_nodeid.to_string() if hasattr(dt_nodeid, "to_string") else str(dt_nodeid)
+    #                 data_type = self.reverse_alias_map.get(dt_sid, dt_sid)
+    #         except Exception:
+    #             data_type = ""
+
+    #         attribs = {
+    #             "DataType": data_type,
+    #             "NodeId": node.nodeid.to_string(),
+    #             "BrowseName": node.get_browse_name().to_string()
+    #                 if hasattr(node.get_browse_name(), "to_string")
+    #                 else str(node.get_browse_name()),
+    #             "ParentNodeId": str(parent_nodeid) if parent_nodeid is not None else "",
+    #         }
+
+    #         try:
+    #             value_rank = node.get_value_rank()
+    #             if value_rank is not None and value_rank != -1:
+    #                 attribs["ValueRank"] = str(value_rank)
+    #         except Exception:
+    #             pass
+
+    #         element = SubElement(root, "UAVariable", attribs)
+
+    #         # Order as per UANodeSet style:
+    #         # DisplayName -> Description -> References -> Value
+    #         self.build_display_name_element(element, node)
+
+    #         # try:
+    #         #     desc = node.get_description()
+    #         #     if desc and desc.Text:
+    #         #         desc_el = SubElement(element, "Description")
+    #         #         desc_el.text = desc.Text
+    #         # except Exception:
+    #         #     pass
+
+    #         self.build_description_element(element, node)
+
+    #         self.build_references_element(element, node)
+
+    #         try:
+    #             value = node.get_value()
+    #             self.add_typed_value_element(element, data_type, value)
+    #         except Exception:
+    #             pass
+    #     else:
+    #         # Only export UAObject and UAVariable
+    #         return
+
+    #     try:
+    #         # children = node.get_children()
+    #         # for child in children:
+    #         #     self.export_node(child, node.nodeid.to_string(), root)
+
+    #         children = node.get_children()
+    #         for child in children:
+    #             if child.nodeid.NamespaceIndex == 0:
+    #                 continue
+    #             self.export_node(child, node.nodeid.to_string(), root)
+    #     except Exception:
+    #         pass
+
+    ########################################################################
+    #####Not by using UANNodeset.xsd  ######################################
+    ########################################################################
 
     def export_node(self, node, parent_nodeid, root):
-        """Export a single node and recurse through children."""
+        """Export a single OPC UA node into UANodeSet XML and recurse through children."""
         try:
             node_class = node.get_node_class()
         except Exception:
             return
 
-        if node_class == ua.NodeClass.Object:
-            element = SubElement(root, "UAObject", {
-                "SymbolicName": self.make_symbolic_name(node.get_browse_name().Name) if hasattr(node.get_browse_name(), "Name") else str(node.get_browse_name()),
-                "NodeId": node.nodeid.to_string(),
-                "BrowseName": node.get_browse_name().to_string() if hasattr(node.get_browse_name(), "to_string") else str(node.get_browse_name()),
-                "ParentNodeId": str(parent_nodeid) if parent_nodeid is not None else "",
-            })
+        def browse_name_text(n):
+            try:
+                bn = n.get_browse_name()
+                return bn.to_string() if hasattr(bn, "to_string") else str(bn)
+            except Exception:
+                return ""
+
+        def browse_name_name(n):
+            try:
+                bn = n.get_browse_name()
+                return bn.Name if hasattr(bn, "Name") else str(bn)
+            except Exception:
+                return ""
+
+        def create_ua_node_element(xml_tag, attribs):
+            element = SubElement(root, xml_tag, attribs)
+
+            # UANodeSet.xsd-style order:
+            # DisplayName -> Description -> References -> Value
             self.build_display_name_element(element, node)
             self.build_description_element(element, node)
             self.build_references_element(element, node)
+            self.ensure_type_definition(element, node, node_class)
 
-        # elif node_class == ua.NodeClass.Variable:
-        #     data_type = ""
-        #     try:
-        #         # data_type = node.get_data_type().to_string()
-        #         data_type_nodeid = node.get_data_type().to_string()
-        #         data_type = self.reverse_alias_map.get(data_type_nodeid, data_type_nodeid)
-        #     except Exception:
-        #         data_type = ""
+            return element
 
-        #     element = SubElement(root, "UAVariable", {
-        #         "DataType": data_type,
-        #         "NodeId": node.nodeid.to_string(),
-        #         "BrowseName": node.get_browse_name().to_string() if hasattr(node.get_browse_name(), "to_string") else str(node.get_browse_name()),
-        #         "ParentNodeId": str(parent_nodeid) if parent_nodeid is not None else "",
-        #     })
-        #     self.build_display_name_element(element, node)
-        #     self.build_references_element(element, node)
+        if node_class == ua.NodeClass.Object:
+            attribs = {
+                "SymbolicName": self.make_symbolic_name(browse_name_name(node)),
+                "NodeId": node.nodeid.to_string(),
+                "BrowseName": browse_name_text(node),
+                "ParentNodeId": str(parent_nodeid) if parent_nodeid is not None else "",
+            }
 
-        #     try:
-        #         value = node.get_value()
-        #         if value is not None:
-        #             value_el = SubElement(element, "Value")
-        #             value_el.text = str(value)
-        #     except Exception:
-        #         pass
+            create_ua_node_element("UAObject", attribs)
+
         elif node_class == ua.NodeClass.Variable:
             data_type = ""
-            data_type_nodeid = ""
 
             try:
-                data_type_nodeid = node.get_data_type().to_string()
-                data_type = self.reverse_alias_map.get(data_type_nodeid, data_type_nodeid)
+                dt_nodeid = node.get_data_type()
+                try:
+                    dt_node = self.client.get_node(dt_nodeid)
+                    bn = dt_node.get_browse_name()
+                    data_type = bn.Name if hasattr(bn, "Name") else str(bn)
+                except Exception:
+                    dt_sid = dt_nodeid.to_string() if hasattr(dt_nodeid, "to_string") else str(dt_nodeid)
+                    data_type = self.reverse_alias_map.get(dt_sid, dt_sid)
             except Exception:
                 data_type = ""
 
             attribs = {
                 "DataType": data_type,
                 "NodeId": node.nodeid.to_string(),
-                "BrowseName": node.get_browse_name().to_string()
-                    if hasattr(node.get_browse_name(), "to_string")
-                    else str(node.get_browse_name()),
+                "BrowseName": browse_name_text(node),
                 "ParentNodeId": str(parent_nodeid) if parent_nodeid is not None else "",
             }
 
@@ -571,40 +724,26 @@ class ProductionLineClient:
             except Exception:
                 pass
 
-            element = SubElement(root, "UAVariable", attribs)
+            try:
+                array_dimensions = node.get_array_dimensions()
+                if array_dimensions:
+                    attribs["ArrayDimensions"] = ",".join(str(x) for x in array_dimensions)
+            except Exception:
+                pass
 
-            # Order as per UANodeSet style:
-            # DisplayName -> Description -> References -> Value
-            self.build_display_name_element(element, node)
-
-            # try:
-            #     desc = node.get_description()
-            #     if desc and desc.Text:
-            #         desc_el = SubElement(element, "Description")
-            #         desc_el.text = desc.Text
-            # except Exception:
-            #     pass
-
-            self.build_description_element(element, node)
-
-            self.build_references_element(element, node)
+            element = create_ua_node_element("UAVariable", attribs)
 
             try:
                 value = node.get_value()
                 self.add_typed_value_element(element, data_type, value)
             except Exception:
                 pass
+
         else:
-            # Only export UAObject and UAVariable
             return
 
         try:
-            # children = node.get_children()
-            # for child in children:
-            #     self.export_node(child, node.nodeid.to_string(), root)
-
-            children = node.get_children()
-            for child in children:
+            for child in node.get_children():
                 if child.nodeid.NamespaceIndex == 0:
                     continue
                 self.export_node(child, node.nodeid.to_string(), root)
@@ -616,10 +755,12 @@ class ProductionLineClient:
         self.add_namespace_uris(root)
         self.add_models(root)
 
-        types_xsd_path = os.path.join(os.path.dirname(__file__), "Opc.Ua.Types.xsd")
-        if os.path.exists(types_xsd_path):
-            self.load_uax_direct_value_types(types_xsd_path)
-            self.load_uax_complex_type_fields(types_xsd_path)
+        # types_xsd_path = os.path.join(os.path.dirname(__file__), "Opc.Ua.Types.xsd")
+        # if os.path.exists(types_xsd_path):
+        #     self.load_uax_direct_value_types(types_xsd_path)
+        #     self.load_uax_complex_type_fields(types_xsd_path)
+
+        self.load_xsds_from_models()
 
         self.add_aliases(root)
 
@@ -644,6 +785,50 @@ class ProductionLineClient:
             print(f"[CLIENT] Address space export error: {e}")
 
         return root
+    
+    def load_xsds_from_models(self):
+        self.uax_direct_value_types = set()
+        self.uax_complex_type_fields = {}
+        self.datatype_body_namespaces = {}
+
+        # Always load base OPC UA Types.xsd first
+        base_xsd = os.path.join(self.xsd_dir, "Opc.Ua.Types.xsd")
+        if os.path.exists(base_xsd):
+            self.load_uax_direct_value_types(base_xsd)
+            self.load_complex_type_fields_from_xsd(base_xsd, self.UAX_NS)
+
+        for model_uri in self.model_uris:
+            xsd_path = self.model_uri_to_xsd_file(model_uri)
+            if not xsd_path:
+                print(f"[CLIENT] No local XSD found for model: {model_uri}")
+                continue
+
+            body_ns = self.UAX_NS if model_uri == "http://opcfoundation.org/UA/" else model_uri.rstrip("/") + "/Types.xsd"
+            self.load_complex_type_fields_from_xsd(xsd_path, body_ns)
+
+
+    def load_complex_type_fields_from_xsd(self, xsd_path, body_namespace):
+        XS = "{http://www.w3.org/2001/XMLSchema}"
+
+        tree = ET.parse(xsd_path)
+        root = tree.getroot()
+
+        for complex_type in root.findall(f".//{XS}complexType"):
+            type_name = complex_type.attrib.get("name")
+            if not type_name:
+                continue
+
+            element_name = type_name.replace("DataType", "") if type_name.endswith("DataType") else type_name
+
+            fields = []
+            for field in complex_type.findall(f".//{XS}element"):
+                field_name = field.attrib.get("name")
+                if field_name:
+                    fields.append(field_name)
+
+            if fields:
+                self.uax_complex_type_fields[element_name] = fields
+                self.datatype_body_namespaces[element_name] = body_namespace
 
     def indent_xml(self, element, level=0):
         """Indent XML elements for pretty printing."""
@@ -868,48 +1053,176 @@ class ProductionLineClient:
     #         variable_el.remove(value_el)
     #         return
 
+    # def add_typed_value_element(self, variable_el, data_type_name, value):
+    #     if value is None:
+    #         return
+
+    #     # Lists should be handled separately
+    #     if isinstance(value, (list, tuple)):
+    #         return
+
+    #     # Simple scalar types only
+    #     if data_type_name in self.uax_direct_value_types and data_type_name not in self.uax_complex_type_fields:
+    #         formatted = self.format_value_for_uax(data_type_name, value)
+    #         if formatted is None:
+    #             return
+
+    #         value_el = SubElement(variable_el, "Value")
+    #         child = SubElement(value_el, f"{{{self.UAX_NS}}}{data_type_name}")
+    #         child.text = formatted
+    #         return
+
+    #     # Generic complex type handling
+    #     if data_type_name in self.uax_complex_type_fields:
+    #         # Only encode ExtensionObject when we can populate at least one field
+    #         field_names = self.uax_complex_type_fields.get(data_type_name, [])
+    #         populated = False
+    #         ext_obj_el = Element("temp")
+
+    #         for field_name in field_names:
+    #             field_value = getattr(value, field_name, None)
+    #             if field_value is not None:
+    #                 populated = True
+    #                 break
+
+    #         if not populated:
+    #             return
+
+    #         value_el = SubElement(variable_el, "Value")
+    #         ext_obj = SubElement(value_el, f"{{{self.UAX_NS}}}ExtensionObject")
+
+    #         type_id = SubElement(ext_obj, f"{{{self.UAX_NS}}}TypeId")
+    #         SubElement(type_id, f"{{{self.UAX_NS}}}Identifier").text = self.get_binary_encoding_id(data_type_name)
+
+    #         body = SubElement(ext_obj, f"{{{self.UAX_NS}}}Body")
+    #         complex_el = SubElement(body, f"{{{self.UAX_NS}}}{data_type_name}")
+
+    #         for field_name in field_names:
+    #             field_value = getattr(value, field_name, None)
+
+    #             field_el = SubElement(complex_el, f"{{{self.UAX_NS}}}{field_name}")
+
+    #             if hasattr(field_value, "Text"):
+    #                 text_el = SubElement(field_el, f"{{{self.UAX_NS}}}Text")
+    #                 text_el.text = str(field_value.Text or "")
+    #             elif field_value is not None:
+    #                 field_el.text = self.format_value_for_xml(field_value)
+
+    #         return
+
+    #     # Unknown datatype: avoid invalid XML
+    #     return
+
     def add_typed_value_element(self, variable_el, data_type_name, value):
         if value is None:
             return
 
-        value_el = SubElement(variable_el, "Value")
-
-        # Lists should be handled separately
         if isinstance(value, (list, tuple)):
-            variable_el.remove(value_el)
             return
 
-        # Simple scalar types only
-        if data_type_name in self.uax_direct_value_types and data_type_name not in self.uax_complex_type_fields:
+        # 1. Simple scalar types
+        if (
+            data_type_name in self.uax_direct_value_types
+            and data_type_name not in self.uax_complex_type_fields
+        ):
+            formatted = self.format_value_for_uax(data_type_name, value)
+            if formatted is None:
+                return
+
+            value_el = SubElement(variable_el, "Value")
             child = SubElement(value_el, f"{{{self.UAX_NS}}}{data_type_name}")
-            child.text = self.format_value_for_xml(value)
+            child.text = formatted
             return
 
-        # Generic complex type handling
+        # 2. Structured / ExtensionObject types
         if data_type_name in self.uax_complex_type_fields:
-            ext_obj = SubElement(value_el, f"{{{self.UAX_NS}}}ExtensionObject")
+            field_names = self.uax_complex_type_fields.get(data_type_name, [])
+
+            # Must be valid NodeId like i=888, ns=4;i=5069
+            encoding_id = self.get_binary_encoding_id(data_type_name)
+            if not encoding_id:
+                return
+
+            field_values = {}
+
+            # Case A: value is python-opcua object with attributes
+            for field_name in field_names:
+                field_value = getattr(value, field_name, None)
+                if field_value is not None:
+                    field_values[field_name] = field_value
+
+            # Case B: value is dict
+            if isinstance(value, dict):
+                for field_name in field_names:
+                    if field_name in value:
+                        field_values[field_name] = value[field_name]
+
+            # Case C: value is JSON string from your dummy server
+            if isinstance(value, str):
+                try:
+                    import json
+                    parsed = json.loads(value)
+                    if isinstance(parsed, dict):
+                        for field_name in field_names:
+                            if field_name in parsed:
+                                field_values[field_name] = parsed[field_name]
+                except Exception:
+                    pass
+
+            if not field_values:
+                return
+
+            value_el = SubElement(variable_el, "Value")
+
+            # If variable has ValueRank, use ListOfExtensionObject
+            is_array = variable_el.attrib.get("ValueRank") not in (None, "-1")
+
+            if is_array:
+                container_el = SubElement(value_el, f"{{{self.UAX_NS}}}ListOfExtensionObject")
+            else:
+                container_el = value_el
+
+            ext_obj = SubElement(container_el, f"{{{self.UAX_NS}}}ExtensionObject")
 
             type_id = SubElement(ext_obj, f"{{{self.UAX_NS}}}TypeId")
-            SubElement(type_id, f"{{{self.UAX_NS}}}Identifier").text = self.get_binary_encoding_id(data_type_name)
+            SubElement(type_id, f"{{{self.UAX_NS}}}Identifier").text = encoding_id
 
             body = SubElement(ext_obj, f"{{{self.UAX_NS}}}Body")
-            complex_el = SubElement(body, f"{{{self.UAX_NS}}}{data_type_name}")
 
-            for field_name in self.uax_complex_type_fields[data_type_name]:
-                field_value = getattr(value, field_name, None)
+            # Body namespace should come from datatype namespace, not always UAX.
+            body_ns = self.get_datatype_body_namespace(data_type_name)
 
-                field_el = SubElement(complex_el, f"{{{self.UAX_NS}}}{field_name}")
+            complex_el = SubElement(body, f"{{{body_ns}}}{data_type_name}")
 
+            for field_name in field_names:
+                if field_name not in field_values:
+                    continue
+
+                field_value = field_values[field_name]
+                field_el = SubElement(complex_el, f"{{{body_ns}}}{field_name}")
+
+                # LocalizedText-like dict: {"Text": "..."}
+                if isinstance(field_value, dict):
+                    if "Text" in field_value:
+                        text_el = SubElement(field_el, f"{{{self.UAX_NS}}}Text")
+                        text_el.text = str(field_value.get("Text", ""))
+                    else:
+                        for child_name, child_value in field_value.items():
+                            child_el = SubElement(field_el, f"{{{self.UAX_NS}}}{child_name}")
+                            child_el.text = self.format_value_for_xml(child_value)
+                    continue
+
+                # LocalizedText object
                 if hasattr(field_value, "Text"):
                     text_el = SubElement(field_el, f"{{{self.UAX_NS}}}Text")
                     text_el.text = str(field_value.Text or "")
-                elif field_value is not None:
-                    field_el.text = self.format_value_for_xml(field_value)
+                    continue
+
+                field_el.text = self.format_value_for_xml(field_value)
 
             return
 
-        # Unknown datatype: avoid invalid XML
-        variable_el.remove(value_el)
+        return
 
     def load_uax_direct_value_types(self, types_xsd_path):
         """
@@ -1085,10 +1398,108 @@ class ProductionLineClient:
                 self.uax_complex_type_fields[element_name] = fields
 
     def get_binary_encoding_id(self, data_type_name):
-        # Generic fallback.
-        # Better: browse server for HasEncoding -> Default Binary.
+        data_type_nodeid = self.alias_map.get(data_type_name)
+        if not data_type_nodeid:
+            return ""
+
+        try:
+            dt_node = self.client.get_node(data_type_nodeid)
+
+            for ref in dt_node.get_references():
+                ref_type = self.reverse_alias_map.get(
+                    ref.ReferenceTypeId.to_string(),
+                    ref.ReferenceTypeId.to_string()
+                )
+
+                if ref_type == "HasEncoding":
+                    target = self.client.get_node(ref.NodeId)
+                    browse_name = target.get_browse_name().Name
+
+                    if browse_name in ("Default Binary", "DefaultBinary"):
+                        return ref.NodeId.to_string()
+
+        except Exception:
+            pass
+
         return ""
     
+
+    def ensure_type_definition(self, element, node, node_class):
+        refs_el = element.find("References")
+        if refs_el is None:
+            refs_el = SubElement(element, "References")
+
+        for ref in refs_el.findall("Reference"):
+            if ref.attrib.get("ReferenceType") == "HasTypeDefinition":
+                return
+
+        try:
+            type_def = node.get_type_definition().to_string()
+        except Exception:
+            type_def = "i=58" if node_class == ua.NodeClass.Object else "i=63"
+
+        ref_el = SubElement(refs_el, "Reference", {
+            "ReferenceType": "HasTypeDefinition"
+        })
+        ref_el.text = type_def
+
+    # def get_datatype_body_namespace(self, data_type_name):
+    #     # OPC UA built-in structured types
+    #     if data_type_name in {
+    #         "EUInformation",
+    #         "EnumValueType",
+    #         "Range",
+    #         "Argument",
+    #         "RolePermissionType",
+    #     }:
+    #         return self.UAX_NS
+
+    #     # IJT structured types
+    #     if data_type_name in {
+    #         "JoiningTraceDataType",
+    #         "StepTraceDataType",
+    #         "TraceContentDataType",
+    #     }:
+    #         return "http://opcfoundation.org/UA/IJT/Base/Types.xsd"
+
+    #     # Fallback
+    #     return self.UAX_NS
+
+    # def get_datatype_body_namespace(self, data_type_name):
+    #     data_type_nodeid = self.alias_map.get(data_type_name)
+
+    #     if not data_type_nodeid:
+    #         return self.UAX_NS
+
+    #     try:
+    #         nodeid = ua.NodeId.from_string(data_type_nodeid)
+    #         ns_index = nodeid.NamespaceIndex
+
+    #         namespace_array = self.client.get_namespace_array()
+    #         model_uri = namespace_array[ns_index]
+
+    #         if model_uri == "http://opcfoundation.org/UA/":
+    #             return self.UAX_NS
+
+    #         return model_uri.rstrip("/") + "/Types.xsd"
+
+    #     except Exception:
+    #         return self.UAX_NS
+
+    def get_datatype_body_namespace(self, data_type_name):
+        return self.datatype_body_namespaces.get(data_type_name, self.UAX_NS)
+    
+    def create_ua_node_element(self, root, xml_tag, node, parent_nodeid, attribs):
+        element = SubElement(root, xml_tag, attribs)
+
+        # UANodeSet.xsd order:
+        # DisplayName -> Description -> References -> Value
+        self.build_display_name_element(element, node)
+        self.build_description_element(element, node)
+        self.build_references_element(element, node)
+
+        return element
+
 def main():
     """Main client workflow."""
     

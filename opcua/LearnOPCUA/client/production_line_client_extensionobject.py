@@ -17,6 +17,7 @@ from xml.etree.ElementTree import Element, SubElement, ElementTree, register_nam
 from opcua import Client, ua
 from datetime import datetime, timezone
 import hashlib
+import json
 import xml.etree.ElementTree as ET
 
 class ProductionLineClient:
@@ -519,6 +520,7 @@ class ProductionLineClient:
             self.build_display_name_element(element, node)
             self.build_description_element(element, node)
             self.build_references_element(element, node)
+            self.ensure_type_definition(element, node, node_class)
 
         # elif node_class == ua.NodeClass.Variable:
         #     data_type = ""
@@ -550,10 +552,30 @@ class ProductionLineClient:
             data_type_nodeid = ""
 
             try:
-                data_type_nodeid = node.get_data_type().to_string()
-                data_type = self.reverse_alias_map.get(data_type_nodeid, data_type_nodeid)
+                # Try to resolve the DataType NodeId to a friendly type name
+                dt_nodeid = node.get_data_type()
+                try:
+                    dt_node = self.client.get_node(dt_nodeid)
+                    bn = dt_node.get_browse_name()
+                    if hasattr(bn, "Name"):
+                        data_type = bn.Name
+                    else:
+                        data_type = str(bn)
+                except Exception:
+                    # Fallback: use alias map or NodeId string
+                    dt_sid = dt_nodeid.to_string() if hasattr(dt_nodeid, "to_string") else str(dt_nodeid)
+                    data_type = self.reverse_alias_map.get(dt_sid, dt_sid)
             except Exception:
                 data_type = ""
+
+            value_for_export = None
+            try:
+                value_for_export = node.get_value()
+                structured_for_export = self.parse_structured_value(value_for_export)
+                if structured_for_export and structured_for_export.get("__DataType"):
+                    data_type = structured_for_export["__DataType"]
+            except Exception:
+                value_for_export = None
 
             attribs = {
                 "DataType": data_type,
@@ -590,8 +612,9 @@ class ProductionLineClient:
             self.build_references_element(element, node)
 
             try:
-                value = node.get_value()
-                self.add_typed_value_element(element, data_type, value)
+                if value_for_export is None:
+                    value_for_export = node.get_value()
+                self.add_typed_value_element(element, data_type, value_for_export)
             except Exception:
                 pass
         else:
@@ -872,44 +895,38 @@ class ProductionLineClient:
         if value is None:
             return
 
-        value_el = SubElement(variable_el, "Value")
-
-        # Lists should be handled separately
+        # Lists should be handled separately, unless the variable value itself is a
+        # JSON/dict structure that describes a list field.
         if isinstance(value, (list, tuple)):
-            variable_el.remove(value_el)
             return
+
+        structured = self.parse_structured_value(value)
+
+        # Structured JSON may explicitly define the intended datatype.
+        if structured and structured.get("__DataType"):
+            data_type_name = structured["__DataType"]
+            variable_el.attrib["DataType"] = data_type_name
+
+        # Complex/ExtensionObject types.
+        # This is generic: field order comes from Opc.Ua.Types.xsd when known,
+        # otherwise from the JSON/dict value itself.
+        if structured or data_type_name in self.uax_complex_type_fields:
+            if self.add_extension_object_value_element(variable_el, data_type_name, value):
+                return
 
         # Simple scalar types only
         if data_type_name in self.uax_direct_value_types and data_type_name not in self.uax_complex_type_fields:
+            formatted = self.format_value_for_uax(data_type_name, value)
+            if formatted is None:
+                return
+
+            value_el = SubElement(variable_el, "Value")
             child = SubElement(value_el, f"{{{self.UAX_NS}}}{data_type_name}")
-            child.text = self.format_value_for_xml(value)
+            child.text = formatted
             return
 
-        # Generic complex type handling
-        if data_type_name in self.uax_complex_type_fields:
-            ext_obj = SubElement(value_el, f"{{{self.UAX_NS}}}ExtensionObject")
-
-            type_id = SubElement(ext_obj, f"{{{self.UAX_NS}}}TypeId")
-            SubElement(type_id, f"{{{self.UAX_NS}}}Identifier").text = self.get_binary_encoding_id(data_type_name)
-
-            body = SubElement(ext_obj, f"{{{self.UAX_NS}}}Body")
-            complex_el = SubElement(body, f"{{{self.UAX_NS}}}{data_type_name}")
-
-            for field_name in self.uax_complex_type_fields[data_type_name]:
-                field_value = getattr(value, field_name, None)
-
-                field_el = SubElement(complex_el, f"{{{self.UAX_NS}}}{field_name}")
-
-                if hasattr(field_value, "Text"):
-                    text_el = SubElement(field_el, f"{{{self.UAX_NS}}}Text")
-                    text_el.text = str(field_value.Text or "")
-                elif field_value is not None:
-                    field_el.text = self.format_value_for_xml(field_value)
-
-            return
-
-        # Unknown datatype: avoid invalid XML
-        variable_el.remove(value_el)
+        # Unknown/custom datatype: avoid invalid XML
+        return
 
     def load_uax_direct_value_types(self, types_xsd_path):
         """
@@ -1084,15 +1101,274 @@ class ProductionLineClient:
             if fields:
                 self.uax_complex_type_fields[element_name] = fields
 
+    def parse_structured_value(self, value):
+        """Return dict if value is a JSON encoded structured value, else None.
+
+        The dummy server can publish complex values as JSON strings, for example:
+        {
+          "__DataType": "EUInformation",
+          "__TypeId": "i=888",
+          "NamespaceUri": "...",
+          "UnitId": 4279624,
+          "DisplayName": {"Text": "A·h"},
+          "Description": {"Text": "ampere hour"}
+        }
+
+        This keeps the client generic: the datatype name, encoding id and fields
+        come from the value/server, while the XML field order still comes from
+        Opc.Ua.Types.xsd when available.
+        """
+        if isinstance(value, dict):
+            return value
+
+        if isinstance(value, str):
+            text = value.strip()
+            if text.startswith("{") and text.endswith("}"):
+                try:
+                    parsed = json.loads(text)
+                    if isinstance(parsed, dict):
+                        return parsed
+                except Exception:
+                    return None
+
+        return None
+
+    def add_localized_text_value(self, parent_el, localized_value):
+        """Create UAX LocalizedText-like content."""
+        if localized_value is None:
+            return
+
+        if hasattr(localized_value, "Locale") and localized_value.Locale:
+            locale_el = SubElement(parent_el, f"{{{self.UAX_NS}}}Locale")
+            locale_el.text = str(localized_value.Locale)
+
+        if hasattr(localized_value, "Text"):
+            text = localized_value.Text
+        elif isinstance(localized_value, dict):
+            text = localized_value.get("Text", "")
+        else:
+            text = str(localized_value)
+
+        text_el = SubElement(parent_el, f"{{{self.UAX_NS}}}Text")
+        text_el.text = "" if text is None else str(text)
+
+    def add_generic_field_value(self, parent_el, field_name, field_value):
+        """Serialize a field value under an already-created UAX field element."""
+        if field_value is None:
+            return False
+
+        # LocalizedText-like dict: {"Text": "...", "Locale": "..."}
+        if isinstance(field_value, dict):
+            if "Text" in field_value or "Locale" in field_value:
+                self.add_localized_text_value(parent_el, field_value)
+                return True
+
+            # Nested structure fallback
+            for key, val in field_value.items():
+                if key.startswith("__"):
+                    continue
+                child = SubElement(parent_el, f"{{{self.UAX_NS}}}{key}")
+                self.add_generic_field_value(child, key, val)
+            return True
+
+        # python-opcua LocalizedText
+        if hasattr(field_value, "Text"):
+            self.add_localized_text_value(parent_el, field_value)
+            return True
+
+        # List support
+        if isinstance(field_value, (list, tuple)):
+            for item in field_value:
+                item_el = SubElement(parent_el, f"{{{self.UAX_NS}}}{field_name}")
+                self.add_generic_field_value(item_el, field_name, item)
+            return True
+
+        formatted = self.format_value_for_xml(field_value)
+        if formatted is None:
+            return False
+
+        parent_el.text = formatted
+        return True
+
+    def add_extension_object_value_element(self, variable_el, data_type_name, value):
+        """Add <Value><uax:ExtensionObject>...</...></Value> generically.
+
+        Field order is taken from Opc.Ua.Types.xsd when the datatype exists there.
+        For custom types not in Opc.Ua.Types.xsd, the JSON/dict field order is used.
+        The binary encoding id comes from:
+        1) JSON key "__TypeId" / "__BinaryEncodingId"
+        2) live server HasEncoding -> Default Binary, when available
+        """
+        structured = self.parse_structured_value(value)
+
+        if structured is None:
+            # Support real python-opcua structure objects
+            structured = {}
+            for field_name in self.uax_complex_type_fields.get(data_type_name, []):
+                field_value = getattr(value, field_name, None)
+                if field_value is not None:
+                    structured[field_name] = field_value
+
+        if not structured:
+            return False
+
+        actual_type = structured.get("__DataType", data_type_name)
+        type_id_text = (
+            structured.get("__TypeId")
+            or structured.get("__BinaryEncodingId")
+            or self.get_binary_encoding_id(actual_type)
+        )
+
+        if not type_id_text:
+            # Do not create invalid <uax:Identifier></uax:Identifier>
+            return False
+
+        # Prefer XSD field order, fallback to JSON keys.
+        field_names = self.uax_complex_type_fields.get(actual_type)
+        if not field_names:
+            field_names = [
+                k for k in structured.keys()
+                if not k.startswith("__")
+            ]
+
+        value_el = SubElement(variable_el, "Value")
+        ext_obj = SubElement(value_el, f"{{{self.UAX_NS}}}ExtensionObject")
+
+        type_id = SubElement(ext_obj, f"{{{self.UAX_NS}}}TypeId")
+        SubElement(type_id, f"{{{self.UAX_NS}}}Identifier").text = str(type_id_text)
+
+        body = SubElement(ext_obj, f"{{{self.UAX_NS}}}Body")
+        complex_el = SubElement(body, f"{{{self.UAX_NS}}}{actual_type}")
+
+        written = False
+        for field_name in field_names:
+            if field_name.startswith("__"):
+                continue
+
+            if field_name not in structured:
+                continue
+
+            field_value = structured.get(field_name)
+            if field_value is None:
+                continue
+
+            field_el = SubElement(complex_el, f"{{{self.UAX_NS}}}{field_name}")
+            if self.add_generic_field_value(field_el, field_name, field_value):
+                written = True
+            else:
+                complex_el.remove(field_el)
+
+        if not written:
+            variable_el.remove(value_el)
+            return False
+
+        return True
+
+    # def get_binary_encoding_id(self, data_type_name):
+    #     """Try to find HasEncoding -> Default Binary for a datatype from the server.
+
+    #     This avoids datatype-specific hardcoding. If the server does not expose the
+    #     datatype encoding node, the caller should skip the ExtensionObject value
+    #     or supply "__TypeId" in the structured test value.
+    #     """
+    #     try:
+    #         # Resolve datatype node from alias map first.
+    #         nodeid_text = self.alias_map.get(data_type_name)
+    #         if nodeid_text:
+    #             dt_node = self.client.get_node(nodeid_text)
+    #         else:
+    #             # fallback: browse DataTypes tree and match BrowseName
+    #             dt_node = None
+    #             queue = [self.client.get_node(ua.NodeId(24, 0))]  # BaseDataType
+    #             visited = set()
+
+    #             while queue:
+    #                 candidate = queue.pop(0)
+    #                 sid = candidate.nodeid.to_string()
+    #                 if sid in visited:
+    #                     continue
+    #                 visited.add(sid)
+
+    #                 try:
+    #                     if candidate.get_browse_name().Name == data_type_name:
+    #                         dt_node = candidate
+    #                         break
+    #                     queue.extend(candidate.get_children())
+    #                 except Exception:
+    #                     continue
+
+    #             if dt_node is None:
+    #                 return ""
+
+    #         refs = dt_node.get_references()
+    #         for ref in refs:
+    #             try:
+    #                 ref_type_id = ref.ReferenceTypeId.to_string()
+    #                 ref_type = self.reverse_alias_map.get(ref_type_id, ref_type_id)
+    #                 if ref_type != "HasEncoding":
+    #                     continue
+    #                 enc_node = self.client.get_node(ref.NodeId)
+    #                 browse_name = enc_node.get_browse_name().Name
+    #                 if browse_name == "Default Binary":
+    #                     return ref.NodeId.to_string() if hasattr(ref.NodeId, "to_string") else str(ref.NodeId)
+    #             except Exception:
+    #                 continue
+
+    #     except Exception:
+    #         pass
+
+    #     return ""
+
     def get_binary_encoding_id(self, data_type_name):
-        # Generic fallback.
-        # Better: browse server for HasEncoding -> Default Binary.
+        data_type_nodeid = self.alias_map.get(data_type_name)
+        if not data_type_nodeid:
+            return ""
+
+        try:
+            dt_node = self.client.get_node(data_type_nodeid)
+
+            for ref in dt_node.get_references():
+                ref_type = self.reverse_alias_map.get(
+                    ref.ReferenceTypeId.to_string(),
+                    ref.ReferenceTypeId.to_string()
+                )
+
+                if ref_type == "HasEncoding":
+                    target = self.client.get_node(ref.NodeId)
+                    browse_name = target.get_browse_name().Name
+
+                    if browse_name in ("Default Binary", "DefaultBinary"):
+                        return ref.NodeId.to_string()
+
+        except Exception:
+            pass
+
         return ""
     
+
+    def ensure_type_definition(self, element, node, node_class):
+        refs_el = element.find("References")
+        if refs_el is None:
+            refs_el = SubElement(element, "References")
+
+        for ref in refs_el.findall("Reference"):
+            if ref.attrib.get("ReferenceType") == "HasTypeDefinition":
+                return
+
+        try:
+            type_def = node.get_type_definition().to_string()
+        except Exception:
+            type_def = "i=58" if node_class == ua.NodeClass.Object else "i=63"
+
+        ref_el = SubElement(refs_el, "Reference", {
+            "ReferenceType": "HasTypeDefinition"
+        })
+        ref_el.text = type_def
+
 def main():
     """Main client workflow."""
     
-    endpoint = "opc.tcp://127.0.0.1:4840"
+    endpoint = "opc.tcp://127.0.0.1:4840/siome_sample/server/"
     client = ProductionLineClient(endpoint)
     
     print("[CLIENT] Production Line OPCUA Client")

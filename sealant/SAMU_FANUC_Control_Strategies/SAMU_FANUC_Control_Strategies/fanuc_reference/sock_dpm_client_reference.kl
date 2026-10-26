@@ -1,0 +1,86 @@
+PROGRAM SOCK_DPM_CLIENT
+------------------------------------------------------------------------------------------
+%STACKSIZE = 4000
+%NOLOCKGROUP
+%NOPAUSE = ERROR + COMMAND + TPENABLE
+%ENVIRONMENT flbt
+------------------------------------------------------------------------------------------
+VAR 
+    status      : INTEGER
+	entry		: INTEGER
+    comm_file   : FILE 
+    dx          : REAL
+    dy          : REAL
+    dz          : REAL
+    dw          : REAL
+    dp          : REAL
+    dr          : REAL
+    offs_rate_dz: REAL
+    offs_rate_dw: REAL
+    offs_rate_dp: REAL
+------------------------------------------------------------------------------------------
+BEGIN 
+    -- Clear TP Screen
+    WRITE(CHR(128), CHR(137))
+    FORCE_SPMENU(TP_PANEL, SPI_TPUSER, 1)
+    WRITE('Started Socket DPM Client Program.', cr)
+    WRITE('Connecting to Server...', cr)
+
+    -- Zero Initialize DPM Offsets
+    SET_VAR(entry,'*system*','$DPM_SCH[1].$GRP[1].$OFS[1].$ini_OFS',0.0,status)	
+    SET_VAR(entry,'*system*','$DPM_SCH[1].$GRP[1].$OFS[2].$ini_OFS',0.0,status)
+    SET_VAR(entry,'*system*','$DPM_SCH[1].$GRP[1].$OFS[3].$ini_OFS',0.0,status)
+    SET_VAR(entry,'*system*','$DPM_SCH[1].$GRP[1].$OFS[4].$ini_OFS',0.0,status)	
+    SET_VAR(entry,'*system*','$DPM_SCH[1].$GRP[1].$OFS[5].$ini_OFS',0.0,status)
+    SET_VAR(entry,'*system*','$DPM_SCH[1].$GRP[1].$OFS[6].$ini_OFS',0.0,status)
+
+    -- Clean Start Server Tag
+    MSG_DISCO('C6:', status)
+    CLOSE FILE comm_file
+
+    -- Connect to Client
+    SET_FILE_ATR(comm_file, ATR_UF)
+    MSG_CONNECT('C6:', status)
+
+    IF status = 0 THEN
+        -- Accept the Connection
+        OPEN FILE comm_file('rw', 'C6:')
+		WRITE('Server Connection Accepted.', cr)
+        FLG[2] = ON
+
+		-- Dynamic Path Modification
+        WAIT FOR (FLG[5] = ON)
+        WRITE comm_file (42)
+        WRITE('DPM Started!', cr)
+
+        WHILE (FLG[5] = ON) DO
+            READ comm_file (dx, dy, dz, dw, dp, dr)
+            offs_rate_dz = 0.02 * ABS(dz)
+            IF offs_rate_dz > 0.3 THEN
+                offs_rate_dz = 0.3
+            ENDIF
+            offs_rate_dw = 0.02 * ABS(dw)
+            IF offs_rate_dw > 0.3 THEN
+                offs_rate_dw = 0.3
+            ENDIF
+            offs_rate_dp = 0.02 * ABS(dp)
+            IF offs_rate_dp > 0.3 THEN
+                offs_rate_dp = 0.3
+            ENDIF
+            SET_VAR(entry, '*SYSTEM*', '$DPM_SCH[1].$GRP[1].$OFS[3].$MAX_INC', offs_rate_dz, status)
+            SET_VAR(entry, '*SYSTEM*', '$DPM_SCH[1].$GRP[1].$OFS[4].$MAX_INC', offs_rate_dw, status)
+            SET_VAR(entry, '*SYSTEM*', '$DPM_SCH[1].$GRP[1].$OFS[5].$MAX_INC', offs_rate_dp, status)
+	        SET_VAR(entry, '*SYSTEM*', '$DPM_SCH[1].$GRP[1].$OFS[1].$INI_OFS', dx, status)
+            SET_VAR(entry, '*SYSTEM*', '$DPM_SCH[1].$GRP[1].$OFS[2].$INI_OFS', dy, status)
+            SET_VAR(entry, '*SYSTEM*', '$DPM_SCH[1].$GRP[1].$OFS[3].$INI_OFS', dz, status)
+            SET_VAR(entry, '*SYSTEM*', '$DPM_SCH[1].$GRP[1].$OFS[4].$INI_OFS', dw, status)
+            SET_VAR(entry, '*SYSTEM*', '$DPM_SCH[1].$GRP[1].$OFS[5].$INI_OFS', dp, status)
+            SET_VAR(entry, '*SYSTEM*', '$DPM_SCH[1].$GRP[1].$OFS[6].$INI_OFS', dr, status)
+        ENDWHILE
+
+        -- Close the Connection
+        WRITE('Disconnecting...', cr)
+        MSG_DISCO('C6:', status)
+        WRITE('Done.', cr)
+    ENDIF 
+END SOCK_DPM_CLIENT

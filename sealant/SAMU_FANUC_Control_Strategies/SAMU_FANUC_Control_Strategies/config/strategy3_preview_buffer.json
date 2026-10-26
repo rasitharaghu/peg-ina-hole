@@ -1,0 +1,59 @@
+{
+  "strategy": "feedforward_plus_pid_preview_buffer",
+  "control_rate_hz": 125.0,
+  "sensor_rate_hz": 30.0,
+  "surface_topic": "/samu/gocator/surface_sample",
+  "tcp_topic": "/samu/dispenser/tcp_pose",
+  "axes": {
+    "x": {
+      "setpoint": 0.0,
+      "kp": 0.6,
+      "ki": 0.05,
+      "kd": 0.0,
+      "min_offset": -0.01,
+      "max_offset": 0.01,
+      "max_rate": 0.02,
+      "max_accel": 0.2,
+      "feedforward_gain": 1.0
+    },
+    "z": {
+      "setpoint": 0.0,
+      "kp": 0.8,
+      "ki": 0.08,
+      "kd": 0.0,
+      "min_offset": -0.01,
+      "max_offset": 0.01,
+      "max_rate": 0.02,
+      "max_accel": 0.2,
+      "feedforward_gain": 1.0
+    },
+    "ry": {
+      "setpoint": 0.0,
+      "kp": 0.5,
+      "ki": 0.03,
+      "kd": 0.0,
+      "min_offset": -0.0872665,
+      "max_offset": 0.0872665,
+      "max_rate": 0.174533,
+      "max_accel": 1.0,
+      "feedforward_gain": 1.0
+    }
+  },
+  "buffer": {
+    "mode": "spatial_buffer",
+    "max_samples": 2000,
+    "spatial_match_tolerance_m": 0.006,
+    "max_age_s": 10.0,
+    "min_confidence": 0.5,
+    "fixed_delay_s": 2.0
+  },
+  "extrinsic_note": "Sensor-to-TCP/workpiece transformation should normally be upstream. surface_sample and tcp_pose MUST be in same frame.",
+  "fanuc": {
+    "dry_run": true,
+    "host": "0.0.0.0",
+    "port": 30000,
+    "map_process_ry_to_fanuc_p": true,
+    "linear_si_to_fanuc": 1000.0,
+    "angular_si_to_fanuc": 57.295779513
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "strategy": "feedforward_plus_pid_foh_no_preview",
+  "control_rate_hz": 125.0,
+  "sensor_rate_hz": 30.0,
+  "feedback_topic": "/samu/gocator/feedback_x_z_ry",
+  "feedforward_topic": "/samu/gocator/feedforward_x_z_ry",
+  "axes": {
+    "x": {
+      "setpoint": 0.0,
+      "kp": 0.6,
+      "ki": 0.05,
+      "kd": 0.0,
+      "min_offset": -0.01,
+      "max_offset": 0.01,
+      "max_rate": 0.02,
+      "max_accel": 0.2,
+      "feedforward_gain": 1.0
+    },
+    "z": {
+      "setpoint": 0.0,
+      "kp": 0.8,
+      "ki": 0.08,
+      "kd": 0.0,
+      "min_offset": -0.01,
+      "max_offset": 0.01,
+      "max_rate": 0.02,
+      "max_accel": 0.2,
+      "feedforward_gain": 1.0
+    },
+    "ry": {
+      "setpoint": 0.0,
+      "kp": 0.5,
+      "ki": 0.03,
+      "kd": 0.0,
+      "min_offset": -0.0872665,
+      "max_offset": 0.0872665,
+      "max_rate": 0.174533,
+      "max_accel": 1.0,
+      "feedforward_gain": 1.0
+    }
+  },
+  "fanuc": {
+    "dry_run": true,
+    "host": "0.0.0.0",
+    "port": 30000,
+    "map_process_ry_to_fanuc_p": true,
+    "linear_si_to_fanuc": 1000.0,
+    "angular_si_to_fanuc": 57.295779513
+  }
+}

@@ -1,0 +1,9 @@
+Imagine a new aircraft panel arrives with a different shape or position. The inspection task is familiar, but the robot’s movement needs to change.
+
+For stable, repeated parts, offline programming works well. As variation increases, engineers may repeatedly adjust paths, download programs and run trials on the robot.
+
+Autonomous motion helps reduce that repeated effort. It generates movement from the part model and scan, checks reach and collision risks, and adapts to the measured part position.
+
+This can mean faster preparation for new variants, fewer physical trials and less manual correction. Offline preparation and online adaptation can also work together.
+
+For Airbus, this means less reprogramming when panels change, freeing engineering time to improve process quality.

@@ -1,0 +1,39 @@
+samu/
+├── README.md                  # what SAMU is, how to build and run
+├── CMakeLists.txt             # top-level C++ build
+├── .gitignore
+│
+├── config/                    # all numbers you tune, none inside the code
+│   ├── control.json           # setpoints (−8 mm), gains, rate/accel limits, ±12.5 mm range
+│   ├── gocator.json           # sensor IP, frame rate, exposure, window
+│   ├── rtde.json              # robot IP, register numbers, cycle rate
+│   └── calibration/           # results: hand_eye.json, tcp.json (with date + accuracy)
+│
+├── src/
+│   ├── acquisition/           # GoSDK: connect, configure, receive profiles, timestamp
+│   ├── vision/                # edge detection, line fit → X, Z, Ry
+│   ├── calibration/           # hand-eye solver, sensor → flange → base transforms
+│   ├── control/               # offset = applied + (reading − setpoint), FOH ramp, limits
+│   │                          # later: lookahead_buffer, planner, safety_check, kalman
+│   ├── communication/         # RTDE client: write offsets, read pose / echo
+│   ├── common/                # shared types (Pose, Profile, Offset), logging, time
+│   └── main.cpp               # wires the blocks together
+│
+├── robot/                     # everything that runs ON the UR10e
+│   ├── urscript/              # offset thread: read registers → path_offset_set
+│   └── programs/              # taught TP programs (.urp) / offline-programming exports
+│
+├── tools/                     # helper scripts, not part of the live loop
+│   ├── record_nominal_path.py # RTDE recording with correction off → s → pose table
+│   ├── calibrate_hand_eye.py
+│   └── plot_run.py            # plot logs after a run
+│
+├── tests/                     # one test folder per src folder
+│   ├── vision/  control/  …
+│   └── data/                  # a FEW small sample profiles for tests
+│
+├── third_party/               # notes or a script to fetch GoSDK (not the SDK itself)
+│
+└── docs/                      # design docs, diagrams, demo deck exports
+    ├── control_strategy.md
+    └── images/

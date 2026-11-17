@@ -1,0 +1,226 @@
+// =============================================================================
+// hmi_history_query.proto
+//
+// Interface between the HMI Backend (RXU app, WP5.3) and RXU.Data
+// for HISTORICAL data only. Live data comes from RXU Connectivity and is
+// not covered here.
+//
+// Style follows the RXU.Data reference file telemetry_query.proto
+// (package rxu, responses with message / query_executed / data_json).
+//
+// Status: DRAFT proposal, to be agreed with the RXU.Data team.
+// =============================================================================
+
+syntax = "proto3";
+package rxu;
+
+// -----------------------------------------------------------------------------
+// Service
+// -----------------------------------------------------------------------------
+// Implemented by RXU.Data, called by the HMI Backend.
+// The HMI Backend never sends SQL and never names database tables:
+// it asks by run, signal name and context IDs. RXU.Data maps these to its
+// own storage (e.g. QuestDB tables), so the storage can change without
+// changing the HMI.
+service HmiHistoryService {
+
+  // Run selection screen: which runs exist, with part / program / time span.
+  rpc ListRuns (ListRunsRequest) returns (ListRunsResponse);
+
+  // Signal selector: which KPPs / signals exist, their units and scope.
+  rpc ListSignals (ListSignalsRequest) returns (ListSignalsResponse);
+
+  // Course / sequence / process-state intervals of a run
+  // (for filters and for coloured bands on the charts).
+  rpc GetContextTimeline (GetContextTimelineRequest) returns (GetContextTimelineResponse);
+
+  // Historical KPP plots: one or more signals over time,
+  // optionally downsampled for plotting.
+  rpc FetchSignalHistory (FetchSignalHistoryRequest) returns (FetchSignalHistoryResponse);
+
+  // Summary tables: mean, min, max, std ... per run / course / tow ...
+  rpc GetSignalStatistics (GetSignalStatisticsRequest) returns (GetSignalStatisticsResponse);
+
+  // Several signals lined up on one time grid with context IDs attached
+  // (one table). Needed mainly by 2027 analysis views; optional in 2026.
+  rpc FetchAlignedHistory (FetchAlignedHistoryRequest) returns (FetchAlignedHistoryResponse);
+}
+
+// -----------------------------------------------------------------------------
+// Common building blocks
+// -----------------------------------------------------------------------------
+
+// Time window. Timestamps are ISO 8601 strings in UTC with milliseconds,
+// e.g. "2026-11-17T10:15:02.120Z" (same string style as the reference file).
+// Both fields optional: empty = whole run / no limit on that side.
+message TimeRange {
+  string start_time = 1;
+  string end_time   = 2;
+}
+
+// Manufacturing context used to FILTER the data.
+// Empty field = no filter on that field.
+message ContextFilter {
+  string run_id        = 1;   // e.g. "R042"
+  string part_id       = 2;
+  string program_id    = 3;   // NC program incl. revision
+  int32  ply           = 4;   // 0 = any
+  int32  course        = 5;   // 0 = any
+  int32  sequence      = 6;   // 0 = any
+  string head_id       = 7;   // e.g. "H1"
+  string tow_id        = 8;   // e.g. "T05"; ignored for head-level signals
+  string process_state = 9;   // e.g. "LAYUP", "CUT", "IDLE"
+}
+
+// How to reduce many raw samples to fewer points (for plotting).
+enum Aggregation {
+  AGGREGATION_UNSPECIFIED = 0;  // no downsampling, raw samples
+  AGG_AVG = 1;
+  AGG_MIN = 2;
+  AGG_MAX = 3;
+  AGG_SUM = 4;
+  AGG_COUNT = 5;
+  AGG_FIRST = 6;
+  AGG_LAST = 7;
+  AGG_STDDEV = 8;
+}
+
+message Downsampling {
+  int32       interval_ms = 1;  // one point per interval, e.g. 100; 0 = raw data
+  Aggregation aggregation = 2;  // e.g. AGG_AVG
+}
+
+// Large results are returned in pages.
+message Paging {
+  int32  page_size  = 1;        // max rows per response, e.g. 10000
+  string page_token = 2;        // empty for the first page; then next_page_token
+}
+
+// Description of one column in data_json.
+message ColumnInfo {
+  string name = 1;              // e.g. "time", "tow_tension", "course"
+  string unit = 2;              // e.g. "N", "bar", "degC"; empty for IDs
+  string type = 3;              // "timestamp", "double", "int", "string"
+}
+
+// Common response header (same fields as the reference file + paging info).
+message ResultInfo {
+  string message         = 1;   // "OK" or error text
+  string query_executed  = 2;   // for debugging / traceability
+  int64  row_count       = 3;   // rows in this page
+  string next_page_token = 4;   // empty = no more pages
+  bool   truncated       = 5;   // true if a server-side limit cut the result
+}
+
+// -----------------------------------------------------------------------------
+// ListRuns
+// -----------------------------------------------------------------------------
+message ListRunsRequest {
+  TimeRange time_range = 1;     // runs that overlap this window
+  string    part_id    = 2;     // optional filter
+  string    program_id = 3;     // optional filter
+  int32     limit      = 4;     // e.g. 50, newest first
+}
+
+message ListRunsResponse {
+  ResultInfo info = 1;
+  // Rows: run_id, part_id, program_id, material, start_time, end_time, status
+  string data_json = 2;
+}
+
+// -----------------------------------------------------------------------------
+// ListSignals
+// -----------------------------------------------------------------------------
+message ListSignalsRequest {
+  string run_id = 1;            // optional: only signals recorded in this run
+}
+
+message ListSignalsResponse {
+  ResultInfo info = 1;
+  // Rows: signal, unit, scope ("tow" | "head" | "machine"), description,
+  //       nominal_rate_hz, setpoint_signal (name of matching setpoint, if any)
+  string data_json = 2;
+}
+
+// -----------------------------------------------------------------------------
+// GetContextTimeline
+// -----------------------------------------------------------------------------
+message GetContextTimelineRequest {
+  string run_id = 1;            // required
+  // Which context to return as intervals, e.g. "course", "sequence",
+  // "process_state", "ply". Empty = all available.
+  repeated string context_fields = 2;
+}
+
+message GetContextTimelineResponse {
+  ResultInfo info = 1;
+  // Rows: field, value, start_time, end_time
+  // e.g. {"field":"course","value":"17",
+  //       "start_time":"2026-11-17T10:14:55.000Z","end_time":"2026-11-17T10:15:40.300Z"}
+  string data_json = 2;
+}
+
+// -----------------------------------------------------------------------------
+// FetchSignalHistory  (main call for 2026 historical KPP plots)
+// -----------------------------------------------------------------------------
+message FetchSignalHistoryRequest {
+  repeated string signals      = 1;  // e.g. "tow_tension", "ir_temperature"
+  ContextFilter   filter       = 2;  // e.g. run R042, course 17, tow T05
+  TimeRange       time_range   = 3;  // optional, narrows the filter further
+  Downsampling    downsampling = 4;  // e.g. 100 ms AGG_AVG for a whole-run plot
+  // Context IDs to return as extra columns with each point,
+  // e.g. "course", "tow_id", "process_state".
+  repeated string include_context = 5;
+  Paging          paging       = 6;
+}
+
+message FetchSignalHistoryResponse {
+  ResultInfo          info    = 1;
+  repeated ColumnInfo columns = 2;
+  // Long format, one row per signal sample (signals may have different rates):
+  // [{"time":"2026-11-17T10:15:02.120Z","signal":"tow_tension","value":41.8,
+  //   "quality":"good","course":17,"tow_id":"T05"}, ...]
+  string data_json = 3;
+}
+
+// -----------------------------------------------------------------------------
+// GetSignalStatistics  (summary tables)
+// -----------------------------------------------------------------------------
+message GetSignalStatisticsRequest {
+  repeated string      signals      = 1;
+  ContextFilter        filter       = 2;
+  TimeRange            time_range   = 3;
+  repeated Aggregation aggregations = 4;  // e.g. AGG_AVG, AGG_MIN, AGG_MAX, AGG_STDDEV
+  // Group results by these context fields, e.g. ["course", "tow_id"].
+  // Empty = one row per signal for the whole selection.
+  repeated string      group_by     = 5;
+}
+
+message GetSignalStatisticsResponse {
+  ResultInfo          info    = 1;
+  repeated ColumnInfo columns = 2;
+  // Rows: signal, <group_by fields>, avg, min, max, stddev, count
+  string data_json = 3;
+}
+
+// -----------------------------------------------------------------------------
+// FetchAlignedHistory  (one table, signals side by side)
+// -----------------------------------------------------------------------------
+message FetchAlignedHistoryRequest {
+  repeated string signals         = 1;
+  ContextFilter   filter          = 2;
+  TimeRange       time_range      = 3;
+  int32           grid_ms         = 4;  // one row every N ms, e.g. 10
+  int32           tolerance_ms    = 5;  // accept nearest sample within ±N ms
+  repeated string include_context = 6;  // e.g. "course", "tow_id", "process_state"
+  Paging          paging          = 7;
+}
+
+message FetchAlignedHistoryResponse {
+  ResultInfo          info    = 1;
+  repeated ColumnInfo columns = 2;
+  // Wide format, one row per grid time; missing values are null (never filled):
+  // [{"time":"...","tow_tension":41.8,"compaction_pressure":2.10,
+  //   "ir_temperature":182.4,"course":17,"tow_id":"T05","process_state":"LAYUP"}, ...]
+  string data_json = 3;
+}

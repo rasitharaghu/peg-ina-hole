@@ -1,0 +1,253 @@
+// =============================================================================
+// telemetry_query.proto  —  RXU.Data team's file + proposed HMI additions
+//
+// Everything NOT marked "NEW (HMI)" is the RXU.Data team's existing file,
+// transcribed from screenshots (please diff against the original).
+//
+// Rules followed for the HMI additions (backward compatible):
+//   * no existing message, field, field number, type or RPC is changed or removed
+//   * new fields only get NEW field numbers at the end of existing messages
+//   * existing clients keep working unchanged: new fields are optional
+//     (empty = old behaviour)
+// =============================================================================
+
+syntax = "proto3";
+package rxu;
+
+// Legacy request envelope used by DataStreamService.ProcessRequest.
+// GatewayQueryService RPCs use their own strongly typed messages below.
+message GatewayQueryRequest {
+    string action = 1;               // e.g., "fetch_history", "get_config"
+    string table = 2;                // e.g., "system_health_records"
+    int32 limit = 3;                 // e.g., 5, 100
+    string start_time = 4;           // Optional timestamp string
+    string end_time = 5;             // Optional timestamp string
+    string group_by = 6;             // Optional grouping column
+    string metric = 7;               // Numeric column for statistics
+    string aggregation = 8;          // avg, min, max, sum
+    string export_format = 9;        // json or csv
+    string analysis_column = 10;     // status or numeric column used by analysis actions
+    string analysis_value = 11;      // value to match, e.g. DOWNTIME or ERROR
+    double threshold = 12;           // numeric threshold for transition analysis
+    string comparison = 13;          // above, below, or crosses
+    string timestamp_column = 14;    // timestamp column used for ordering and time ranges
+    string custom_sql = 15;          // custom read-only SQL query; only SELECT is accepted
+}
+
+message GatewayQueryResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;            // The dynamic QuestDB rows encoded as a JSON string
+}
+
+// -----------------------------------------------------------------------------
+// NEW (HMI): one filter condition, e.g. course = 17, tow_id = "T05"
+// RXU.Data must check `column` against the table schema (GetSchema) and
+// `op` against the allowed list before building SQL (no SQL injection).
+// -----------------------------------------------------------------------------
+message Filter {
+    string column = 1;               // e.g. "run_id", "course", "tow_id", "process_state"
+    string op = 2;                   // "=", "!=", ">", ">=", "<", "<=", "in"
+    string value = 3;                // e.g. "R042", "17"; for "in": "T04,T05,T06"
+}
+
+// -----------------------------------------------------------------------------
+// FetchHistory  (main call for HMI historical KPP plots)
+// RXU.Data only returns the raw stored values; any statistics
+// (mean, min, max, std ...) are calculated outside RXU.Data.
+// -----------------------------------------------------------------------------
+message FetchHistoryRequest {
+    string table = 1;
+    int32 limit = 2;
+    string start_time = 3;
+    string end_time = 4;
+    string timestamp_column = 5;
+
+    // ---- NEW (HMI) ----
+    repeated string columns = 6;     // columns to return; empty = all columns (old behaviour)
+    repeated Filter filters = 7;     // e.g. run_id = R042, course = 17, tow_id = T05
+    int32 offset = 8;                // paging: skip this many rows; 0 = first page
+}
+
+message FetchHistoryResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+
+    // ---- NEW (HMI) ----
+    int64 row_count = 4;             // rows in this response
+    bool has_more = 5;               // true = call again with offset += row_count
+}
+
+message GetLatestRequest {
+    string table = 1;
+    string timestamp_column = 2;
+}
+
+message GetLatestResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+}
+
+// -----------------------------------------------------------------------------
+// CountRecords  (HMI uses it to decide whether downsampling is needed)
+// -----------------------------------------------------------------------------
+message CountRecordsRequest {
+    string table = 1;
+    string start_time = 2;
+    string end_time = 3;
+    string timestamp_column = 4;
+
+    // ---- NEW (HMI) ----
+    repeated Filter filters = 5;     // count only e.g. course 17, tow T05
+}
+
+message CountRecordsResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+}
+
+message GetTablesRequest {}
+
+message GetTablesResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+}
+
+message GetSchemaRequest {
+    string table = 1;
+}
+
+message GetSchemaResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+}
+
+message HealthCheckRequest {}
+
+message HealthCheckResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+}
+
+message ExportRecordsRequest {
+    string table = 1;
+    int32 limit = 2;
+    string export_format = 3;
+    string timestamp_column = 4;
+}
+
+message ExportRecordsResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+}
+
+message GetStatisticsRequest {
+    string table = 1;
+    string metric = 2;
+    string aggregation = 3;
+    string start_time = 4;
+    string end_time = 5;
+    string timestamp_column = 6;
+}
+
+message GetStatisticsResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+}
+
+message DurationByValueRequest {
+    string table = 1;
+    string analysis_column = 2;
+    string analysis_value = 3;
+    string group_by = 4;
+    string timestamp_column = 5;
+}
+
+message DurationByValueResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+}
+
+message ThresholdTransitionsRequest {
+    string table = 1;
+    string analysis_column = 2;
+    double threshold = 3;
+    string comparison = 4;
+    string timestamp_column = 5;
+}
+
+message ThresholdTransitionsResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+}
+
+message CountValueRequest {
+    string table = 1;
+    string analysis_column = 2;
+    string analysis_value = 3;
+}
+
+message CountValueResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+}
+
+message ExecuteCustomQueryRequest {
+    string custom_sql = 1;
+}
+
+message ExecuteCustomQueryResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;
+}
+
+// -----------------------------------------------------------------------------
+// NEW (HMI): GetDistinctValues
+// Fills the HMI filter drop-downs: which runs, courses, tows, heads exist.
+// e.g. table = kpp table, column = "course", filters = [run_id = R042]
+// -----------------------------------------------------------------------------
+message GetDistinctValuesRequest {
+    string table = 1;
+    string column = 2;               // e.g. "run_id", "course", "tow_id", "head_id"
+    repeated Filter filters = 3;
+    string start_time = 4;
+    string end_time = 5;
+    string timestamp_column = 6;
+    int32 limit = 7;
+}
+
+message GetDistinctValuesResponse {
+    string message = 1;
+    string query_executed = 2;
+    string data_json = 3;            // e.g. [{"course":16},{"course":17},{"course":18}]
+}
+
+service GatewayQueryService {
+    rpc FetchHistory(FetchHistoryRequest) returns (FetchHistoryResponse);
+    rpc GetLatest(GetLatestRequest) returns (GetLatestResponse);
+    rpc CountRecords(CountRecordsRequest) returns (CountRecordsResponse);
+    rpc GetTables(GetTablesRequest) returns (GetTablesResponse);
+    rpc GetSchema(GetSchemaRequest) returns (GetSchemaResponse);
+    rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
+    rpc ExportRecords(ExportRecordsRequest) returns (ExportRecordsResponse);
+    rpc GetStatistics(GetStatisticsRequest) returns (GetStatisticsResponse);
+    rpc DurationByValue(DurationByValueRequest) returns (DurationByValueResponse);
+    rpc ThresholdTransitions(ThresholdTransitionsRequest) returns (ThresholdTransitionsResponse);
+    rpc CountValue(CountValueRequest) returns (CountValueResponse);
+    rpc ExecuteCustomQuery(ExecuteCustomQueryRequest) returns (ExecuteCustomQueryResponse);
+
+    // ---- NEW (HMI) ----
+    rpc GetDistinctValues(GetDistinctValuesRequest) returns (GetDistinctValuesResponse);
+}

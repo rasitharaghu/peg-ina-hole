@@ -1,0 +1,41 @@
+Case A: one KPP table, 10:15 to 10:20
+
+FetchHistoryRequest {
+  table: "kpp_tow_tension"
+  timestamp_column: "timestamp"
+  start_time: "2026-11-17T10:15:00.000Z"
+  end_time:   "2026-11-17T10:20:00.000Z"
+  columns: "timestamp"  columns: "value"  columns: "tow_id"
+  limit: 10000  offset: 0
+}
+
+Repeat it with the other KPP tables, using the same start_time and end_time.
+
+Case B: all KPPs, 10:15 to 10:20, in one call
+
+FetchHistoryRequest {
+  table: "kpp_samples"
+  timestamp_column: "timestamp"
+  start_time: "2026-11-17T10:15:00.000Z"
+  end_time:   "2026-11-17T10:20:00.000Z"
+  columns: "timestamp" "tow_id" "tension" "pressure" "ir_temp" "speed"
+  limit: 10000  offset: 0
+}
+
+Time and filters can be combined, for example “10:15 to 10:20, only course 17” (example A8 in the file):
+
+start_time: "2026-11-17T10:15:00.000Z"
+end_time:   "2026-11-17T10:20:00.000Z"
+filters { column: "course" op: "=" value: "17" }
+
+How the three ways of asking compare:
+
+You give	You get
+Only start_time / end_time	Everything in that time window
+Only filters (run, course, tow)	That run, course or tow, at any time
+Both	Only the part that matches both
+
+Two points to confirm with the RXU.Data team:
+
+Time format: I assumed ISO 8601 UTC, for example 2026-11-17T10:15:00.000Z. Their file only says “timestamp string”.
+Empty times: does leaving start_time or end_time empty mean “no limit on that side”?

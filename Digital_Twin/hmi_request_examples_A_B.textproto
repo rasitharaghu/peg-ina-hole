@@ -1,0 +1,238 @@
+# =============================================================================
+# HMI Backend -> RXU.Data : request examples for storage layouts A and B
+#
+# Proto used for BOTH cases: telemetry_query_hmi_extension.proto
+# (RXU.Data's telemetry_query.proto + the "NEW (HMI)" additions).
+# The proto file is the same; only the VALUES in the requests differ.
+#
+# Format: protobuf text format (field: value), one block per call.
+# Use case for both: plot all KPPs for run R042, course 17.
+# Table / column names are examples; confirm with the RXU.Data team.
+# =============================================================================
+
+
+# #############################################################################
+# CASE A : FILE BY FILE  (one table per parameter)
+#
+#   kpp_tow_tension          : timestamp, value, run_id, course, head_id, tow_id
+#   kpp_compaction_pressure  : timestamp, value, run_id, course, head_id
+#   kpp_ir_temperature       : timestamp, value, run_id, course, head_id
+#   kpp_layup_speed          : timestamp, value, run_id, course
+#
+#   -> one FetchHistory call PER KPP table (4 calls)
+# #############################################################################
+
+# --- A1. Which runs exist? (fill run drop-down) ------------------------------
+# rpc GetDistinctValues
+GetDistinctValuesRequest {
+  table: "kpp_layup_speed"          # any table that has run_id
+  column: "run_id"
+  timestamp_column: "timestamp"
+  limit: 50
+}
+# response.data_json:
+#   [{"run_id":"R040"},{"run_id":"R041"},{"run_id":"R042"}]
+
+
+# --- A2. Which courses exist in run R042? (fill course drop-down) -----------
+# rpc GetDistinctValues
+GetDistinctValuesRequest {
+  table: "kpp_layup_speed"
+  column: "course"
+  filters { column: "run_id" op: "=" value: "R042" }
+  timestamp_column: "timestamp"
+}
+# response.data_json:
+#   [{"course":16},{"course":17},{"course":18}]
+
+
+# --- A3. Tow tension (per tow -> also return tow_id) ------------------------
+# rpc FetchHistory
+FetchHistoryRequest {
+  table: "kpp_tow_tension"
+  timestamp_column: "timestamp"
+  columns: "timestamp"
+  columns: "value"
+  columns: "tow_id"
+  filters { column: "run_id" op: "=" value: "R042" }
+  filters { column: "course" op: "=" value: "17" }
+  limit: 10000
+  offset: 0
+}
+# response:
+#   data_json: [{"timestamp":"2026-11-17T10:15:02.120Z","value":41.8,"tow_id":"T01"},
+#               {"timestamp":"2026-11-17T10:15:02.120Z","value":40.9,"tow_id":"T02"}, ...]
+#   row_count: 10000
+#   has_more:  true            -> call again with offset: 10000
+
+
+# --- A4. Compaction pressure (per head -> NO tow_id) ------------------------
+# rpc FetchHistory
+FetchHistoryRequest {
+  table: "kpp_compaction_pressure"
+  timestamp_column: "timestamp"
+  columns: "timestamp"
+  columns: "value"
+  filters { column: "run_id" op: "=" value: "R042" }
+  filters { column: "course" op: "=" value: "17" }
+  limit: 10000
+  offset: 0
+}
+# response.data_json:
+#   [{"timestamp":"2026-11-17T10:15:02.120Z","value":2.10}, ...]
+
+
+# --- A5. IR temperature ------------------------------------------------------
+# rpc FetchHistory
+FetchHistoryRequest {
+  table: "kpp_ir_temperature"
+  timestamp_column: "timestamp"
+  columns: "timestamp"
+  columns: "value"
+  filters { column: "run_id" op: "=" value: "R042" }
+  filters { column: "course" op: "=" value: "17" }
+  limit: 10000
+  offset: 0
+}
+
+
+# --- A6. Layup speed ---------------------------------------------------------
+# rpc FetchHistory
+FetchHistoryRequest {
+  table: "kpp_layup_speed"
+  timestamp_column: "timestamp"
+  columns: "timestamp"
+  columns: "value"
+  filters { column: "run_id" op: "=" value: "R042" }
+  filters { column: "course" op: "=" value: "17" }
+  limit: 10000
+  offset: 0
+}
+
+
+# #############################################################################
+# CASE B : ROW BY ROW  (one wide table, all parameters in each row)
+#
+#   kpp_samples : timestamp, run_id, course, head_id, tow_id,
+#                 tension, pressure, ir_temp, speed
+#
+#   -> ONE FetchHistory call for all KPPs (select them with `columns`)
+# #############################################################################
+
+# --- B1. Which runs exist? ---------------------------------------------------
+# rpc GetDistinctValues
+GetDistinctValuesRequest {
+  table: "kpp_samples"
+  column: "run_id"
+  timestamp_column: "timestamp"
+  limit: 50
+}
+
+
+# --- B2. Which courses exist in run R042? -----------------------------------
+# rpc GetDistinctValues
+GetDistinctValuesRequest {
+  table: "kpp_samples"
+  column: "course"
+  filters { column: "run_id" op: "=" value: "R042" }
+  timestamp_column: "timestamp"
+}
+
+
+# --- B3. All KPPs in one call ------------------------------------------------
+# rpc FetchHistory
+FetchHistoryRequest {
+  table: "kpp_samples"
+  timestamp_column: "timestamp"
+  columns: "timestamp"
+  columns: "tow_id"
+  columns: "tension"
+  columns: "pressure"
+  columns: "ir_temp"
+  columns: "speed"
+  filters { column: "run_id" op: "=" value: "R042" }
+  filters { column: "course" op: "=" value: "17" }
+  limit: 10000
+  offset: 0
+}
+# response:
+#   data_json: [{"timestamp":"2026-11-17T10:15:02.120Z","tow_id":"T01",
+#                "tension":41.8,"pressure":2.10,"ir_temp":182.4,"speed":0.50},
+#               {"timestamp":"2026-11-17T10:15:02.120Z","tow_id":"T02",
+#                "tension":40.9,"pressure":2.10,"ir_temp":182.4,"speed":0.50}, ...]
+#   row_count: 10000
+#   has_more:  true            -> call again with offset: 10000
+#
+# Note: in B, head-level values (pressure, ir_temp, speed) repeat on every
+# tow row. The HMI Backend should plot them once per timestamp, not per tow.
+
+
+# --- B4. Only one tow, only tension (smaller request) ------------------------
+# rpc FetchHistory
+FetchHistoryRequest {
+  table: "kpp_samples"
+  timestamp_column: "timestamp"
+  columns: "timestamp"
+  columns: "tension"
+  filters { column: "run_id" op: "=" value: "R042" }
+  filters { column: "course" op: "=" value: "17" }
+  filters { column: "tow_id" op: "=" value: "T05" }
+  limit: 10000
+  offset: 0
+}
+
+
+# #############################################################################
+# TIME WINDOW EXAMPLES  (start_time / end_time already exist in the RXU.Data
+# proto: FetchHistoryRequest fields 3 and 4; no new fields needed)
+# Format assumed: ISO 8601 UTC, confirm with the RXU.Data team.
+# #############################################################################
+
+# --- A7. Case A: tow tension from 10:15:00 to 10:20:00 -----------------------
+# rpc FetchHistory
+FetchHistoryRequest {
+  table: "kpp_tow_tension"
+  timestamp_column: "timestamp"
+  start_time: "2026-11-17T10:15:00.000Z"
+  end_time:   "2026-11-17T10:20:00.000Z"
+  columns: "timestamp"
+  columns: "value"
+  columns: "tow_id"
+  limit: 10000
+  offset: 0
+}
+# (repeat with table: "kpp_compaction_pressure", "kpp_ir_temperature",
+#  "kpp_layup_speed" and the same start_time / end_time)
+
+
+# --- A8. Case A: time window AND course filter together ----------------------
+FetchHistoryRequest {
+  table: "kpp_tow_tension"
+  timestamp_column: "timestamp"
+  start_time: "2026-11-17T10:15:00.000Z"
+  end_time:   "2026-11-17T10:20:00.000Z"
+  columns: "timestamp"
+  columns: "value"
+  columns: "tow_id"
+  filters { column: "course" op: "=" value: "17" }
+  limit: 10000
+  offset: 0
+}
+
+
+# --- B5. Case B: all KPPs from 10:15:00 to 10:20:00 (one call) ---------------
+# rpc FetchHistory
+FetchHistoryRequest {
+  table: "kpp_samples"
+  timestamp_column: "timestamp"
+  start_time: "2026-11-17T10:15:00.000Z"
+  end_time:   "2026-11-17T10:20:00.000Z"
+  columns: "timestamp"
+  columns: "tow_id"
+  columns: "tension"
+  columns: "pressure"
+  columns: "ir_temp"
+  columns: "speed"
+  limit: 10000
+  offset: 0
+}
